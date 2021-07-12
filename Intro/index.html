@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Why Operations Modernization - Application Modernization</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  <link href="../extra.css" rel="stylesheet">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Why Operations Modernization";
+    var mkdocs_page_input_path = "Intro.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> Application Modernization</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="..">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Resources</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../OpenshiftConcepts/">Openshift Concepts</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../WebSphereCloud/">Moving WebSphere applications to Cloud</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../resources/">Additional Resources</a>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">Application Modernization</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Why Operations Modernization</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="why-operations-modernization">Why Operations Modernization</h1>
+<h2 id="table-of-contents">Table of Contents</h2>
+<ul>
+<li><a href="#Introduction">Introduction</a></li>
+<li><a href="#WAS_Review">WebSphere Constraints</a></li>
+<li><a href="#Requirements">Requirements Driving Operations Modernization</a></li>
+<li><a href="#Openshift">Openshift for Operations Modernization</a></li>
+</ul>
+<p><a name="Introduction"></a></p>
+<h2 id="introduction">Introduction</h2>
+<p>WebSphere Application Server is one of the most widely adopted application servers in the industry. 
+Initially released in 1998, its current lineage may be traced back to V5.0, released in 2002.
+V5.0 was a major re-write that enabled it to continue to innovate and remain relevant to its users.
+Almost two decades later, as new requirements and new technologies emerged, WebSphere and its users must once make adjustments for operations modernization, to adopt cloud based technologies to meet emerging business requirements.</p>
+<p>Our focus will be on IBM Cloudpak for Applications and Openshift. 
+IBM Cloudpak for Applications is an offering that includes both WebSphere Application Server and Openshift, enabling you deploy WebSphere Application Server both in your existing environment and to the Openshift.
+Openshift is a container based cloud derived from Kubernetes open source, the most popular contrainer orchestrator.
+Openshift adds certification, additional security, additional graphical user interface, and qualities of service on top of open source Kubernetes into an enterprise offering.</p>
+<p>In this chapter we will:
+- Review WebSphere infrastructure and its constraints.
+- List requirements driving changes in IT infrastructure towards operations modernization.
+- Explain why Cloudpak for Applications and Openshift are the technolog iesto adopt for operations modernization.</p>
+<p><a name="WAS_Review"></a></p>
+<h2 id="websphere-constraints">WebSphere Constraints</h2>
+<p>In this section, we review the constraints of the WebSphere Application Server and WebSphere Liberty environments.</p>
+<h3 id="traditional-websphere-application-server">Traditional WebSphere Application Server</h3>
+<p>A WebSphere cell is managed through a Deployment Manager, which is in control of one or more WebSphere nodes. </p>
+<p><img alt="WAS Cell" src="WASCell.jpg" /></p>
+<p>After installation, the administrator uses either an administrative console or scripting for application or configuration management. 
+The changes are stored on the deployment manager repository, then synchronized to the nodes. 
+This design works well for traditional monolithic applications when the size of the environment is smaller, or when there are in-frequent changes to the environment.  It does not work as well as the size of the environment increases, or as the frequency of administrative operations increases. Consider:</p>
+<table>
+<thead>
+<tr>
+<th>item</th>
+<th>WAs Cell constraint</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>size of cell</td>
+<td>300 - 1000 JVMs</td>
+</tr>
+<tr>
+<td>size of installation</td>
+<td>2 Gb</td>
+</tr>
+<tr>
+<td>deployment unit</td>
+<td>application</td>
+</tr>
+<tr>
+<td>create a new WAS cell</td>
+<td>&gt; 30 minutes</td>
+</tr>
+<tr>
+<td>add a WAS node</td>
+<td>&gt; 30 minutes</td>
+</tr>
+<tr>
+<td>create cluster</td>
+<td>seconds to 5 minutes</td>
+</tr>
+<tr>
+<td>add cluster member</td>
+<td>seconds to 5 minutes</td>
+</tr>
+<tr>
+<td>deploy application</td>
+<td>seconds to 1 hour</td>
+</tr>
+<tr>
+<td>start application</td>
+<td>&gt; 30 seconds</td>
+</tr>
+<tr>
+<td>programming models</td>
+<td>Java/Jakarta EE, Spring</td>
+</tr>
+<tr>
+<td>configuration migration</td>
+<td>months or more</td>
+</tr>
+<tr>
+<td>application migration</td>
+<td>months or more</td>
+</tr>
+</tbody>
+</table>
+<p>Note that the time it takes to perform configuration operations gets progressive longer as the number of JVMs increases in the environment.  It may take seconds to add a cluster member when there are only a few JVMs, but may take up to 5 minutes when there are 1000.
+In addition, the time required for application management also depends on the size of the application. There are multiple copies made when deploying the application to the deployment manager repository, or synchronizing the changes to the nodes.</p>
+<h3 id="websphere-liberty">WebSphere Liberty</h3>
+<p>WebSphere Liberty and Open Liberty uses much of the same runtime as traditional WebSphere. However, instead of storing configuration in a central repository, configurations are stored with individual Liberty Servers. One way to manage WebSphere Liberty is through the Collective Controller. It serves a similar purpose to the deployment manager. It can scale much higher due to the decentralized design,  but its GUI or scripting interface is not as full function as that offered through the deployment manager.</p>
+<table>
+<thead>
+<tr>
+<th>item</th>
+<th>Liberty Collective  constraint</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>size of collective</td>
+<td>10000 JVMs</td>
+</tr>
+<tr>
+<td>size of install</td>
+<td>&gt; 30 Mb</td>
+</tr>
+<tr>
+<td>deployment unit</td>
+<td>zip file</td>
+</tr>
+<tr>
+<td>create a new WAS collective</td>
+<td>seconds to minutes</td>
+</tr>
+<tr>
+<td>add a new node</td>
+<td>seconds</td>
+</tr>
+<tr>
+<td>create cluster</td>
+<td>seconds</td>
+</tr>
+<tr>
+<td>add cluster member</td>
+<td>seconds</td>
+</tr>
+<tr>
+<td>deploy application</td>
+<td>seconds</td>
+</tr>
+<tr>
+<td>start application</td>
+<td>&gt; 3-5 seconds</td>
+</tr>
+<tr>
+<td>programming models</td>
+<td>Java/Jakarta EE, Spring</td>
+</tr>
+<tr>
+<td>configuration migration</td>
+<td>no migration</td>
+</tr>
+<tr>
+<td>appliation migration</td>
+<td>no migration</td>
+</tr>
+</tbody>
+</table>
+<p>WebSphere Liberty overcame many of the size and speed limitations of traditional WebSphere. However, as we will see in later sections, it still falls behind in terms of the scalability and administration features offered by Openshift.</p>
+<p><a name="Requirements"></a></p>
+<h2 id="requirements-driving-operations-modernization">Requirements Driving Operations Modernization</h2>
+<p>The following requirements are the factors driving infrastructure innovation and operations modernization:
+- Speed and agility of delivery
+- Scale of Infrastructure
+- Polyglot programming languages</p>
+<p>With respect to speed and agility of delivery: the faster you deliver new features, and the faster you adjust to changing requirements, the better an edge you have over your competitors. 
+Instead of a waterfall development process where applications are updated with frequency measured in months or even years, some organizations can now deliver multiple times a day. 
+To increase delivery frequency, organizations are adopting:
+- agile development process that reacts quickly to changing requirements, even on a daily basis.
+- Cloud based IT infrastructure that uses automation to enables extremely fast turn-around when delivering new features.</p>
+<p>With respect to scale of of infrastructure: it has grown enormously with increased usage via mobile applications, and increased number of users as rate of technology adoption increases. 
+Some organizations are supporting hundreds of millions of users. 
+Not only does the underlying infrastructure needs to support a large number of users, it must also support changing usage patterns. For example, paydays and holidays may place much higher demands on the infrastructure.
+The switch from large monolithic applications to smaller microservices also places higher demand on infrastructure, as each service is independently developed and tested.</p>
+<p>With respect to polyglot: application programmers now have multiple options, and increasingly they will choose the option that best fits their tasks. 
+Examples of languages and runtimes include Java/Jakart EE, Spring, reactive, node, Ruby, Swift, and Python. 
+An infrastructure capable of managing a polyglot environment provides a consistent management experience, ease of use, and cost savings compared to having to administer multiple environments.</p>
+<p><a name="Openshift"></a></p>
+<h2 id="cloudpak-for-applications-and-openshift-for-operations-modernization">Cloudpak for Applications and Openshift for Operations Modernization</h2>
+<p>IBM Cloudpak for applications and Openshift supports a much more scalable environment compared to both traditional WebSphere Application Server and WebSphere Liberty. The time required to perform operations and the scale of the environment is 10 to 100 times better compared to WebSphere. And it is inherently polyglot:</p>
+<table>
+<thead>
+<tr>
+<th>item</th>
+<th>Openshift Contraints</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>size of Openshift environment</td>
+<td>100,000 pods</td>
+</tr>
+<tr>
+<td>deployment unit</td>
+<td>image</td>
+</tr>
+<tr>
+<td>create cluster</td>
+<td>seconds</td>
+</tr>
+<tr>
+<td>add cluster member</td>
+<td>seconds</td>
+</tr>
+<tr>
+<td>deploy image</td>
+<td>seconds</td>
+</tr>
+<tr>
+<td>start application</td>
+<td>same as underlying runtime</td>
+</tr>
+<tr>
+<td>programming models</td>
+<td>polyglot</td>
+</tr>
+<tr>
+<td>configuration migration</td>
+<td>minimal (for alpha or beta configuration)</td>
+</tr>
+<tr>
+<td>application migration</td>
+<td>runtime dependent</td>
+</tr>
+</tbody>
+</table>
+<p>Cloudpak for Applications and Openshift draws from the ongoing improvements made by the Kubernetes open source community, a community that spans than the resources of multiple organizations.
+On top of open source, it provides value adds, such as
+- certification of the environment
+- security
+- improved graphical user interface</p>
+<p>It also matches the qualities of service similar to those offered by WebSphere, such as:
+- auto-scaling
+- health management
+- application updates</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+
+</body>
+</html>

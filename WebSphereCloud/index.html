@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Moving WebSphere applications to Cloud - Application Modernization</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  <link href="../extra.css" rel="stylesheet">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Moving WebSphere applications to Cloud";
+    var mkdocs_page_input_path = "WebSphereCloud.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> Application Modernization</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="..">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Resources</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../OpenshiftConcepts/">Openshift Concepts</a>
+                </li>
+                <li class=" current">
+                    
+    <a class="current" href="./">Moving WebSphere applications to Cloud</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#moving-websphere-workload-to-cloud"> Moving WebSphere Workload to Cloud</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#table-of-contents">Table of Contents</a></li>
+        
+            <li><a class="toctree-l4" href="#introduction">Introduction</a></li>
+        
+            <li><a class="toctree-l4" href="#introduction-to-container-based-cloud">Introduction to Container Based Cloud</a></li>
+        
+            <li><a class="toctree-l4" href="#websphere-openshift-comparison">WebSphere Openshift Comparison</a></li>
+        
+            <li><a class="toctree-l4" href="#options-for-moving-websphere-workload">Options for Moving WebSphere Workload</a></li>
+        
+        </ul>
+    
+
+    </ul>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../resources/">Additional Resources</a>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">Application Modernization</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Resources &raquo;</li>
+        
+      
+    
+    <li>Moving WebSphere applications to Cloud</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="moving-websphere-workload-to-cloud"><h1 style="color:green"> Moving WebSphere Workload to Cloud</h1></h1>
+<h2 id="table-of-contents"><h2 style="color:green">Table of Contents</h2></h2>
+<ul>
+<li><a href="#Introduction">Introduction</a></li>
+<li><a href="#Cloud">Introduction to Container Based Cloud</a></li>
+<li><a href="#Openshift_Comparison">WebSphere and Openshift Comparison</a></li>
+<li><a href="#WAS_To_Cloud">Options For moving WebSphere Workload</a></li>
+</ul>
+<p><a name="Introduction"></a></p>
+<h2 id="introduction"><h2 style="color:green">Introduction</h2></h2>
+<p>In this chapter we will:
+- Introduce the reader to the basic concepts of container based cloud. 
+- Compare the differences between WebSphere environment and Openshift Environment
+- List options to move WebSphere workload to cloud</p>
+<p><a name="Cloud"></a></p>
+<h2 id="introduction-to-container-based-cloud"><h2 style="color:green">Introduction to Container Based Cloud</h2></h2>
+<p>As a container based cloud, the unit of deployment is an image, not an application. An image contains the complete file system of a machine, starting from the operating system. However, unlike a traditional virtual machine image, it can be started as a process on top of an existing operating system. An image built for WebSphere Application Server looks like:</p>
+<p><img alt="An image" src="Image.jpg" /></p>
+<p>Image are named and layered. You may start from an existing layer, add one or more layers to build a new layer. 
+Instead of installing WebSphere Application server multiple times, once for each node, you start with a pre-built WebSphere Application Server image shipped with the product, then add your own customizations. 
+Or alternatively, you may start with an operating system image and install WebSphere Application Server to create a new image. 
+This new image then serves as the basis from which to create additional images containing additional prerequisites, shared libraries, applications, and configurations.</p>
+<p>A container is used to run an image. Containers provide isolated environments at the process level. Within this isolated environment, the amount of resources, and visibility to the resources, such as cpu, memory, and disk can all be strictly controlled. In addition, due to the the process level isolation, containers can be created and destroyed much more quickly compared to virtual machines, as quickly as starting and stopping processes.</p>
+<p>To run just one or a few containers, a container runtime such as docker or podman may be used. However, to manage many containers across different nodes, you need a container orchestrator such as Openshift. 
+Deployment through an container orchestrator looks looks like:</p>
+<p><img alt="Conctainer Orhestrator" src="Orchestrator.jpg" /></p>
+<p>A container orchestrator serves many of the same functions as the WebSphere deployment manager, except that the deployment unit is an image. It:
+- Creates running containers from images.
+- Allocates the containers across multiple physical nodes.
+- Monitors the health of the containers 
+- Adjusts number of running containers based on load</p>
+<p><a name="Openshift_Comparison"></a></p>
+<h2 id="websphere-openshift-comparison"><h2 style="color:green">WebSphere Openshift Comparison</h2></h2>
+<p>In this section, we compare in detail WebSphere Application server cell, Liberty Collective, and IBM Cloudpak for Applications.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th>WAS Cell</th>
+<th>Liberty Collective</th>
+<th>ICPA + Openshift</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>topology</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>max env</td>
+<td>300-1000 JVMs</td>
+<td>10,000 JVMs</td>
+<td><strong>100,000 pods</strong></td>
+</tr>
+<tr>
+<td></td>
+<td>disk</td>
+<td>2GB per node</td>
+<td>up to 200 MB</td>
+<td>depends on underlying runtime</td>
+</tr>
+<tr>
+<td></td>
+<td>firewall</td>
+<td>N</td>
+<td>N</td>
+<td>Y</td>
+</tr>
+<tr>
+<td></td>
+<td>load balancer</td>
+<td>Y</td>
+<td>Y</td>
+<td>Y</td>
+</tr>
+<tr>
+<td>Performance</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>initial heap</td>
+<td>&gt; 100 MB</td>
+<td><strong>&gt; 30 MB</strong></td>
+<td>depends on underlying runtime</td>
+</tr>
+<tr>
+<td></td>
+<td>server start</td>
+<td>&gt; 30s</td>
+<td><strong>3-5 sec</strong></td>
+<td>depends on underlying runtime</td>
+</tr>
+<tr>
+<td>migration</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>configuration migration</td>
+<td>months to years</td>
+<td><strong>no migration</strong></td>
+<td><strong>minimal migration (of alpha or beta configuration)</strong></td>
+</tr>
+<tr>
+<td></td>
+<td>application migration</td>
+<td>months to hears</td>
+<td><strong>no migration</strong></td>
+<td>depends on underlying runtime</td>
+</tr>
+<tr>
+<td>high availability</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>auto-scaling</td>
+<td>yes</td>
+<td>yes</td>
+<td>yes</td>
+</tr>
+<tr>
+<td></td>
+<td>routing policy</td>
+<td>yes</td>
+<td>yes</td>
+<td>yes</td>
+</tr>
+<tr>
+<td></td>
+<td>health management</td>
+<td>yes</td>
+<td>yes</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>disaster recovery</td>
+<td></td>
+<td>roll you own</td>
+<td>roll you rown</td>
+<td>roll your own</td>
+</tr>
+<tr>
+<td>administration</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>admin model</td>
+<td>scripting + GUI</td>
+<td>scripting + GUI</td>
+<td><strong>declarative</strong></td>
+</tr>
+<tr>
+<td></td>
+<td>deployment unit</td>
+<td>app</td>
+<td>zip file</td>
+<td>image</td>
+</tr>
+<tr>
+<td>app config</td>
+<td></td>
+<td>separate</td>
+<td>in zip file</td>
+<td>in image</td>
+</tr>
+<tr>
+<td>infra config</td>
+<td></td>
+<td>in infra</td>
+<td>in zip file</td>
+<td>source control + infra</td>
+</tr>
+<tr>
+<td>libraries</td>
+<td></td>
+<td>separate</td>
+<td>in zip file</td>
+<td>in image</td>
+</tr>
+<tr>
+<td>app edition</td>
+<td></td>
+<td>yes</td>
+<td>no</td>
+<td>yes (a/b)</td>
+</tr>
+<tr>
+<td>infra upgrade</td>
+<td></td>
+<td>app + infra migration</td>
+<td>no migration</td>
+<td>depends on underlying runtime</td>
+</tr>
+<tr>
+<td>security</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>admin roles</td>
+<td>6+</td>
+<td>1-2</td>
+<td>namespace + user defined</td>
+</tr>
+<tr>
+<td></td>
+<td>admin audit</td>
+<td>yes</td>
+<td>yes</td>
+<td>yes (?)</td>
+</tr>
+<tr>
+<td></td>
+<td>app security domain</td>
+<td>yes</td>
+<td>no (seperated by JVM)</td>
+<td>depends on underlying runtime</td>
+</tr>
+<tr>
+<td></td>
+<td>certificate management</td>
+<td>some</td>
+<td>no</td>
+<td>yes?</td>
+</tr>
+<tr>
+<td></td>
+<td>secret management</td>
+<td>password hash/encryption</td>
+<td>password hash/encryption</td>
+<td>underlying runtime + <strong>config map + external value</strong></td>
+</tr>
+<tr>
+<td></td>
+<td>security scans</td>
+<td>no</td>
+<td>no</td>
+<td>yes?</td>
+</tr>
+<tr>
+<td>problem determination</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>health management</td>
+<td>yes</td>
+<td>yes</td>
+<td>yes</td>
+</tr>
+<tr>
+<td></td>
+<td>centralized logging</td>
+<td>no</td>
+<td>no</td>
+<td>yes</td>
+</tr>
+<tr>
+<td></td>
+<td>centralized metrics</td>
+<td>no</td>
+<td>no</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>devops</td>
+<td></td>
+<td>roll you own</td>
+<td>roll your own</td>
+<td>jenkins, Kabanero</td>
+</tr>
+<tr>
+<td>qualities of service</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>in-memory session cache</td>
+<td>DRS, WXS</td>
+<td>WSX</td>
+<td>Redhat data grid</td>
+</tr>
+<tr>
+<td></td>
+<td>built-in messaging</td>
+<td>SIBus</td>
+<td>yes (not HA)</td>
+<td>Redhat AMQ</td>
+</tr>
+<tr>
+<td></td>
+<td>2-phase transactions</td>
+<td>yes</td>
+<td>yes (not HA)</td>
+<td>yes (not HA)</td>
+</tr>
+<tr>
+<td></td>
+<td>EJB clustering</td>
+<td>yes</td>
+<td><strong>no(use local EJB)</strong></td>
+<td><strong>no( use local EJB)</strong></td>
+</tr>
+<tr>
+<td></td>
+<td>stateful session failover</td>
+<td>yes</td>
+<td><strong>no</strong></td>
+<td><strong>no</strong></td>
+</tr>
+<tr>
+<td></td>
+<td>EJB timer failover</td>
+<td>yes</td>
+<td><strong>no</strong></td>
+<td><strong>no</strong></td>
+</tr>
+<tr>
+<td></td>
+<td>EJB transaction propagation</td>
+<td>yes</td>
+<td><strong>no</strong></td>
+<td><strong>depends on underlying runtime</strong></td>
+</tr>
+<tr>
+<td></td>
+<td>dynamic caching</td>
+<td>yes</td>
+<td><strong>subset</strong></td>
+<td>depends on underlying runtime</td>
+</tr>
+<tr>
+<td>programming models</td>
+<td></td>
+<td>Java/Jakarta EE</td>
+<td>Java/Jakarta EE</td>
+<td><strong>polyglot</strong></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>Spring</td>
+<td>Spring</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>restrictions</td>
+<td></td>
+<td><strong>no JAX-RPC</strong></td>
+<td>restrictions depends on underlying runtime</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Note that that some qualities of service are currently not available in Openshift, and have no suitable substitutes. You may need to re-architect your application.</strong>  These include:
+- EJB timer failover
+- Stateful session bean failover
+- 2-phase transaction failover</p>
+<p><a name="WAS_To_Cloud"></a></p>
+<h2 id="options-for-moving-websphere-workload"><h2 style="color:green">Options for Moving WebSphere Workload</h2></h2>
+<p>In this section, we will evaluate several options for operations modernization. The options are:
+- WebSphere Cell in VM
+- WebSphere Liberty in VM
+- WebSphere in Openshift</p>
+<h3 id="websphere-cell-in-vm"><h3 style="color:green">WebSphere Cell in VM</h3></h3>
+<p>You may pre-install WebSphere onto a VM, then clone the VM to quickly create WAS cells. 
+You may do this on your own, use VM Quickstarter, or use the WebSphere as a Service in IBM public cloud. 
+Ultimately, this approach only enables you to quickly create new cells, which is useful if you need to frequently create new environments for development or testing, 
+but it does not address the other performance or scalability issues with the cell:</p>
+<table>
+<thead>
+<tr>
+<th>item</th>
+<th>WAs Cell constraint</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>size of cell</td>
+<td>300 - 1000 JVMs</td>
+</tr>
+<tr>
+<td>size of installation</td>
+<td>2 Gb</td>
+</tr>
+<tr>
+<td>deployment unit</td>
+<td>application</td>
+</tr>
+<tr>
+<td>create a new WAS cell</td>
+<td>minutes</td>
+</tr>
+<tr>
+<td>add a WAS node</td>
+<td>minutes</td>
+</tr>
+<tr>
+<td>create cluster</td>
+<td>seconds to 5 minutes</td>
+</tr>
+<tr>
+<td>add cluster member</td>
+<td>seconds to 5 minutes</td>
+</tr>
+<tr>
+<td>deploy application</td>
+<td>seconds to hour</td>
+</tr>
+<tr>
+<td>start application</td>
+<td>&gt; 30 seconds</td>
+</tr>
+<tr>
+<td>programming models</td>
+<td>Java/Jakarta EE, Spring</td>
+</tr>
+<tr>
+<td>configuration migration</td>
+<td>months or more</td>
+</tr>
+<tr>
+<td>application migration</td>
+<td>months or more</td>
+</tr>
+</tbody>
+</table>
+<h3 id="websphere-liberty-in-vm"><h3 style="color:green">WebSphere Liberty in VM</h3></h3>
+<p>You may also pre-install WebSphere Liberty onto a VM, then clone the VM to quickly create Liberty collectives. 
+However, since Liberty is already designed for quick installation and fast startup, there are no significant savings using this approach. In addition, the scalability and administration issues still remain.</p>
+<h3 id="websphere-cell-in-vm_1"><h3 style="color:green">WebSphere Cell in VM</h3></h3>
+<p>There are two recommended methods to run applications currently running in WebSphere in Openshift cloud:
+- using WebSphere Liberty image:  recommended if the application already runs or can be port to Liberty. 
+- using Websphere Base image: recommended if it is too difficult to port the application to Liberty.</p>
+<p>Note that it is also possible and supported to run applications using Tomcat or JBOSS images. However, running on either Liberty or Base gives you the most runtime compatibility for an application currently running on WebSphere.</p>
+<p>With Liberty or WebSphere Base, The scalability of the environment is that of the Kubernetes environment, not of the original cell or collective environment. The JVMs are stand-alone, not part of a collective or a cell. This also means that much of the qualities of service, such as clustering or failover, is provided by Openshift rather than WebSphere.</p>
+<p>It should be clear that Liberty has many advantages over WebSphere Base when running in Openshift cloud. 
+However, there are also some programming model and qualities of service limitations that makes some applications difficult to port to Openshift or Liberty without code change, as listed in the last section. </p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../resources/" class="btn btn-neutral float-right" title="Additional Resources">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../OpenshiftConcepts/" class="btn btn-neutral" title="Openshift Concepts"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../OpenshiftConcepts/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../resources/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+
+</body>
+</html>
