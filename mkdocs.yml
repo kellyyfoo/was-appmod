@@ -1,0 +1,9 @@
+site_name: Application Modernization  
+nav:
+- Home: index.md
+- Resources:
+  - Openshift Concepts: OpenshiftConcepts.md
+  - Moving WebSphere applications to Cloud: WebSphereCloud.md
+  - Additional Resources: resources.md
+theme: readthedocs
+extra_css: ["extra.css"]

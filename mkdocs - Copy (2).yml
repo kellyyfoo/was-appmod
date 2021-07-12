@@ -1,0 +1,12 @@
+site_name: Application Modernization  
+nav:
+- Home: index.md
+- 'Learning with Labs':
+  - Overview: overview/overview.md
+  - Basic labs: 
+      - Basic Labs List: basic-labs/index.md
+      - Docker Introduction: basic-labs/HelloContainer/README.md
+      - OpenShift Introduction: basic-labs/IntroOpenshift/README.md
+  - App Mod Labs: conf.md
+theme: readthedocs
+extra_css: ["extra.css"]
