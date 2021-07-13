@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
-  <link href="../../extra.css" rel="stylesheet">
+  <link href="../../stylesheets/klp.css" rel="stylesheet">
   
   <script>
     // Current page data
@@ -52,6 +52,11 @@
             <li class="toctree-l1">
 		
     <a class="" href="../..">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../HCTEST/">TEST</a>
 	    </li>
           
             <li class="toctree-l1">
@@ -226,7 +231,7 @@ It is common for artifacts related to different applications to be assigned to d
 <p>Note that the console shows you the YAML file for the deployment.  Change the number of replicas from default 3 to <strong>2</strong>, then click <strong>Create</strong>:</p>
 <p><img alt="Deployment Replicas" src="images/DeploymentReplicas.jpg" /></p>
 <p>Here is the specification of the deployment in its entirety:</p>
-<p><code>apiVersion: apps/v1
+<pre class="highlight"><code>apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: example
@@ -245,7 +250,8 @@ spec:
         - name: hello-openshift
           image: openshift/hello-openshift
           ports:
-            - containerPort: 8080</code></p>
+            - containerPort: 8080</code></pre>
+
 </li>
 <li>
 <p>Let's review this resource:</p>
@@ -276,7 +282,7 @@ spec:
 </li>
 <li>
 <p>Here is a sample YAML after the deployment is created :</p>
-<p><code>kind: Deployment
+<pre class="highlight"><code>kind: Deployment
 apiVersion: apps/v1
 metadata:
   name: example
@@ -339,7 +345,8 @@ status:
       lastUpdateTime: '2020-01-30T15:45:20Z'
       lastTransitionTime: '2020-01-30T15:45:15Z'
       reason: NewReplicaSetAvailable
-      message: ReplicaSet "example-75778c488" has successfully progressed.</code></p>
+      message: ReplicaSet "example-75778c488" has successfully progressed.</code></pre>
+
 </li>
 <li>
 <p>Note that:</p>
@@ -399,7 +406,7 @@ That is the reason that <code>Pods</code> tab is under the <code>deployment</cod
 <p>After the service is created, click on the YAML tab:</p>
 <p><img alt="Create Service After YAML " src="images/CreateServiceAfterYAML.jpg" /></p>
 <p>The YAML file looks like:
-<code>Kind: Service
+<pre class="highlight"><code>Kind: Service
 apiVersion: v1
 metadata:
   name: example
@@ -419,7 +426,7 @@ spec:
   type: ClusterIP
   sessionAffinity: None
 status:
-  loadBalancer: {}</code></p>
+  loadBalancer: {}</code></pre></p>
 </li>
 <li>
 <p>Note that for this service, there is a cluster wide IP address created, and that it is being load balanced. Also session affinity is not set for this service.</p>
@@ -504,12 +511,10 @@ The command line tools may be used to:</p>
 <p>The <code>oc</code> command is already installed on your VM's terminal.</p>
 <p>Open a terminal window from the VM and clone the lab to your local directory via:</p>
 <p><img alt="terminal" src="images/checkenv1.png" /></p>
-<pre><code>git clone https://github.com/IBM/openshift-workshop-was.git
-</code></pre>
+<pre class="highlight"><code>git clone https://github.com/IBM/openshift-workshop-was.git</code></pre>
 
 <p>Change directory to:  <code>openshift-workshop-was/labs/Openshift/IntroOpenshift</code></p>
-<pre><code>cd openshift-workshop-was/labs/Openshift/IntroOpenshift
-</code></pre>
+<pre class="highlight"><code>cd openshift-workshop-was/labs/Openshift/IntroOpenshift</code></pre>
 
 <h3 id="login">Login</h3>
 <ol>
@@ -523,16 +528,18 @@ The command line tools may be used to:</p>
 </li>
 <li>
 <p>Copy the <code>oc login</code> command and paste it into your web terminal.</p>
-<p><code>oc login --token=&lt;TOKEN&gt; --server=&lt;SERVER Address&gt;</code></p>
+<pre class="highlight"><code>oc login --token=&lt;TOKEN&gt; --server=&lt;SERVER Address&gt;</code></pre>
+
 <p><img alt="Login2" src="images/login2.png" /></p>
 </li>
 <li>
 <p>After login, the project last accessed is displayed, and it may or may not be the <code>default</code> project shown below:</p>
-<p>```
-Logged into "<SERVER address" as "<USER>" using the token provided.</p>
-<p>You have access to 56 projects, the list has been suppressed. You can list all projects with 'oc projects'</p>
-<p>Using project "default".
-```</p>
+<pre class="highlight"><code>Logged into "&lt;SERVER address" as "&lt;USER&gt;" using the token provided.
+
+You have access to 56 projects, the list has been suppressed. You can list all projects with 'oc projects'
+
+Using project "default".</code></pre>
+
 </li>
 </ol>
 <h3 id="listing-resources">Listing resources</h3>
@@ -542,7 +549,7 @@ Some resources are global (not in a namespace), while others are scoped to a nam
 Many resources also have short names to save typing when using the command line tool. 
 For example, you may use <code>cm</code> instead of ConfigMap as a command line parameter when the parameter is for a <code>KIND</code>.
 Example output:</p>
-<pre><code>NAME                                  SHORTNAMES       APIGROUP                              NAMESPACED   KIND
+<pre class="highlight"><code>NAME                                  SHORTNAMES       APIGROUP                              NAMESPACED   KIND
 bindings                                                                                     true         Binding
 componentstatuses                     cs                                                     false        ComponentStatu
 s
@@ -551,14 +558,13 @@ endpoints                             ep                                        
 events                                ev                                                     true         Event
 limitranges                           limits                                                 true         LimitRange
 namespaces                            ns                                                     false        Namespace
-nodes                                 no                                                     false        Node
-</code></pre>
+nodes                                 no                                                     false        Node</code></pre>
 
 <h3 id="listing-instances-of-a-resource-kind">Listing instances of a resource kind</h3>
 <ol>
 <li>
 <p>List all projects: <code>oc get projects</code></p>
-<p><code>NAME          DISPLAY NAME   STATUS
+<pre class="highlight"><code>NAME          DISPLAY NAME   STATUS
 default                      Active
 ibm-cert-store               Active
 ibm-system                   Active
@@ -566,11 +572,12 @@ kube-node-lease              Active
 kube-public                  Active
 kube-system                  Active
 myproject                    Active
-...</code></p>
+...</code></pre>
+
 </li>
 <li>
 <p>List all pods in all namespaces: <code>oc get pods --all-namespaces</code></p>
-<p><code>NAMESPACE                                               NAME
+<pre class="highlight"><code>NAMESPACE                                               NAME
   READY   STATUS      RESTARTS   AGE
 ibm-system                                              ibm-cloud-provider-ip-52-116-182-130-67c44c6d5d-bh9x5
   1/1     Running     0          24h
@@ -578,34 +585,39 @@ ibm-system                                              ibm-cloud-provider-ip-52
   1/1     Running     0          24h
 kube-system                                             calico-kube-controllers-549fdb8d79-khkvr
   1/1     Running     0          25h
-...</code></p>
+...</code></pre>
+
 </li>
 <li>
 <p>List all pods within a namespace: <code>oc get pods -n kube-system</code></p>
-<p><code>NAME                                             READY   STATUS    RESTARTS   AGE
+<pre class="highlight"><code>NAME                                             READY   STATUS    RESTARTS   AGE
 calico-kube-controllers-549fdb8d79-khkvr         1/1     Running   0          25h
 calico-node-jc6ln                                1/1     Running   0          24h
 calico-node-t7zwg                                1/1     Running   0          24h
-...</code></p>
+...</code></pre>
+
 </li>
 </ol>
 <h3 id="projects_1">Projects</h3>
 <ol>
 <li>
 <p>List all projects: <code>oc get projects</code></p>
-<p><code>NAME                                                    DISPLAY NAME   STATUS
+<pre class="highlight"><code>NAME                                                    DISPLAY NAME   STATUS
 default                                                                Active
 ibm-cert-store                                                         Active
 ibm-system                                                             Active
-kube-node-lease                                                        Active</code></p>
+kube-node-lease                                                        Active</code></pre>
+
 </li>
 <li>
 <p>Get current project: <code>oc project</code> (Note: current project may not be <code>myproject</code> shown below):</p>
-<p><code>Using project "myproject" on server "https://c100-e.us-south.containers.cloud.ibm.com:32541".</code></p>
+<pre class="highlight"><code>Using project "myproject" on server "https://c100-e.us-south.containers.cloud.ibm.com:32541".</code></pre>
+
 </li>
 <li>
 <p>Create a new project and make it the current project: <code>oc new-project  project1</code>   </p>
-<p><code>Now using project "project1" on server "https://c100-e.us-south.containers.cloud.ibm.com:32541".</code></p>
+<pre class="highlight"><code>Now using project "project1" on server "https://c100-e.us-south.containers.cloud.ibm.com:32541".</code></pre>
+
 </li>
 <li>
 <p>Switch to the <code>default</code> project: <code>oc project default</code></p>
@@ -615,7 +627,7 @@ kube-node-lease                                                        Active</c
 </li>
 <li>
 <p>View the REST specification of the project: <code>oc get project project1 -o yaml</code>:</p>
-<p><code>apiVersion: project.openshift.io/v1
+<pre class="highlight"><code>apiVersion: project.openshift.io/v1
 kind: Project
 metadata:
   annotations:
@@ -634,50 +646,54 @@ spec:
   finalizers:
   - kubernetes
 status:
-  phase: Active</code></p>
+  phase: Active</code></pre>
+
 </li>
 </ol>
 <h3 id="first-application_1">First Application</h3>
 <h4 id="first-deployment_1">First Deployment</h4>
 <ol>
 <li>In your web terminal session, under the directory where you clone the labs repository (.../openshift-workshop-was/labs/Openshift/IntroOpenshift), you will find <strong>Deployment.yaml</strong>, for example, 
-   <code>root@lab-tools-6d4cbb56b6-cn2k5:/openshift-workshop-was/labs/Openshift/IntroOpenshift# ls -lt
-   drwxr-xr-x. 2 root root  4096 Apr  9 01:13 images
-   -rw-r--r--. 1 root root 32461 Apr  9 01:13 README.md
-   -rw-r--r--. 1 root root   171 Apr  9 01:13 Route.yaml
-   -rw-r--r--. 1 root root   207 Apr  9 01:13 Service.yaml
-   -rw-r--r--. 1 root root   384 Apr  9 01:13 Deployment.yaml</code></li>
+   <pre class="highlight"><code>root@lab-tools-6d4cbb56b6-cn2k5:/openshift-workshop-was/labs/Openshift/IntroOpenshift# ls -lt
+drwxr-xr-x. 2 root root  4096 Apr  9 01:13 images
+-rw-r--r--. 1 root root 32461 Apr  9 01:13 README.md
+-rw-r--r--. 1 root root   171 Apr  9 01:13 Route.yaml
+-rw-r--r--. 1 root root   207 Apr  9 01:13 Service.yaml
+-rw-r--r--. 1 root root   384 Apr  9 01:13 Deployment.yaml</code></pre></li>
 <li>Review the contents of <code>Deployment.yaml</code> and note that it is identical to the to the deployment from the last section except for the namespace. This allows us to deploy the same image in a different project. Using the same image customized for different environments is an important concept that will be covered further in future labs.</li>
 </ol>
-<p><code>cat Deployment.yaml</code></p>
-<p><code>apiVersion: apps/v1
-    kind: Deployment
-    metadata:
-      name: example
-      namespace: project1
-    spec:
-      selector:
-        matchLabels:
-          app: hello-openshift
-      replicas: 2
-      template:
-        metadata:
-          labels:
-            app: hello-openshift
-        spec:
-          containers:
-            - name: hello-openshift
-              image: openshift/hello-openshift
-              ports:
-                - containerPort: 8080</code></p>
+<pre class="highlight"><code>cat Deployment.yaml</code></pre>
+
+<pre class="highlight"><code> apiVersion: apps/v1
+ kind: Deployment
+ metadata:
+   name: example
+   namespace: project1
+ spec:
+   selector:
+     matchLabels:
+       app: hello-openshift
+   replicas: 2
+   template:
+     metadata:
+       labels:
+         app: hello-openshift
+     spec:
+       containers:
+         - name: hello-openshift
+           image: openshift/hello-openshift
+           ports:
+             - containerPort: 8080</code></pre>
+
 <ol>
 <li>
 <p>Apply the deployment via the command line: <code>oc apply -f Deployment.yaml</code></p>
-<p><code>deployment.apps/example created</code></p>
+<pre class="highlight"><code>deployment.apps/example created</code></pre>
+
 </li>
 <li>
 <p>Check the status of deployment: <code>oc get deployment example -o yaml</code>. If the status does not show available replica count of 2, wait a few seconds before retrying.</p>
-<p><code>apiVersion: extensions/v1beta1
+<pre class="highlight"><code>apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   annotations:
@@ -745,34 +761,34 @@ status:
   observedGeneration: 1
   readyReplicas: 2
   replicas: 2
-  updatedReplicas: 2</code></p>
+  updatedReplicas: 2</code></pre>
+
 </li>
 <li>
 <p>List the running pods created by the controller for the deployment: <code>oc get pods</code></p>
-<p><code>NAME                      READY   STATUS    RESTARTS   AGE
+<pre class="highlight"><code>NAME                      READY   STATUS    RESTARTS   AGE
 example-75778c488-7k7q2   1/1     Running   0          3m37s
-example-75778c488-c9jhd   1/1     Running   0          3m37s</code></p>
+example-75778c488-c9jhd   1/1     Running   0          3m37s</code></pre>
+
 </li>
 <li>
 <p>List the details for one of the pods: <code>oc get pods &lt;pod name&gt; -o yaml</code>
     &gt; Note: <code>&lt;pod name&gt;</code> is listed under <code>NAME</code> in the previous command's output.
-    ```
-    apiVersion: v1
-    kind: Pod
-    metadata:
-      annotations:
-        cni.projectcalico.org/podIP: 172.30.26.229/32
-        openshift.io/scc: restricted
-      creationTimestamp: "2020-01-30T20:37:28Z"
-      generateName: example-75778c488-
-      labels:
-        app: hello-openshift
-        pod-template-hash: 75778c488
-      name: example-75778c488-7k7q2
-      namespace: project1
-      ownerReferences:</p>
-<ul>
-<li>apiVersion: apps/v1
+    <pre class="highlight"><code>apiVersion: v1
+kind: Pod
+metadata:
+  annotations:
+    cni.projectcalico.org/podIP: 172.30.26.229/32
+    openshift.io/scc: restricted
+  creationTimestamp: "2020-01-30T20:37:28Z"
+  generateName: example-75778c488-
+  labels:
+    app: hello-openshift
+    pod-template-hash: 75778c488
+  name: example-75778c488-7k7q2
+  namespace: project1
+  ownerReferences:
+  - apiVersion: apps/v1
     blockOwnerDeletion: true
     controller: true
     kind: ReplicaSet
@@ -782,36 +798,32 @@ example-75778c488-c9jhd   1/1     Running   0          3m37s</code></p>
   selfLink: /api/v1/namespaces/project1/pods/example-75778c488-7k7q2
   uid: 504c999e-d47d-48f7-afcb-992a5a13fc67
 spec:
-  containers:</li>
-<li>image: openshift/hello-openshift
+  containers:
+  - image: openshift/hello-openshift
     imagePullPolicy: Always
     name: hello-openshift
-    ports:<ul>
-<li>containerPort: 8080
-  protocol: TCP
-resources: {}
-securityContext:
-  capabilities:
-    drop:<ul>
-<li>KILL</li>
-<li>MKNOD</li>
-<li>SETGID</li>
-<li>SETUID
-  runAsUser: 1000570000
-terminationMessagePath: /dev/termination-log
-terminationMessagePolicy: File
-volumeMounts:</li>
-</ul>
-</li>
-<li>mountPath: /var/run/secrets/kubernetes.io/serviceaccount
-  name: default-token-ngv4p
-  readOnly: true
+    ports:
+    - containerPort: 8080
+      protocol: TCP
+    resources: {}
+    securityContext:
+      capabilities:
+        drop:
+        - KILL
+        - MKNOD
+        - SETGID
+        - SETUID
+      runAsUser: 1000570000
+    terminationMessagePath: /dev/termination-log
+    terminationMessagePolicy: File
+    volumeMounts:
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: default-token-ngv4p
+      readOnly: true
   dnsPolicy: ClusterFirst
   enableServiceLinks: true
-  imagePullSecrets:</li>
-</ul>
-</li>
-<li>name: default-dockercfg-shjmz
+  imagePullSecrets:
+  - name: default-dockercfg-shjmz
   nodeName: 10.177.93.14
   priority: 0
   restartPolicy: Always
@@ -823,40 +835,40 @@ volumeMounts:</li>
   serviceAccount: default
   serviceAccountName: default
   terminationGracePeriodSeconds: 30
-  tolerations:</li>
-<li>effect: NoExecute
+  tolerations:
+  - effect: NoExecute
     key: node.kubernetes.io/not-ready
     operator: Exists
-    tolerationSeconds: 300</li>
-<li>effect: NoExecute
+    tolerationSeconds: 300
+  - effect: NoExecute
     key: node.kubernetes.io/unreachable
     operator: Exists
     tolerationSeconds: 300
-  volumes:</li>
-<li>name: default-token-ngv4p
+  volumes:
+  - name: default-token-ngv4p
     secret:
       defaultMode: 420
       secretName: default-token-ngv4p
 status:
-  conditions:</li>
-<li>lastProbeTime: null
+  conditions:
+  - lastProbeTime: null
     lastTransitionTime: "2020-01-30T20:37:28Z"
     status: "True"
-    type: Initialized</li>
-<li>lastProbeTime: null
+    type: Initialized
+  - lastProbeTime: null
     lastTransitionTime: "2020-01-30T20:37:31Z"
     status: "True"
-    type: Ready</li>
-<li>lastProbeTime: null
+    type: Ready
+  - lastProbeTime: null
     lastTransitionTime: "2020-01-30T20:37:31Z"
     status: "True"
-    type: ContainersReady</li>
-<li>lastProbeTime: null
+    type: ContainersReady
+  - lastProbeTime: null
     lastTransitionTime: "2020-01-30T20:37:28Z"
     status: "True"
     type: PodScheduled
-  containerStatuses:</li>
-<li>containerID: cri-o://42828d4a8333d4fa9d3882805680d7693616610ff78a3e07f4794d91b86862b5
+  containerStatuses:
+  - containerID: cri-o://42828d4a8333d4fa9d3882805680d7693616610ff78a3e07f4794d91b86862b5
     image: docker.io/openshift/hello-openshift:latest
     imageID: docker.io/openshift/hello-openshift@sha256:aaea76ff622d2f8bcb32e538e7b3cd0ef6d291953f3e7c9f556c1ba5baf47e2e
     lastState: {}
@@ -870,67 +882,68 @@ status:
   hostIP: 10.177.93.14
   phase: Running
   podIP: 172.30.26.229
-  podIPs:</li>
-<li>ip: 172.30.26.229
+  podIPs:
+  - ip: 172.30.26.229
   qosClass: BestEffort
-  startTime: "2020-01-30T20:37:28Z"
-```</li>
-</ul>
+  startTime: "2020-01-30T20:37:28Z"</code></pre></p>
 </li>
 <li>
 <p>Show the logs of one of the pods: <code>oc logs &lt;pod name&gt;</code></p>
-<p><code>serving on 8888
-serving on 8080</code></p>
+<pre class="highlight"><code>serving on 8888
+serving on 8080</code></pre>
+
 </li>
 <li>
 <p>Take a look at <code>Service.yaml</code> and note that it's for the <code>project1</code> namespace:</p>
 </li>
 </ol>
-<p><code>cat Service.yaml</code>
+<p><pre class="highlight"><code>cat Service.yaml</code></pre>
    Example output:
-    <code>apiVersion: v1
-    kind: Service
-    metadata:
-      name: example
-      namespace: project1
-    spec:
-      ports:
-        - protocol: TCP
-          port: 8080
-          targetPort: 8080
-      selector:
-        app: hello-openshift
-      type: ClusterIP</code></p>
+    <pre class="highlight"><code>apiVersion: v1
+kind: Service
+metadata:
+  name: example
+  namespace: project1
+spec:
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
+  selector:
+    app: hello-openshift
+  type: ClusterIP</code></pre></p>
 <ol>
 <li>
 <p>Create the service so that it's accessible and load balanced for pods with label <code>app: hello-openshift</code> within the <code>project1</code> namespace: <code>oc apply -f Service.yaml</code></p>
-<p><code>service/example created</code></p>
+<pre class="highlight"><code>service/example created</code></pre>
+
 </li>
 <li>
 <p>Examine Route.yaml:
-    <code>cat Route.yaml</code>
+    <pre class="highlight"><code>cat Route.yaml</code></pre>
     Output:
-    <code>apiVersion: route.openshift.io/v1
-    kind: Route
-    metadata:
-      name: example
-      namespace: project1
-    spec:
-      port:
-        targetPort: 8080
-      to:
-        kind: Service
-        name: example</code></p>
+    <pre class="highlight"><code>apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: example
+  namespace: project1
+spec:
+  port:
+    targetPort: 8080
+  to:
+    kind: Service
+    name: example</code></pre></p>
 </li>
 <li>
 <p>Apply the route to make the service reachable from outside the cluster: <code>oc apply -f Route.yaml</code></p>
-<p><code>route.route.openshift.io/example created</code></p>
+<pre class="highlight"><code>route.route.openshift.io/example created</code></pre>
+
 </li>
 <li>
 <p>Generate the URL for the route, and point your browser to it: 
-   <code>echo http://$(oc get route example --template='{{ .spec.host }}')</code>
+   <pre class="highlight"><code>echo http://$(oc get route example --template='{{ .spec.host }}')</code></pre>
    Output:
-   <code>http://example-project1.apps.demo.ibmdte.net</code></p>
+   <pre class="highlight"><code>http://example-project1.apps.demo.ibmdte.net</code></pre></p>
 </li>
 <li>Open your Firefox browser again and visit the URL outputted by the previous command. You should see a web page displaying the following message:</li>
 </ol>
@@ -939,37 +952,41 @@ serving on 8080</code></p>
 <ol>
 <li>
 <p>List pods: <code>oc get pods</code></p>
-<p><code>NAME                      READY   STATUS    RESTARTS   AGE
+<pre class="highlight"><code>NAME                      READY   STATUS    RESTARTS   AGE
 example-75778c488-7k7q2   1/1     Running   0          60m
-example-75778c488-c9jhd   1/1     Running   0          60m</code></p>
+example-75778c488-c9jhd   1/1     Running   0          60m</code></pre>
+
 </li>
 <li>
 <p>Delete one of the pods: <code>oc delete pod &lt;pod name&gt;</code></p>
-<p><code>pod "example-75778c488-7k7q2" deleted</code></p>
+<pre class="highlight"><code>pod "example-75778c488-7k7q2" deleted</code></pre>
+
 </li>
 <li>
 <p>List pods again and note that a new instance has been created as expected. The deployment specified 2 instances, so the controller tries to maintain 2 instances: <code>oc get pods</code></p>
-<p><code>NAME                      READY   STATUS    RESTARTS   AGE
+<pre class="highlight"><code>NAME                      READY   STATUS    RESTARTS   AGE
 example-75778c488-c9jhd   1/1     Running   0          63m
-example-75778c488-rhjrx   1/1     Running   0          28s</code></p>
+example-75778c488-rhjrx   1/1     Running   0          28s</code></pre>
+
 </li>
 <li>
 <p>To reduce the number of pods, we can patch the resource in one of two ways:</p>
 </li>
 <li>Scripted patch using the <code>patch</code> option of the command line:
-      <code>oc patch deployment example -p '{ "spec": { "replicas": 1 } }'</code></li>
+      <pre class="highlight"><code>oc patch deployment example -p '{ "spec": { "replicas": 1 } }'</code></pre></li>
 <li>
 <p>Interactive patch using the <code>edit</code> option of the command line through <code>vi</code> editor:
-      <code>oc edit deployment example</code>
+      <pre class="highlight"><code>oc edit deployment example</code></pre>
       Under the <code>spec</code> section (not under the <code>status</code> section), change <code>replicas: 2</code> to <code>replicas: 1</code>, and save the change (by <code>:wq</code>).</p>
 <p>The output:
-  <code>deployment.extensions/example edited</code></p>
+  <pre class="highlight"><code>deployment.extensions/example edited</code></pre></p>
 <p>Note: The above edits the copy that is stored in Openshift. You may also edit your local copy of <code>Deployment.yaml</code> and re-apply it.</p>
 </li>
 <li>
 <p>List the pods to show only 1 pod is running: <code>oc get pods</code></p>
-<p><code>NAME                      READY   STATUS    RESTARTS   AGE
-example-75778c488-c9jhd   1/1     Running   0          65m</code></p>
+<pre class="highlight"><code>NAME                      READY   STATUS    RESTARTS   AGE
+example-75778c488-c9jhd   1/1     Running   0          65m</code></pre>
+
 </li>
 <li>
 <p>Cleanup:</p>
@@ -1024,5 +1041,5 @@ example-75778c488-c9jhd   1/1     Running   0          65m</code></p>
 
 <!--
 MkDocs version : 1.0.4
-Build Date UTC : 2021-07-12 17:02:04
+Build Date UTC : 2021-07-13 21:25:10
 -->

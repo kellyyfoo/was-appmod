@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="../../../css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../../css/theme_extra.css" type="text/css" />
   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
-  <link href="../../../extra.css" rel="stylesheet">
+  <link href="../../../stylesheets/klp.css" rel="stylesheet">
   
   <script>
     // Current page data
@@ -52,6 +52,11 @@
             <li class="toctree-l1">
 		
     <a class="" href="../../..">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../../HCTEST/">TEST</a>
 	    </li>
           
             <li class="toctree-l1">
@@ -169,27 +174,27 @@
 <ol>
 <li>Navigate to the directory you uploaded the <code>transformationadvisor-Linux_TransformationAdvisorDemo_WAS855_AppSrv01.tgz</code> file to and issue the following commands to extract the Data Collector:</li>
 </ol>
-<p><code>bash
-  mkdir datacollector
-  cd datacollector
-  mv transformationadvisor-Linux_TransformationAdvisorDemo_WAS855_AppSrv01.tgz .
-  tar -zxvf transformationadvisor-Linux_TransformationAdvisorDemo_WAS855_AppSrv01.tgz
-  cd transformationadvisor-*</code></p>
+<pre class="highlight"><code class="language-bash">mkdir datacollector
+cd datacollector
+mv transformationadvisor-Linux_TransformationAdvisorDemo_WAS855_AppSrv01.tgz .
+tar -zxvf transformationadvisor-Linux_TransformationAdvisorDemo_WAS855_AppSrv01.tgz
+cd transformationadvisor-*</code></pre>
+
 <ol>
 <li>It is necessary to modify the scan performed by the Data Collector to include the <code>org.pwte</code> package as the Data Collector doesn't scan <code>org.*</code> packages by default. Open the <code>conf/customCmd.properties</code> file and modify it as shown below:</li>
 </ol>
-<p><code>bash
-  evaluation=--evaluate --excludePackages=com.ibm,com.informix,com.microsoft,com.sybase,com.sun,java,javax,net,oracle,sqlj,_ibmjsp --includePackages=org.pwte
-  migration_liberty=--analyze --sourceAppServer=was855 --targetAppServer=liberty --targetCloud=dockerIBMCloud --includePackages=org.pwte --excludePackages=com.ibm,com.informix,com.microsoft,com.sybase,com.sun,java,javax,net,oracle,sqlj,_ibmjsp
-  migration_was=--analyze --sourceAppServer=was855 --targetAppServer=was90 --targetCloud=vmIBMCloud --includePackages=org.pwte --excludePackages=com.ibm,com.informix,com.microsoft,com.sybase,com.sun,java,javax,net,oracle,sqlj,_ibmjsp
-  #inventory=--inventory --excludeFiles=".*/directory/LargeXMLFileName.xml"
-  #featureList=--featureList --excludeFiles=".*/directory/LargeXMLFileName.xml"
-  #java_opt=-Xmx2g</code></p>
+<pre class="highlight"><code class="language-bash">evaluation=--evaluate --excludePackages=com.ibm,com.informix,com.microsoft,com.sybase,com.sun,java,javax,net,oracle,sqlj,_ibmjsp --includePackages=org.pwte
+migration_liberty=--analyze --sourceAppServer=was855 --targetAppServer=liberty --targetCloud=dockerIBMCloud --includePackages=org.pwte --excludePackages=com.ibm,com.informix,com.microsoft,com.sybase,com.sun,java,javax,net,oracle,sqlj,_ibmjsp
+migration_was=--analyze --sourceAppServer=was855 --targetAppServer=was90 --targetCloud=vmIBMCloud --includePackages=org.pwte --excludePackages=com.ibm,com.informix,com.microsoft,com.sybase,com.sun,java,javax,net,oracle,sqlj,_ibmjsp
+#inventory=--inventory --excludeFiles=".*/directory/LargeXMLFileName.xml"
+#featureList=--featureList --excludeFiles=".*/directory/LargeXMLFileName.xml"
+#java_opt=-Xmx2g</code></pre>
+
 <ol>
 <li>The following command assumes that WebSphere Application Server v855 is installed to <code>/opt/IBM/WebSphere/AppServer855</code> with a <strong>profile</strong> named <code>AppSrv01</code> and that the <strong>administration user</strong> is <code>wasadmin</code> with a <strong>password</strong> of <code>wasadmin</code>. Modify and issue the following command as necessary to execute the Data Collector against the WebSphere environment:</li>
 </ol>
-<p><code>bash
-  ./bin/transformationadvisor -w /opt/IBM/WebSphere/AppServer855 -p AppSrv01 wasadmin wasadmin</code></p>
+<pre class="highlight"><code class="language-bash">./bin/transformationadvisor -w /opt/IBM/WebSphere/AppServer855 -p AppSrv01 wasadmin wasadmin</code></pre>
+
 <ol>
 <li>
 <p>When prompted, accept the <strong>license agreement</strong>. The Data Collection process will now start and will analyze all of the applications installed in the WebSphere Application Server environment and will also collect the related Java EE artifacts such as Data Sources and JMS definitions.</p>
@@ -198,9 +203,9 @@
 <p>When the analysis is complete, the Data Collector will attempt to upload the collection results to IBM Cloud Transformation Advisor. If this is successful, you can skip to the <strong>Analyze the Recommendations</strong> section. If not, you will receive an error at the end of Data Collection and will find a file named <code>AppSrv01.zip</code> in your current directory as shown below.</p>
 </li>
 </ol>
-<p><code>bash
-  ~/datacollector/transformationadvisor-2.4.2# ls -la *.zip
-  -rw-r--r-- 1 root root 625493 Jun 12 12:58 AppSrv01.zip</code></p>
+<pre class="highlight"><code class="language-bash">~/datacollector/transformationadvisor-2.4.2# ls -la *.zip
+-rw-r--r-- 1 root root 625493 Jun 12 12:58 AppSrv01.zip</code></pre>
+
 <p>Download this <strong>Data Collector Results zip</strong> file ready for uploading to IBM Cloud Transformation Advisor in the next section</p>
 <h3 id="upload-the-data-collector-results">Upload the Data Collector results</h3>
 <p>In this section the results from the Data Collector will be uploaded to IBM Cloud Transformation Advisor.</p>

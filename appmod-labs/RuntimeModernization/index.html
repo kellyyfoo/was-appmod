@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
-  <link href="../../extra.css" rel="stylesheet">
+  <link href="../../stylesheets/klp.css" rel="stylesheet">
   
   <script>
     // Current page data
@@ -52,6 +52,11 @@
             <li class="toctree-l1">
 		
     <a class="" href="../..">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../HCTEST/">TEST</a>
 	    </li>
           
             <li class="toctree-l1">
@@ -238,17 +243,17 @@ deployed via the IBM Cloud Pak for Applications to RedHat OpenShift Container Pl
 </li>
 <li>
 <p>If you have not yet cloned the GitHub repo with the lab artifacts, run the following command on your terminal:
-    <code>git clone https://github.com/IBM/openshift-workshop-was.git</code></p>
+    <pre class="highlight"><code>git clone https://github.com/IBM/openshift-workshop-was.git</code></pre></p>
 </li>
 <li>
 <p>Change directory to where this lab is located:
-   <code>cd openshift-workshop-was
-   cd labs/Openshift/RuntimeModernization
-   ls</code></p>
+   <pre class="highlight"><code>cd openshift-workshop-was
+cd labs/Openshift/RuntimeModernization
+ls</code></pre></p>
 </li>
 <li>
 <p>Run the following command to start building the image. Make sure to copy the entire command, including the <code>"."</code> at the end (indicated as the location of current directory). While the image is building (which takes ~3 minutes), continue with rest of the lab:
-   <code>docker build --tag default-route-openshift-image-registry.apps.demo.ibmdte.net/apps/cos .</code></p>
+   <pre class="highlight"><code>docker build --tag default-route-openshift-image-registry.apps.demo.ibmdte.net/apps/cos .</code></pre></p>
 </li>
 </ol>
 <h2 id="modernize-with-microprofile-for-reading-only">Modernize with MicroProfile (for reading only)</h2>
@@ -258,13 +263,12 @@ deployed via the IBM Cloud Pak for Applications to RedHat OpenShift Container Pl
 <p>MicroProfile Health provides a common REST endpoint format to determine whether a microservice (or in our case a monolith application) is healthy or not. The service itself might be running but considered unhealthy if the things it requires for normal operation are unavailable. All of the checks are performed periodically, and the result is served as a simple UP or DOWN at <code>/health/ready</code> and <code>/health/live</code> which can be used for readiness and liveness probes.</p>
 <p>We implemented the following health checks:
 - <a href="app/CustomerOrderServicesWeb/src/org/pwte/example/health/ReadinessCheck.java#L17">ReadinessCheck</a>: The application reports it is ready as long as the readiness check endpoint can be reached. Connections to other services and any other required conditions for the application to be considered ready are checked here.</p>
-<p><code>java
-  return HealthCheckResponse.named("Readiness").up().build();</code></p>
+<pre class="highlight"><code class="language-java">return HealthCheckResponse.named("Readiness").up().build();</code></pre>
+
 <ul>
 <li>
 <p><a href="app/CustomerOrderServicesWeb/src/org/pwte/example/health/LivenessCheck.java#L15">LivenessCheck</a>: The requests should be processed within a reasonable amount of time. Monitor thread block times to identify potential deadlocks which can cause the application to hang.</p>
-<p><code>java
-ThreadMXBean tBean = ManagementFactory.getThreadMXBean();
+<pre class="highlight"><code class="language-java">ThreadMXBean tBean = ManagementFactory.getThreadMXBean();
 long ids[] = tBean.findMonitorDeadlockedThreads();
 if (ids !=null) {
   ThreadInfo threadInfos[] = tBean.getThreadInfo(ids);
@@ -275,18 +279,19 @@ if (ids !=null) {
     }
   }
 }
-return HealthCheckResponse.named("Liveness").up().build();</code></p>
+return HealthCheckResponse.named("Liveness").up().build();</code></pre>
+
 </li>
 </ul>
 <h3 id="adding-metrics-to-application-for-reading-only">Adding metrics to application (for reading only)</h3>
 <p>MicroProfile Metrics is used to gather metrics about the time it takes to add an item to cart, retrieve customer information, and count the number of times these operations are performed.</p>
-<p><code>java
-  @GET
-  @Produces(MediaType.APPLICATION_JSON)
-  @Counted
-  @Timed(name = "getCustomer_timed")
-  public Response getCustomer()
-  {</code></p>
+<pre class="highlight"><code class="language-java">@GET
+@Produces(MediaType.APPLICATION_JSON)
+@Counted
+@Timed(name = "getCustomer_timed")
+public Response getCustomer()
+{</code></pre>
+
 <h2 id="liberty-server-configuration-for-reading-only">Liberty server configuration (for reading only)</h2>
 <p>The Liberty runtime configuration files are based on a template provided by IBM Cloud Transformation Advisor.<br />
 For this lab, instead of using a single server.xml, the configurations have been split into multiple configuration files and placed into the <a href="config/configDropins/overrides">config/configDropins/overrides</a> directory.</p>
@@ -299,20 +304,22 @@ For this lab, instead of using a single server.xml, the configurations have been
 <li>Go back to your terminal to check the build you started earlier.
    You should see the following message if the image was built successfully. Please wait if it's still building:</li>
 </ol>
-<p><code>Successfully tagged default-route-openshift-image-registry.apps.demo.ibmdte.net/apps/cos:latest</code></p>
+<pre class="highlight"><code>Successfully tagged default-route-openshift-image-registry.apps.demo.ibmdte.net/apps/cos:latest</code></pre>
+
 <ol>
 <li>Validate that the image is in the repository via the command line:</li>
 </ol>
-<p><code>docker images</code></p>
+<pre class="highlight"><code>docker images</code></pre>
+
 <ul>
 <li>
 <p>You should see the following images on the output. Notice that the base image, <code>openliberty/open-liberty</code>, is also listed. It was pulled as the first step of building application image.</p>
 <p>Example output:
- <code>REPOSITORY                                                  TAG                     IMAGE ID            CREATED             SIZE
- default-route-openshift-image-registry.apps.demo.ibmdte.net/apps/cos   latest                  4758119add3f        2 minutes ago       883MB
- &lt;none&gt;                                                      &lt;none&gt;                  5bcb83fad548        5 minutes ago       792MB
- openliberty/open-liberty                                    full-java8-openj9-ubi   e6b5411076fe        5 days ago          794MB
- maven                                                       latest                  1337d55397f7        4 weeks ago         631MB</code></p>
+ <pre class="highlight"><code>REPOSITORY                                                  TAG                     IMAGE ID            CREATED             SIZE
+default-route-openshift-image-registry.apps.demo.ibmdte.net/apps/cos   latest                  4758119add3f        2 minutes ago       883MB
+&lt;none&gt;                                                      &lt;none&gt;                  5bcb83fad548        5 minutes ago       792MB
+openliberty/open-liberty                                    full-java8-openj9-ubi   e6b5411076fe        5 days ago          794MB
+maven                                                       latest                  1337d55397f7        4 weeks ago         631MB</code></pre></p>
 </li>
 <li>
 <p>Before we push the image to OpenShift's internal image registry, create a separate project named <code>apps</code>.  </p>
@@ -322,10 +329,10 @@ For this lab, instead of using a single server.xml, the configurations have been
 <ul>
 <li>
 <p>Via the command line: 
-     <code>oc new-project apps</code>   </p>
+     <pre class="highlight"><code>oc new-project apps</code></pre></p>
 <p>Example output:
- <code>Now using project "apps" on server "https://api.demo.ibmdte.net:64
- . . .</code></p>
+ <pre class="highlight"><code>Now using project "apps" on server "https://api.demo.ibmdte.net:64
+. . .</code></pre></p>
 </li>
 <li>
 <p>Via the OpenShift console:</p>
@@ -344,7 +351,7 @@ For this lab, instead of using a single server.xml, the configurations have been
 <p>Return to your terminal window.</p>
 </li>
 <li>Switch the current project in the command line to <code>apps</code> 
-   <code>oc project apps</code></li>
+   <pre class="highlight"><code>oc project apps</code></pre></li>
 </ul>
 </li>
 <li>
@@ -355,9 +362,9 @@ For this lab, instead of using a single server.xml, the configurations have been
 <ul>
 <li>
 <p>Via the command line:
-     <code>oc label namespace apps app-monitoring=true</code></p>
+     <pre class="highlight"><code>oc label namespace apps app-monitoring=true</code></pre></p>
 <p>Example output:
- <code>namespace/apps labeled</code></p>
+ <pre class="highlight"><code>namespace/apps labeled</code></pre></p>
 </li>
 <li>
 <p>Via the OpenShift console:</p>
@@ -375,62 +382,65 @@ For this lab, instead of using a single server.xml, the configurations have been
 </li>
 <li>
 <p>Note: From below command, a session token is obtained from the value of another command <code>oc whoami -t</code> and used as the password to login.</p>
-<p><code>docker login -u openshift -p $(oc whoami -t) default-route-openshift-image-registry.apps.demo.ibmdte.net</code></p>
+<pre class="highlight"><code>docker login -u openshift -p $(oc whoami -t) default-route-openshift-image-registry.apps.demo.ibmdte.net</code></pre>
+
 <p>Example output:
- ```
- WARNING! Using --password via the CLI is insecure. Use --password-stdin.
- WARNING! Your password will be stored unencrypted in /root/.docker/config.json.
- Configure a credential helper to remove this warning. See
- https://docs.docker.com/engine/reference/commandline/login/#credentials-store</p>
-<p>Login Succeeded
- ```</p>
+ <pre class="highlight"><code>WARNING! Using --password via the CLI is insecure. Use --password-stdin.
+WARNING! Your password will be stored unencrypted in /root/.docker/config.json.
+Configure a credential helper to remove this warning. See
+https://docs.docker.com/engine/reference/commandline/login/#credentials-store
+
+Login Succeeded</code></pre></p>
 </li>
 <li>
 <p>Push the image to OpenShift's internal image registry via the command line, which could take up to a minute:</p>
 </li>
 </ul>
-<p><code>docker push default-route-openshift-image-registry.apps.demo.ibmdte.net/apps/cos</code></p>
+<pre class="highlight"><code>docker push default-route-openshift-image-registry.apps.demo.ibmdte.net/apps/cos</code></pre>
+
 <p>Example output:
-   <code>The push refers to repository [default-route-openshift-image-registry.apps.demo.ibmdte.net/apps/cos]
-   9247390b40be: Pushed 
-   9a21ca46f8e3: Pushed 
-   b3cee8ba43fe: Pushed 
-   1dd2f7265f58: Pushed 
-   33b2a4ee94ff: Pushed 
-   2b2a8abdd0c4: Pushed 
-   91ffc437f551: Pushed 
-   4f04e7098d96: Pushed 
-   248016390e0a: Pushed 
-   0fa7eb58a57c: Pushed 
-   b5489882eed9: Pushed 
-   2fb5caadbbb0: Pushed 
-   d06182ac791b: Pushed 
-   b39b0291530b: Pushed 
-   a04c77af4b60: Pushed 
-   479c44e860ff: Pushed 
-   fc905c23b8a3: Pushed 
-   161ec220381b: Pushed 
-   b7b591e3443f: Pushed 
-   ccf04fbd6e19: Pushed 
-   latest: digest: sha256:56d926b7ef64ed163ff026b7b5608ae97df4630235c1d0443a32a4fc8eb35a6c size: 4513</code></p>
+   <pre class="highlight"><code>The push refers to repository [default-route-openshift-image-registry.apps.demo.ibmdte.net/apps/cos]
+9247390b40be: Pushed 
+9a21ca46f8e3: Pushed 
+b3cee8ba43fe: Pushed 
+1dd2f7265f58: Pushed 
+33b2a4ee94ff: Pushed 
+2b2a8abdd0c4: Pushed 
+91ffc437f551: Pushed 
+4f04e7098d96: Pushed 
+248016390e0a: Pushed 
+0fa7eb58a57c: Pushed 
+b5489882eed9: Pushed 
+2fb5caadbbb0: Pushed 
+d06182ac791b: Pushed 
+b39b0291530b: Pushed 
+a04c77af4b60: Pushed 
+479c44e860ff: Pushed 
+fc905c23b8a3: Pushed 
+161ec220381b: Pushed 
+b7b591e3443f: Pushed 
+ccf04fbd6e19: Pushed 
+latest: digest: sha256:56d926b7ef64ed163ff026b7b5608ae97df4630235c1d0443a32a4fc8eb35a6c size: 4513</code></pre></p>
 <ol>
 <li>Verify that the image is in image registry via the command line:</li>
 </ol>
-<p><code>oc get images | grep apps/cos</code></p>
+<pre class="highlight"><code>oc get images | grep apps/cos</code></pre>
+
 <ul>
 <li>
 <p>The application image you just pushed should be listed.</p>
 <p>Example output:
- <code>sha256:56d926b7ef64ed163ff026b7b5608ae97df4630235c1d0443a32a4fc8eb35a6c   image-registry.openshift-image-registry.svc:5000/apps/cos@sha256:56d926b7ef64ed163ff026b7b5608ae97df4630235c1d0443a32a4fc8eb35a6c</code></p>
+ <pre class="highlight"><code>sha256:56d926b7ef64ed163ff026b7b5608ae97df4630235c1d0443a32a4fc8eb35a6c   image-registry.openshift-image-registry.svc:5000/apps/cos@sha256:56d926b7ef64ed163ff026b7b5608ae97df4630235c1d0443a32a4fc8eb35a6c</code></pre></p>
 </li>
 <li>
 <p>Verify that the image stream is created via the command line:</p>
 </li>
 </ul>
-<p><code>oc get imagestreams</code></p>
+<pre class="highlight"><code>oc get imagestreams</code></pre>
+
 <p>Example output:
-   <code>NAME   IMAGE REPOSITORY                                                       TAGS     UPDATED
-   cos    default-route-openshift-image-registry.apps.demo.ibmdte.net/apps/cos   latest   2 minutes ago</code></p>
+   <pre class="highlight"><code>NAME   IMAGE REPOSITORY                                                       TAGS     UPDATED
+cos    default-route-openshift-image-registry.apps.demo.ibmdte.net/apps/cos   latest   2 minutes ago</code></pre></p>
 <ol>
 <li>You may also check the image stream via the console: </li>
 <li>Return to the OpenShift console through your Firefox browser window.</li>
@@ -452,119 +462,120 @@ For this lab, instead of using a single server.xml, the configurations have been
 <li>Deploy the application using the <code>-k</code>, or <code>kustomize</code> option of Openshift CLI now and we will explain how the deployment works in a later section. </li>
 <li>
 <p>Preview what will be deployed:</p>
-<p><code>oc kustomize deploy/overlay-apps</code></p>
+<pre class="highlight"><code>oc kustomize deploy/overlay-apps</code></pre>
+
 <p>Example output of yaml:
- ```yaml
- apiVersion: v1
- data:
-   DB_HOST: cos-db-liberty.db.svc
- kind: ConfigMap
- metadata:
-   name: cos-config
-   namespace: apps</p>
-<hr />
-<p>apiVersion: v1
- data:
-   DB_PASSWORD: ZGIyaW5zdDE=
-   DB_USER: ZGIyaW5zdDE=
- kind: Secret
- metadata:
-   name: db-creds
-   namespace: apps
- type: Opaque</p>
-<hr />
-<p>apiVersion: v1
- kind: Secret
- metadata:
-   name: liberty-creds
-   namespace: apps
- stringData:
-   password: admin
-   username: admin
- type: Opaque</p>
-<hr />
-<p>apiVersion: openliberty.io/v1beta1
- kind: OpenLibertyApplication
- metadata:
-   name: cos
-   namespace: apps
- spec:
-   applicationImage: image-registry.openshift-image-registry.svc:5000/apps/cos
-   envFrom:
-   - configMapRef:
-       name: cos-config
-   - secretRef:
-       name: db-creds
-   expose: true
-   livenessProbe:
-     httpGet:
-       path: /health/live
-       port: 9443
-       scheme: HTTPS
-   monitoring:
-     endpoints:
-     - basicAuth:
-         password:
-           key: password
-           name: liberty-creds
-         username:
-           key: username
-           name: liberty-creds
-       interval: 5s
-       scheme: HTTPS
-       tlsConfig:
-         insecureSkipVerify: true
-     labels:
-       app-monitoring: "true"
-   pullPolicy: Always
-   readinessProbe:
-     httpGet:
-       path: /health/ready
-       port: 9443
-       scheme: HTTPS
-   route:
-     insecureEdgeTerminationPolicy: Redirect
-     termination: reencrypt
-   service:
-     annotations:
-       service.beta.openshift.io/serving-cert-secret-name: cos-tls
-     certificateSecretRef: cos-tls
-     port: 9443
- ```</p>
+ <pre class="highlight"><code class="language-yaml">apiVersion: v1
+data:
+  DB_HOST: cos-db-liberty.db.svc
+kind: ConfigMap
+metadata:
+  name: cos-config
+  namespace: apps
+---
+apiVersion: v1
+data:
+  DB_PASSWORD: ZGIyaW5zdDE=
+  DB_USER: ZGIyaW5zdDE=
+kind: Secret
+metadata:
+  name: db-creds
+  namespace: apps
+type: Opaque
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: liberty-creds
+  namespace: apps
+stringData:
+  password: admin
+  username: admin
+type: Opaque
+---
+apiVersion: openliberty.io/v1beta1
+kind: OpenLibertyApplication
+metadata:
+  name: cos
+  namespace: apps
+spec:
+  applicationImage: image-registry.openshift-image-registry.svc:5000/apps/cos
+  envFrom:
+  - configMapRef:
+      name: cos-config
+  - secretRef:
+      name: db-creds
+  expose: true
+  livenessProbe:
+    httpGet:
+      path: /health/live
+      port: 9443
+      scheme: HTTPS
+  monitoring:
+    endpoints:
+    - basicAuth:
+        password:
+          key: password
+          name: liberty-creds
+        username:
+          key: username
+          name: liberty-creds
+      interval: 5s
+      scheme: HTTPS
+      tlsConfig:
+        insecureSkipVerify: true
+    labels:
+      app-monitoring: "true"
+  pullPolicy: Always
+  readinessProbe:
+    httpGet:
+      path: /health/ready
+      port: 9443
+      scheme: HTTPS
+  route:
+    insecureEdgeTerminationPolicy: Redirect
+    termination: reencrypt
+  service:
+    annotations:
+      service.beta.openshift.io/serving-cert-secret-name: cos-tls
+    certificateSecretRef: cos-tls
+    port: 9443</code></pre></p>
 </li>
 <li>
 <p>Run the following command to deploy the yaml files:</p>
-<p><code>oc apply -k deploy/overlay-apps</code></p>
+<pre class="highlight"><code>oc apply -k deploy/overlay-apps</code></pre>
+
 <p>Output of deploy command:
- <code>configmap/cos-config created
- secret/db-creds created
- secret/liberty-creds created
- openlibertyapplication.openliberty.io/cos created</code></p>
+ <pre class="highlight"><code>configmap/cos-config created
+secret/db-creds created
+secret/liberty-creds created
+openlibertyapplication.openliberty.io/cos created</code></pre></p>
 </li>
 <li>
 <p>Verify that the route is created for your application:
-    <code>oc get route cos</code></p>
+    <pre class="highlight"><code>oc get route cos</code></pre></p>
 <p>Example output:
-<code>NAME   HOST/PORT                       PATH   SERVICES   PORT       TERMINATION          WILDCARD
-cos    cos-apps.apps.demo.ibmdte.net          cos        9443-tcp   reencrypt/Redirect   None</code></p>
+<pre class="highlight"><code>NAME   HOST/PORT                       PATH   SERVICES   PORT       TERMINATION          WILDCARD
+cos    cos-apps.apps.demo.ibmdte.net          cos        9443-tcp   reencrypt/Redirect   None</code></pre></p>
 </li>
 <li>
 <p>Verify that your pod from the project <code>apps</code> is ready:</p>
 </li>
 <li>
 <p>First, confirm you're at the current project <code>apps</code>:
-     <code>oc project</code></p>
+     <pre class="highlight"><code>oc project</code></pre></p>
 </li>
 <li>
 <p>If it's not at project <code>apps</code>, then switch:
-     <code>oc project apps</code></p>
+     <pre class="highlight"><code>oc project apps</code></pre></p>
 </li>
 <li>
 <p>and then run the following command to view the pod status:</p>
-<p><code>oc get pod</code></p>
+<pre class="highlight"><code>oc get pod </code></pre>
+
 <p>Example output of pod status:
-  <code>NAME                   READY   STATUS    RESTARTS   AGE
-  cos-596b4f849f-2fg4h   1/1     Running   0          18m</code>
+  <pre class="highlight"><code>NAME                   READY   STATUS    RESTARTS   AGE
+cos-596b4f849f-2fg4h   1/1     Running   0          18m</code></pre>
   - If the pod doesn't display the expected <code>Running</code> status (for example, after 5 minutes), then delete the pod to restart it.
 From the command line, run <code>oc delete pod &lt;pod name&gt;</code>  (pod name is the string under NAME column from the output of <code>oc get pod</code>)</p>
 </li>
@@ -572,10 +583,10 @@ From the command line, run <code>oc delete pod &lt;pod name&gt;</code>  (pod nam
 <h2 id="access-the-application-hands-on">Access the application (Hands-on)</h2>
 <ol>
 <li>Run the following command to get the URL of your application:
-   <code>echo http://$(oc get route cos  --template='{{ .spec.host }}')/CustomerOrderServicesWeb</code></li>
+   <pre class="highlight"><code>echo http://$(oc get route cos  --template='{{ .spec.host }}')/CustomerOrderServicesWeb</code></pre></li>
 </ol>
 <p>Example output:
-   <code>http://cos-apps.apps.demo.ibmdte.net/CustomerOrderServicesWeb</code></p>
+   <pre class="highlight"><code>http://cos-apps.apps.demo.ibmdte.net/CustomerOrderServicesWeb</code></pre></p>
 <ol>
 <li>Return to your Firefox browser window and go to the URL outputted by the previous command.</li>
 <li>You'll be shown a login dialog.</li>
@@ -780,27 +791,31 @@ From the command line, run <code>oc delete pod &lt;pod name&gt;</code>  (pod nam
 </li>
 <li>
 <p>Make sure you are in directory <code>/openshift-workshop-was/labs/Openshift/RuntimeModernization</code> or change directory with 
-   <code>cd openshift-workshop-was/labs/Openshift/RuntimeModernization</code></p>
+   <pre class="highlight"><code>cd openshift-workshop-was/labs/Openshift/RuntimeModernization</code></pre></p>
 </li>
 <li>List the deploy files:</li>
 </ol>
-<p><code>ls deploy</code></p>
+<pre class="highlight"><code>ls deploy </code></pre>
+
 <p>And the output shows that we have one base directory and one override directory:</p>
-<p><code>base  overlay-apps</code></p>
+<pre class="highlight"><code>base  overlay-apps</code></pre>
+
 <ol>
 <li>Take a look at what's in the <code>base</code> directory:
-   <code>ls deploy/base</code></li>
+   <pre class="highlight"><code>ls deploy/base</code></pre></li>
 </ol>
 <p>And the output:</p>
-<p><code>kustomization.yaml  olapp-cos.yaml</code></p>
+<pre class="highlight"><code>kustomization.yaml  olapp-cos.yaml</code></pre>
+
 <ul>
 <li>
 <p>Each directory used for kustomization contains one <code>kustomization.yaml</code></p>
-<p><code>cat deploy/base/kustomization.yaml</code></p>
+<pre class="highlight"><code>cat deploy/base/kustomization.yaml</code></pre>
+
 <p>Content of yaml:
  - This is a simple kustomization directory that just lists the yaml files to be deployed.
-   <code>resources:
-   - olapp-cos.yaml</code></p>
+   <pre class="highlight"><code>resources:
+- olapp-cos.yaml</code></pre></p>
 </li>
 <li>
 <p>The file <code>olapp-cos.yaml</code> contains the custom resource definition to deploy the application and will be covered in detail later.</p>
@@ -809,21 +824,24 @@ From the command line, run <code>oc delete pod &lt;pod name&gt;</code>  (pod nam
 <p>Take a look at the files in the <code>overlay-apps</code> directory. </p>
 </li>
 </ul>
-<p><code>ls deploy/overlay-apps</code></p>
+<pre class="highlight"><code>ls deploy/overlay-apps</code></pre>
+
 <p>And the output:</p>
-<p><code>configmap.yaml  kustomization.yaml  secret-db-creds.yaml  secret-liberty-creds.yaml</code></p>
+<pre class="highlight"><code>configmap.yaml  kustomization.yaml  secret-db-creds.yaml  secret-liberty-creds.yaml</code></pre>
+
 <ul>
 <li>
 <p>Take a look at the <code>kustomization.yaml</code> in the overlay-apps directory:
-     <code>cat deploy/overlay-apps/kustomization.yaml</code></p>
+     <pre class="highlight"><code>cat deploy/overlay-apps/kustomization.yaml</code></pre></p>
 <p>And the output:</p>
-<p><code>namespace: apps
- resources:
- - configmap.yaml
- - secret-db-creds.yaml
- - secret-liberty-creds.yaml
- bases:
- - ./../base</code></p>
+<pre class="highlight"><code>namespace: apps
+resources:
+- configmap.yaml
+- secret-db-creds.yaml
+- secret-liberty-creds.yaml
+bases:
+- ./../base</code></pre>
+
 <p>Note that:
 - The namespace is defined. This means that all resources originating from this directory will be applied to the <code>apps</code> namespace.
 - Resources from the base directory will also be included.
@@ -833,7 +851,7 @@ From the command line, run <code>oc delete pod &lt;pod name&gt;</code>  (pod nam
 </li>
 <li>
 <p>To preview the resources that will be applied for a specific override directory, use the <code>kustomize</code> option of the Openshift command line. For example,</p>
-<p><code>oc kustomize deploy/overlay-apps</code>
+<p><pre class="highlight"><code>oc kustomize deploy/overlay-apps</code></pre>
  The output is the same as displayed in <a href="#deploy">Deploy</a> (Hands-on) section.</p>
 </li>
 </ul>
@@ -846,30 +864,30 @@ The stored data can be referenced by other resources. OpenShift handles secrets 
 <li>The file <code>secret-db-creds.yaml</code> contains the credentials for the database.  It is injected into the container as an environment variable via the <code>secretRef</code> specification for the Open Liberty Operator.</li>
 </ul>
 <p>View the content of <code>secret-db-creds.yaml</code> file:
-  <code>cat deploy/overlay-apps/secret-db-creds.yaml</code>
+  <pre class="highlight"><code>cat deploy/overlay-apps/secret-db-creds.yaml</code></pre>
   Example output:
-  <code>kind: Secret
-  apiVersion: v1
-  metadata:
-    name: db-creds
-  data:
-    DB_PASSWORD: ZGIyaW5zdDE=
-    DB_USER: ZGIyaW5zdDE=
-  type: Opaque</code></p>
+  <pre class="highlight"><code>kind: Secret
+apiVersion: v1
+metadata:
+  name: db-creds
+data:
+  DB_PASSWORD: ZGIyaW5zdDE=
+  DB_USER: ZGIyaW5zdDE=
+type: Opaque</code></pre></p>
 <ul>
 <li>The file <code>secret-liberty-creds.yaml</code> contains the secret to access liberty server.</li>
 </ul>
 <p>View the content of <code>secret-liberty-creds.yaml</code> file: 
-  <code>cat deploy/overlay-apps/secret-liberty-creds.yaml</code>
+  <pre class="highlight"><code>cat deploy/overlay-apps/secret-liberty-creds.yaml</code></pre>
   Example output:
-  <code>kind: Secret
-  apiVersion: v1
-  metadata:
-    name: liberty-creds
-  stringData:
-    username: admin
-    password: admin
-  type: Opaque</code></p>
+  <pre class="highlight"><code>kind: Secret
+apiVersion: v1
+metadata:
+  name: liberty-creds
+stringData:
+  username: admin
+  password: admin
+type: Opaque</code></pre></p>
 <p>Note that the first <code>Secret</code> provides the credentials in base64 encoded format using the <code>data</code> field. The second one provides them in plain text using the <code>stringData</code> field. OpenShift will automatically convert the credentials to base64 format and place the information under the <code>data</code> field. We can see this by viewing the YAML of the <code>liberty-creds</code> secret:</p>
 <ul>
 <li>Return to the OpenShift console through a Firefox browser window.</li>
@@ -884,26 +902,22 @@ The stored data can be referenced by other resources. OpenShift handles secrets 
 <h2 id="configmap">Configmap</h2>
 <p>Configmaps allows you to store name/value pairs that can be injected into your container when it starts.
 For our example, the values of the <code>configmap.yaml</code> are injected as environment variables  in the <code>configMapRef</code> specification on the <em>Open Liberty Operator</em> in the next section.</p>
-<pre><code>cat deploy/overlay-apps/configmap.yaml
-</code></pre>
-
-<p>Example output:</p>
-<pre><code>apiVersion: v1
+<p><pre class="highlight"><code>cat deploy/overlay-apps/configmap.yaml</code></pre>
+Example output:
+<pre class="highlight"><code>apiVersion: v1
 kind: ConfigMap
 metadata:
   name: cos-config
 data:
-  SEC_TLS_TRUSTDEFAULTCERTS: &quot;true&quot;
-  DB_HOST : &quot;cos-db-liberty.db.svc&quot;
-</code></pre>
-
+  SEC_TLS_TRUSTDEFAULTCERTS: "true"
+  DB_HOST : "cos-db-liberty.db.svc"</code></pre></p>
 <h2 id="open-liberty-operator">Open Liberty Operator</h2>
 <p>We could have created Deployment, Service, and Route resources to deploy the Liberty image. 
 However, for this lab we will use the Open Liberty Operator instead. 
 The Open Liberty Operator provides all functionalities of Runtime Component Operator used when deploying traditional WebSphere images in a previous lab. 
 In addition, it also offers Open Liberty specific capabilities, such as day-2 operations (gather trace &amp; dumps) and single sign-on (SSO).</p>
 <p>The file <code>deploy/base/olapp-cos.yaml</code> looks like:</p>
-<pre><code class="yaml">apiVersion: openliberty.io/v1beta1
+<pre class="highlight"><code class="language-yaml">apiVersion: openliberty.io/v1beta1
 kind: OpenLibertyApplication
 metadata:
   name: cos
@@ -950,8 +964,7 @@ spec:
         tlsConfig:
           insecureSkipVerify: true
     labels:
-      app-monitoring: 'true'
-</code></pre>
+      app-monitoring: 'true'</code></pre>
 
 <ul>
 <li>
@@ -980,39 +993,42 @@ spec:
 <blockquote>
 <p>Reminder: Run <code>oc project</code> to confirm you're at the <code>apps</code> project before running the following commands.</p>
 </blockquote>
-<p><code>oc get deployment
-   oc get service
-   oc get route</code></p>
+<pre class="highlight"><code>oc get deployment
+oc get service
+oc get route</code></pre>
+
 <p>Example output:
-   ```
-   # oc get deployment
-   NAME   READY   UP-TO-DATE   AVAILABLE   AGE
-   cos    1/1     1            1           2d18h</p>
-<p># oc get service
-   NAME   TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)    AGE
-   cos    ClusterIP   172.21.202.9   <none>        9443/TCP   2d18h</p>
-<p># oc get route
-   NAME   HOST/PORT                        PATH   SERVICES   PORT       TERMINATION          WILDCARD
-   cos    cos-apps.apps.demo.ibmdte.net           cos        9443-tcp   reencrypt/Redirect   None
-   ```</p>
+   <pre class="highlight"><code># oc get deployment
+NAME   READY   UP-TO-DATE   AVAILABLE   AGE
+cos    1/1     1            1           2d18h
+
+# oc get service
+NAME   TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)    AGE
+cos    ClusterIP   172.21.202.9   &lt;none&gt;        9443/TCP   2d18h
+
+# oc get route
+NAME   HOST/PORT                        PATH   SERVICES   PORT       TERMINATION          WILDCARD
+cos    cos-apps.apps.demo.ibmdte.net           cos        9443-tcp   reencrypt/Redirect   None</code></pre></p>
 <ol>
 <li>To remove these resources, run the command (Ensure you are in directory <code>openshift-workshop-was/labs/Openshift/RuntimeModernization</code>)</li>
 </ol>
 <blockquote>
 <p>Note: The pre-installed resources such as Open Liberty Operator and DB2, are not removed.</p>
 </blockquote>
-<p><code>oc delete -k deploy/overlay-apps</code></p>
+<pre class="highlight"><code>oc delete -k deploy/overlay-apps</code></pre>
+
 <p>Output:
-   <code>configmap "cos-config" deleted
-   secret "db-creds" deleted
-   secret "liberty-creds" deleted
-   openlibertyapplication.openliberty.io "cos" deleted</code></p>
+   <pre class="highlight"><code>configmap "cos-config" deleted
+secret "db-creds" deleted
+secret "liberty-creds" deleted
+openlibertyapplication.openliberty.io "cos" deleted</code></pre></p>
 <p>Double check the corresponding Deployment, Service, and Route objects are deleted:</p>
-<p><code>oc get deployment
-   oc get service
-   oc get route</code></p>
+<pre class="highlight"><code>oc get deployment
+oc get service
+oc get route</code></pre>
+
 <p>Output from each <code>get</code> command above:
-   <code>No resources found in apps namespace.</code></p>
+   <pre class="highlight"><code>No resources found in apps namespace.</code></pre></p>
 <h2 id="extra-credit">Extra Credit</h2>
 <ul>
 <li>Read about how to protect your secrets: https://www.openshift.com/blog/gitops-secret-management</li>
@@ -1061,5 +1077,5 @@ spec:
 
 <!--
 MkDocs version : 1.0.4
-Build Date UTC : 2021-07-12 17:02:04
+Build Date UTC : 2021-07-13 21:25:10
 -->

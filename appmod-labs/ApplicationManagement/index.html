@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
-  <link href="../../extra.css" rel="stylesheet">
+  <link href="../../stylesheets/klp.css" rel="stylesheet">
   
   <script>
     // Current page data
@@ -52,6 +52,11 @@
             <li class="toctree-l1">
 		
     <a class="" href="../..">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../HCTEST/">TEST</a>
 	    </li>
           
             <li class="toctree-l1">
@@ -156,44 +161,44 @@
 </li>
 <li>
 <p>If you have not yet cloned the GitHub repo with the lab artifacts, then run the following command on your terminal:
-    <code>git clone https://github.com/IBM/openshift-workshop-was.git</code></p>
+    <pre class="highlight"><code>git clone https://github.com/IBM/openshift-workshop-was.git</code></pre></p>
 </li>
 </ol>
 <h2 id="build-and-deploy-the-traditional-websphere-application-hands-on">Build and deploy the traditional WebSphere application (Hands-on)</h2>
 <ol>
 <li>
 <p>Change to the lab's directory:
-   <code>cd openshift-workshop-was/labs/Openshift/OperationalModernization</code></p>
+   <pre class="highlight"><code>cd openshift-workshop-was/labs/Openshift/OperationalModernization</code></pre></p>
 </li>
 <li>
 <p>Create and switch over to the project <code>apps-was</code>. 
     &gt; Note: The first step <code>oc new-project</code> may fail if the project already exists. If so, proceed to the next command.
-   <code>oc new-project apps-was
-   oc project apps-was</code></p>
+   <pre class="highlight"><code>oc new-project apps-was
+oc project apps-was</code></pre></p>
 </li>
 <li>
 <p>Build and deploy the application by running the commands in the following sequence. Reminder: the <code>.</code> at the end of the first command.
-    <code>docker build --tag default-route-openshift-image-registry.apps.demo.ibmdte.net/apps-was/cos-was .
-    docker login -u openshift -p $(oc whoami -t) default-route-openshift-image-registry.apps.demo.ibmdte.net
-    docker push default-route-openshift-image-registry.apps.demo.ibmdte.net/apps-was/cos-was
-    oc apply -f deploy</code>
+    <pre class="highlight"><code>docker build --tag default-route-openshift-image-registry.apps.demo.ibmdte.net/apps-was/cos-was .
+docker login -u openshift -p $(oc whoami -t) default-route-openshift-image-registry.apps.demo.ibmdte.net
+docker push default-route-openshift-image-registry.apps.demo.ibmdte.net/apps-was/cos-was
+oc apply -f deploy</code></pre>
     Example output: 
-    <code>deployment.apps/cos-was created
-    route.route.openshift.io/cos-was created
-    secret/authdata created
-    service/cos-was created</code></p>
+    <pre class="highlight"><code>deployment.apps/cos-was created
+route.route.openshift.io/cos-was created
+secret/authdata created
+service/cos-was created</code></pre></p>
 </li>
 <li>
 <p>Wait for the pod to be available, check status via <code>oc get pod</code></p>
 <p>The output should be: 
-<code>NAME                      READY   STATUS    RESTARTS   AGE
-cos-was-7d5ff6945-4hjzr   1/1     Running   0          88s</code></p>
+<pre class="highlight"><code>NAME                      READY   STATUS    RESTARTS   AGE
+cos-was-7d5ff6945-4hjzr   1/1     Running   0          88s</code></pre></p>
 </li>
 <li>
 <p>Get the URL to the application:
-   <code>echo http://$(oc get route cos-was  --template='{{ .spec.host }}')/CustomerOrderServicesWeb</code>
+   <pre class="highlight"><code>echo http://$(oc get route cos-was  --template='{{ .spec.host }}')/CustomerOrderServicesWeb</code></pre>
    Example output:
-   <code>http://cos-was-apps-was.apps.demo.ibmdte.net/CustomerOrderServicesWeb</code></p>
+   <pre class="highlight"><code>http://cos-was-apps-was.apps.demo.ibmdte.net/CustomerOrderServicesWeb</code></pre></p>
 </li>
 <li>
 <p>Return to your Firefox browser window, and go to the URL outputted by the command run in the previous step.</p>
@@ -226,46 +231,46 @@ cos-was-7d5ff6945-4hjzr   1/1     Running   0          88s</code></p>
 <ol>
 <li>
 <p>From the top level directory, change to the lab's directory <code>RuntimeModernization</code> folder:
-   <code>cd openshift-workshop-was/labs/Openshift/RuntimeModernization</code></p>
+   <pre class="highlight"><code>cd openshift-workshop-was/labs/Openshift/RuntimeModernization</code></pre></p>
 </li>
 <li>
 <p>Create and switch over to the project <code>apps</code>. Also, enable monitoring for the project. 
     &gt; Note: The first step <code>oc new-project</code> may fail if the project already exists. If so, proceed to the next command.
-   <code>oc new-project apps
-   oc project apps
-   oc label namespace apps app-monitoring=true</code></p>
+   <pre class="highlight"><code>oc new-project apps
+oc project apps
+oc label namespace apps app-monitoring=true</code></pre></p>
 </li>
 <li>
 <p>Build and deploy the application by running the commands in the following sequence. Reminder: the <code>.</code> at the end of the first command:
-   <code>docker build --tag default-route-openshift-image-registry.apps.demo.ibmdte.net/apps/cos .
-   docker login -u openshift -p $(oc whoami -t) default-route-openshift-image-registry.apps.demo.ibmdte.net
-   docker push default-route-openshift-image-registry.apps.demo.ibmdte.net/apps/cos
-   oc apply -k deploy/overlay-apps</code>
+   <pre class="highlight"><code>docker build --tag default-route-openshift-image-registry.apps.demo.ibmdte.net/apps/cos .
+docker login -u openshift -p $(oc whoami -t) default-route-openshift-image-registry.apps.demo.ibmdte.net
+docker push default-route-openshift-image-registry.apps.demo.ibmdte.net/apps/cos
+oc apply -k deploy/overlay-apps</code></pre>
    Example output:
-   <code>configmap/cos-config created
-   secret/db-creds created
-   secret/liberty-creds created
-   openlibertyapplication.openliberty.io/cos created</code></p>
+   <pre class="highlight"><code>configmap/cos-config created
+secret/db-creds created
+secret/liberty-creds created
+openlibertyapplication.openliberty.io/cos created</code></pre></p>
 </li>
 <li>
 <p>Verify the route for the application is created:
-   <code>oc get route cos</code>
+   <pre class="highlight"><code>oc get route cos</code></pre>
    Example output:
-   <code>NAME   HOST/PORT                       PATH   SERVICES   PORT       TERMINATION          WILDCARD
-   cos    cos-apps.apps.demo.ibmdte.net          cos        9443-tcp   reencrypt/Redirect   None</code></p>
+   <pre class="highlight"><code>NAME   HOST/PORT                       PATH   SERVICES   PORT       TERMINATION          WILDCARD
+cos    cos-apps.apps.demo.ibmdte.net          cos        9443-tcp   reencrypt/Redirect   None</code></pre></p>
 </li>
 <li>
 <p>Verify your pod is ready:
-   <code>oc get pod</code>
+   <pre class="highlight"><code>oc get pod </code></pre>
    Example output:
-   <code>NAME                   READY   STATUS    RESTARTS   AGE
-   cos-54975b94c6-rh6kt   1/1     Running   0          3m11s</code></p>
+   <pre class="highlight"><code>NAME                   READY   STATUS    RESTARTS   AGE
+cos-54975b94c6-rh6kt   1/1     Running   0          3m11s</code></pre></p>
 </li>
 <li>
 <p>Get the application URL:
-   <code>echo http://$(oc get route cos  --template='{{ .spec.host }}')/CustomerOrderServicesWeb</code>
+   <pre class="highlight"><code>echo http://$(oc get route cos  --template='{{ .spec.host }}')/CustomerOrderServicesWeb</code></pre>
    Example output:
-   <code>http://cos-apps.apps.demo.ibmdte.net/CustomerOrderServicesWeb</code></p>
+   <pre class="highlight"><code>http://cos-apps.apps.demo.ibmdte.net/CustomerOrderServicesWeb</code></pre></p>
 </li>
 <li>
 <p>Return to your Firefox browser window and go to the URL outputted by the command run in the previous step.</p>
@@ -409,7 +414,8 @@ cos-was-7d5ff6945-4hjzr   1/1     Running   0          88s</code></p>
 </li>
 <li>
 <p>Before running the command, change directory to /openshift-workshop-was/labs/Openshift/ApplicationManagement if it's not already done.</p>
-<p><code>oc apply -f dashboards/grafana/grafana-dashboard-cos.yaml</code></p>
+<pre class="highlight"><code>oc apply -f dashboards/grafana/grafana-dashboard-cos.yaml</code></pre>
+
 </li>
 <li>
 <p>The following steps to access the created dashboard are illustrated in the screen recording at the end of this section: </p>
@@ -490,12 +496,13 @@ cos-was-7d5ff6945-4hjzr   1/1     Running   0          88s</code></p>
 <ol>
 <li>
 <p>Specify the name of the storage request (Persistent Volume Claim) you made earlier to <code>spec.serviceability.volumeClaimName</code> parameter provided by <code>OpenLibertyApplication</code> custom resource. Open Liberty Operator will attach the volume bound to the claim to each instance of the server. In your terminal, run the following command:</p>
-<p><code>oc patch olapp cos -n apps --patch '{"spec":{"serviceability":{"volumeClaimName":"liberty"}}}' --type=merge</code></p>
+<pre class="highlight"><code>oc patch olapp cos -n apps --patch '{"spec":{"serviceability":{"volumeClaimName":"liberty"}}}' --type=merge</code></pre>
+
 <p>Above command patches the definition of <code>olapp</code> (shortname for <code>OpenLibertyApplication</code>) instance <code>cos</code> in namespace <code>apps</code> (indicated by <code>-n</code> option). The <code>--patch</code> option specifies the content to patch with. In this case, we set the value of <code>spec.serviceability.volumeClaimName</code> field to <code>liberty</code>, which is the name of the Persistent Volume Claim you created earlier. The <code>--type=merge</code> option specifies to merge the previous content with newly specified field and its value.</p>
 </li>
 <li>
 <p>Run the following command to get the status of <code>cos</code> application, to verify that the changes were reconciled and there is no error:</p>
-<p><code>oc get olapp cos -n apps -o wide</code>
+<p><pre class="highlight"><code>oc get olapp cos -n apps -o wide</code></pre>
 The value under <code>RECONCILED</code> column should be <em>True</em>. </p>
 <p><em>Note:</em> If it's <em>False</em> then an error occurred. The <code>REASON</code> and <code>MESSAGE</code> columns will display the cause of the failure. A common mistake is creating the Persistent Volume Claim in another namespace. Ensure that it is created in the <code>apps</code> namespace.</p>
 </li>
@@ -576,7 +583,7 @@ The value under <code>RECONCILED</code> column should be <em>True</em>. </p>
 <ol>
 <li>Remote shell to your pod via one of two ways:</li>
 <li>From your terminal:
-    <code>oc rsh &lt;pod-name&gt;</code></li>
+    <pre class="highlight"><code>oc rsh &lt;pod-name&gt;</code></pre></li>
 <li>
 <p>From console: click on <strong>Workloads</strong> &gt; <strong>Pods</strong>. Click on the pod and then click on <code>Terminal</code> tab. </p>
 </li>
@@ -626,5 +633,5 @@ The value under <code>RECONCILED</code> column should be <em>True</em>. </p>
 
 <!--
 MkDocs version : 1.0.4
-Build Date UTC : 2021-07-12 17:02:04
+Build Date UTC : 2021-07-13 21:25:10
 -->

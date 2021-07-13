@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="../css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
-  <link href="../extra.css" rel="stylesheet">
+  <link href="../stylesheets/klp.css" rel="stylesheet">
   
   <script>
     // Current page data
@@ -52,6 +52,11 @@
             <li class="toctree-l1">
 		
     <a class="" href="..">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../HCTEST/">TEST</a>
 	    </li>
           
             <li class="toctree-l1">
@@ -233,30 +238,32 @@ Modernizing from WebSphere Network Deployment (ND) to the <strong>traditional We
 </li>
 <li>
 <p>If you have not yet cloned the GitHub repo with the lab artifacts, run the following command on your terminal:
-    <code>git clone https://github.com/IBM/openshift-workshop-was.git</code></p>
+    <pre class="highlight"><code>git clone https://github.com/IBM/openshift-workshop-was.git</code></pre></p>
 </li>
 <li>
 <p>Change directory to where this lab is located:
-    <code>cd openshift-workshop-was/labs/Openshift/OperationalModernization
-    ls</code></p>
+    <pre class="highlight"><code>cd openshift-workshop-was/labs/Openshift/OperationalModernization
+ls</code></pre></p>
 </li>
 <li>
 <p>Run the following command to create a new project named <code>apps-was</code> in OpenShift. </p>
-<p><code>oc new-project apps-was</code></p>
+<pre class="highlight"><code>oc new-project apps-was</code></pre>
+
 <p>Example output:
- <code>Now using project "apps-was" on server "https://c115-e.us-south.containers.cloud.ibm.com:32661".
- . . .</code></p>
+ <pre class="highlight"><code>Now using project "apps-was" on server "https://c115-e.us-south.containers.cloud.ibm.com:32661".
+. . .</code></pre></p>
 </li>
 <li>
 <p>Run the following command to start building the image. Make sure to copy the entire command, including the <code>"."</code> at the end (which indicates current directory). 
-    <code>docker build --tag default-route-openshift-image-registry.apps.demo.ibmdte.net/apps-was/cos-was .</code></p>
+    <pre class="highlight"><code>docker build --tag default-route-openshift-image-registry.apps.demo.ibmdte.net/apps-was/cos-was .</code></pre></p>
 </li>
 </ol>
 <h3 id="build-image-hands-on">Build image (Hands-on)</h3>
 <ol>
 <li>Review the command you ran earlier:</li>
 </ol>
-<p><code>docker build --tag default-route-openshift-image-registry.apps.demo.ibmdte.net/apps-was/cos-was .</code></p>
+<pre class="highlight"><code>docker build --tag default-route-openshift-image-registry.apps.demo.ibmdte.net/apps-was/cos-was .</code></pre>
+
 <ul>
 <li>It instructs docker to build the image following the instructions in the Dockerfile in current directory (indicated by the <code>"."</code> at the end).</li>
 <li>A specific name to tag the built image is also specified after <code>--tag</code>.</li>
@@ -272,19 +279,21 @@ Modernizing from WebSphere Network Deployment (ND) to the <strong>traditional We
 <p>You should see the following message if the image was successfully built. Please wait if it's still building.</p>
 </li>
 </ul>
-<p><code>Successfully built aa6babbb5ce9
-   Successfully tagged default-route-openshift-image-registry.apps.demo.ibmdte.net/apps-was/cos-was:latest</code></p>
+<pre class="highlight"><code>Successfully built aa6babbb5ce9
+Successfully tagged default-route-openshift-image-registry.apps.demo.ibmdte.net/apps-was/cos-was:latest</code></pre>
+
 <ol>
 <li>Validate that image is in the repository by running the command:</li>
 </ol>
-<p><code>docker images</code></p>
+<pre class="highlight"><code>docker images</code></pre>
+
 <ul>
 <li>
 <p>Notice that the base image, websphere-traditional, is also listed. It was pulled as the first step of building application image.</p>
 <p>Example output:
- <code>REPOSITORY                                                             TAG                 IMAGE ID            CREATED             SIZE
- default-route-openshift-image-registry.apps.demo.ibmdte.net/apps-was/cos-was      latest              9394150a5a15        10 minutes ago      2.05GB
- ibmcom/websphere-traditional                                           latest              898f9fd79b36        12 minutes ago      1.86GB</code></p>
+ <pre class="highlight"><code>REPOSITORY                                                             TAG                 IMAGE ID            CREATED             SIZE
+default-route-openshift-image-registry.apps.demo.ibmdte.net/apps-was/cos-was      latest              9394150a5a15        10 minutes ago      2.05GB
+ibmcom/websphere-traditional                                           latest              898f9fd79b36        12 minutes ago      1.86GB</code></pre></p>
 </li>
 <li>
 <p>Note that <code>docker images</code> only lists those images that are cached locally.</p>
@@ -303,56 +312,59 @@ Modernizing from WebSphere Network Deployment (ND) to the <strong>traditional We
 <ul>
 <li>Note: A session token is obtained from the value of another command <code>oc whoami -t</code> and used as the password to login.</li>
 </ul>
-<p><code>docker login -u $(oc whoami) -p $(oc whoami -t) default-route-openshift-image-registry.apps.demo.ibmdte.net</code></p>
+<pre class="highlight"><code>docker login -u $(oc whoami) -p $(oc whoami -t) default-route-openshift-image-registry.apps.demo.ibmdte.net</code></pre>
+
 <p>Example output:
- ```
- WARNING! Using --password via the CLI is insecure. Use --password-stdin.
- WARNING! Your password will be stored unencrypted in /root/.docker/config.json.
- Configure a credential helper to remove this warning. See
- https://docs.docker.com/engine/reference/commandline/login/#credentials-store</p>
-<p>Login Succeeded
- ```</p>
+ <pre class="highlight"><code>WARNING! Using --password via the CLI is insecure. Use --password-stdin.
+WARNING! Your password will be stored unencrypted in /root/.docker/config.json.
+Configure a credential helper to remove this warning. See
+https://docs.docker.com/engine/reference/commandline/login/#credentials-store
+
+Login Succeeded</code></pre></p>
 </li>
 <li>
 <p>Now, push the image into OpenShift cluster's internal image registry, which will take 1-2 minutes:</p>
-<p><code>docker push default-route-openshift-image-registry.apps.demo.ibmdte.net/apps-was/cos-was</code></p>
+<pre class="highlight"><code>docker push default-route-openshift-image-registry.apps.demo.ibmdte.net/apps-was/cos-was</code></pre>
+
 <p>Example output: 
- <code>Using default tag: latest
-  The push refers to repository [default-route-openshift-image-registry.apps.demo.ibmdte.net/apps-was/cos-was]
-  470e7d3b0bec: Pushed 
-  c38e61da8211: Pushed 
-  2a72e88fe5eb: Pushed 
-  334c79ff1b2e: Pushed 
-  ccf8ea26529f: Pushed 
-  af0f17433f77: Pushed 
-  4254aef2aa12: Pushed 
-  855301ffdcce: Pushed 
-  ea252e2474a5: Pushed 
-  68a4c9686496: Pushed 
-  87ecb86bc8e5: Pushed 
-  066b59214d49: Pushed 
-  211f972e9c63: Pushed 
-  b93eee2b1ddb: Pushed 
-  a6ab5ae423d9: Pushed 
-  3f785cf0a0ae: Pushed 
-  latest: digest: sha256:4f4e8ae82fa22c83febc4f884b5026d01815fc704df6196431db8ed7a7def6a0 size: 3672</code></p>
+ <pre class="highlight"><code> Using default tag: latest
+ The push refers to repository [default-route-openshift-image-registry.apps.demo.ibmdte.net/apps-was/cos-was]
+ 470e7d3b0bec: Pushed 
+ c38e61da8211: Pushed 
+ 2a72e88fe5eb: Pushed 
+ 334c79ff1b2e: Pushed 
+ ccf8ea26529f: Pushed 
+ af0f17433f77: Pushed 
+ 4254aef2aa12: Pushed 
+ 855301ffdcce: Pushed 
+ ea252e2474a5: Pushed 
+ 68a4c9686496: Pushed 
+ 87ecb86bc8e5: Pushed 
+ 066b59214d49: Pushed 
+ 211f972e9c63: Pushed 
+ b93eee2b1ddb: Pushed 
+ a6ab5ae423d9: Pushed 
+ 3f785cf0a0ae: Pushed 
+ latest: digest: sha256:4f4e8ae82fa22c83febc4f884b5026d01815fc704df6196431db8ed7a7def6a0 size: 3672</code></pre></p>
 </li>
 <li>
 <p>Verify that the image is in the image registry. The following command will get the images in the registry. Filter through the results to get only the image you pushed. Run the following command:</p>
 </li>
 </ul>
-<p><code>oc get images | grep apps-was/cos-was</code></p>
+<pre class="highlight"><code>oc get images | grep apps-was/cos-was</code></pre>
+
 <ul>
 <li>
 <p>The application image you just pushed should be listed. The hash of the image is stored alongside (indicated by the SHA-256 value).</p>
 <p>Example output:
- <code>image-registry.openshift-image-registry.svc:5000/apps-was/cos-was@sha256:bc072d3b78ae6adcd843af75552965e5ed863bcce4fc3f1bc5d194570bc16953</code></p>
+ <pre class="highlight"><code>image-registry.openshift-image-registry.svc:5000/apps-was/cos-was@sha256:bc072d3b78ae6adcd843af75552965e5ed863bcce4fc3f1bc5d194570bc16953</code></pre></p>
 </li>
 <li>
 <p>OpenShift uses <em>ImageStream</em> to provide an abstraction for referencing container images from within the cluster. When an image is pushed to registry, an <em>ImageStream</em> is created automatically, if one doesn't already exist. Run the following command to see the <em>ImageStream</em> that's created:</p>
 </li>
 </ul>
-<p><code>oc get imagestreams -n apps-was</code></p>
+<pre class="highlight"><code>oc get imagestreams -n apps-was</code></pre>
+
 <p>Example output:
      ```
     NAME      IMAGE REPOSITORY                                                              TAGS      UPDATED         <br />
@@ -386,12 +398,12 @@ Since migrating the database is not the focus of this particular workshop and to
 <ol>
 <li>Run the following command to deploy the resources (*.yaml files) in the <code>deploy</code> directory:</li>
 </ol>
-<p><code>oc apply -f deploy</code>
+<p><pre class="highlight"><code>oc apply -f deploy</code></pre>
    Output:
-   <code>deployment.apps/cos-was created
-   route.route.openshift.io/cos-was created
-   secret/authdata created
-   service/cos-was created</code></p>
+   <pre class="highlight"><code>deployment.apps/cos-was created
+route.route.openshift.io/cos-was created
+secret/authdata created
+service/cos-was created </code></pre></p>
 <ol>
 <li>Let's review what we just did. </li>
 <li>
@@ -405,48 +417,48 @@ Since migrating the database is not the focus of this particular workshop and to
 </li>
 <li>
 <p>The file <code>Deployment.yaml</code> looks like:</p>
-<p><code>yaml
- apiVersion: apps/v1
- kind: Deployment
- metadata:
-   name: cos-was
-   namespace: apps-was
- spec:
-   selector:
-     matchLabels:
-       app: cos-was
-   replicas: 1
-   template:
-     metadata:
-       labels:
-         app: cos-was
-     spec:
-       containers:
-       - name: cos-was
-         image: image-registry.openshift-image-registry.svc:5000/apps-was/cos-was
-         ports:
-           - containerPort: 9080
-         livenessProbe:
-           httpGet:
-             path: /CustomerOrderServicesWeb/index.html
-             port: 9080
-           periodSeconds: 30
-           failureThreshold: 6
-           initialDelaySeconds: 90
-         readinessProbe:
-           httpGet:
-             path: /CustomerOrderServicesWeb/index.html
-             port: 9080
-           periodSeconds: 10
-           failureThreshold: 3
-         volumeMounts:
-         - mountPath: /etc/websphere
-           name: authdata
-           readOnly: true
-       volumes:
-       - name: authdata
-         secret:
-             secretName: authdata</code></p>
+<pre class="highlight"><code class="language-yaml">apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cos-was
+  namespace: apps-was
+spec:
+  selector:
+    matchLabels:
+      app: cos-was
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: cos-was
+    spec:
+      containers:
+      - name: cos-was
+        image: image-registry.openshift-image-registry.svc:5000/apps-was/cos-was
+        ports:
+          - containerPort: 9080
+        livenessProbe:
+          httpGet:
+            path: /CustomerOrderServicesWeb/index.html
+            port: 9080
+          periodSeconds: 30
+          failureThreshold: 6
+          initialDelaySeconds: 90
+        readinessProbe:
+          httpGet:
+            path: /CustomerOrderServicesWeb/index.html
+            port: 9080
+          periodSeconds: 10
+          failureThreshold: 3
+        volumeMounts:
+        - mountPath: /etc/websphere
+          name: authdata
+          readOnly: true
+      volumes:
+      - name: authdata
+        secret:
+            secretName: authdata</code></pre>
+
 <ul>
 <li>Note:</li>
 <li>The liveness probe is used to tell Kubernetes when the application is live. Due to the size of the traditional WAS image, the initialDelaySeconds attribute has been set to 90 seconds to give the container time to start.</li>
@@ -466,52 +478,51 @@ Since migrating the database is not the focus of this particular workshop and to
 </li>
 <li>
 <p>The file <code>Secret.yaml</code> looks like:</p>
-<p>```yaml
- apiVersion: v1
- kind: Secret
- metadata:
-   name: authdata
-   namespace: apps-was
- type: Opaque
- stringData:
-   authdata.props: |-
-     #
-     # Configuration properties file for cells/DefaultCell01|security.xml#JAASAuthData_1597094577206#
-     # Extracted on Tue Aug 11 15:30:36 UTC 2020
-     #</p>
-<pre><code> #
- # Section 1.0 ## Cell=!{cellName}:Security=:JAASAuthData=alias#DBUser
- #
+<pre class="highlight"><code class="language-yaml">apiVersion: v1
+kind: Secret
+metadata:
+  name: authdata
+  namespace: apps-was
+type: Opaque
+stringData:
+  authdata.props: |-
+    #
+    # Configuration properties file for cells/DefaultCell01|security.xml#JAASAuthData_1597094577206#
+    # Extracted on Tue Aug 11 15:30:36 UTC 2020
+    #
 
- #
- # SubSection 1.0.0 # JAASAuthData Section
- #
- ResourceType=JAASAuthData
- ImplementingResourceType=GenericType
- ResourceId=Cell=!{cellName}:Security=:JAASAuthData=alias#DBUser
- AttributeInfo=authDataEntries
- #
+    #
+    # Section 1.0 ## Cell=!{cellName}:Security=:JAASAuthData=alias#DBUser
+    #
 
- #
- #Properties
- #
- password="{xor}Oz1tNjEsK24=" #required
- alias=DBUser #required
- userId=db2inst1 #required
- description=
+    #
+    # SubSection 1.0.0 # JAASAuthData Section
+    #
+    ResourceType=JAASAuthData
+    ImplementingResourceType=GenericType
+    ResourceId=Cell=!{cellName}:Security=:JAASAuthData=alias#DBUser
+    AttributeInfo=authDataEntries
+    #
 
- #
- # End of Section 1.0# Cell=!{cellName}:Security=:JAASAuthData=alias#DBUser
- #
- #
- #
- EnvironmentVariablesSection
- #
- #
- #Environment Variables
- cellName=DefaultCell01
-</code></pre>
-<p>```</p>
+    #
+    #Properties
+    #
+    password="{xor}Oz1tNjEsK24=" #required
+    alias=DBUser #required
+    userId=db2inst1 #required
+    description=
+
+    #
+    # End of Section 1.0# Cell=!{cellName}:Security=:JAASAuthData=alias#DBUser
+    #
+    #
+    #
+    EnvironmentVariablesSection
+    #
+    #
+    #Environment Variables
+    cellName=DefaultCell01</code></pre>
+
 <ul>
 <li>The attribute <code>authdata.properties</code> contains the properties file based configure used to update the database userId and password for the JAASAuthData whose alias is DBUser. </li>
 <li>The configuration in Deployment.yaml maps it as the file <code>/etc/websphere/authdata.properties</code> during container startup so that the application server startup script can automatically configure the server with these entries. </li>
@@ -522,23 +533,23 @@ Since migrating the database is not the focus of this particular workshop and to
 <h2 id="access-the-application-without-operator-hands-on">Access the application without operator (Hands-on)</h2>
 <ol>
 <li>Confirm you're at the current project <code>apps-was</code>:
-   <code>oc project</code></li>
+   <pre class="highlight"><code>oc project</code></pre></li>
 </ol>
 <p>Example output:
-   <code>Using project "apps-was" on server "https://c114-e.us-south.containers.cloud.ibm.com:30016".</code>
+   <pre class="highlight"><code>Using project "apps-was" on server "https://c114-e.us-south.containers.cloud.ibm.com:30016".</code></pre>
    - If it's not at the project <code>apps-was</code>, then switch:
-     <code>oc project apps-was</code>
+     <pre class="highlight"><code>oc project apps-was</code></pre>
 1. Run the following command to verify the pod is running:
-   <code>oc get pod</code>
+   <pre class="highlight"><code>oc get pod</code></pre>
    If the status does not show <code>1/1</code> READY, wait a while, checking status periodically:
-   <code>NAME                       READY   STATUS    RESTARTS   AGE
-   cos-was-6bd4767bf6-xhr92   1/1     Running   0          120m</code></p>
+   <pre class="highlight"><code>NAME                       READY   STATUS    RESTARTS   AGE
+cos-was-6bd4767bf6-xhr92   1/1     Running   0          120m</code></pre></p>
 <ol>
 <li>Run the following command to get the URL of your application (the route URL plus the application contextroot): 
-   <code>echo http://$(oc get route cos-was  --template='{{ .spec.host }}')/CustomerOrderServicesWeb</code></li>
+   <pre class="highlight"><code>echo http://$(oc get route cos-was  --template='{{ .spec.host }}')/CustomerOrderServicesWeb</code></pre></li>
 </ol>
 <p>Example output:
-   <code>http://cos-was-apps-was.apps.demo.ibmdte.net/CustomerOrderServicesWeb</code></p>
+   <pre class="highlight"><code>http://cos-was-apps-was.apps.demo.ibmdte.net/CustomerOrderServicesWeb</code></pre></p>
 <ol>
 <li>
 <p>Return to your Firefox browser window and go to the URL outputted by the command run in the previous step.</p>
@@ -675,38 +686,36 @@ Since migrating the database is not the focus of this particular workshop and to
 <blockquote>
 <p>Note: The pre-installed resources such as DB2, are not removed.</p>
 </blockquote>
-<pre><code>oc delete -f deploy
-</code></pre>
+<pre class="highlight"><code>oc delete -f deploy</code></pre>
 
-<p>Output:</p>
-<pre><code>deployment.apps &quot;cos-was&quot; deleted
-route.route.openshift.io &quot;cos-was&quot; deleted
-secret &quot;authdata&quot; deleted
-service &quot;cos-was&quot; deleted
-</code></pre>
-
+<p>Output:
+<pre class="highlight"><code>deployment.apps "cos-was" deleted
+route.route.openshift.io "cos-was" deleted
+secret "authdata" deleted
+service "cos-was" deleted</code></pre></p>
 <p><a name="deploy-rco"></a></p>
 <h2 id="alternate-deployment-via-runtime-component-operator">Alternate Deployment Via Runtime Component Operator</h2>
 <p>Another way to deploy the application is via the Runtime Component Operator. It is a generic operator used to deploy different types of application images. The operator has already been installed into your environment. For more information, see: https://github.com/application-stacks/runtime-component-operator</p>
 <h3 id="deploy-application-via-runtime-component-operator-hands-on">Deploy application (via Runtime Component Operator) (Hands-on)</h3>
 <ol>
 <li>Run the following command which uses the Runtime Component Operator to deploy the same Customer Order Service application image:
-   <code>oc apply -f deploy-rco</code></li>
+   <pre class="highlight"><code>oc apply -f deploy-rco</code></pre></li>
 </ol>
 <p>Output:
-   <code>runtimecomponent.app.stacks/cos-was-rco created
-   secret/authdata-rco created</code></p>
+   <pre class="highlight"><code>runtimecomponent.app.stacks/cos-was-rco created
+secret/authdata-rco created</code></pre></p>
 <ol>
 <li>Let's review what we just did. </li>
 <li>
 <p>First, list the contents of the <code>deploy-rco</code> directory:</p>
-<p><code>ls deploy-rco</code></p>
+<pre class="highlight"><code>ls deploy-rco</code></pre>
+
 <p>The output shows there are only two yaml files:
- <code>RuntimeComponent.yaml  Secret.yaml</code></p>
+ <pre class="highlight"><code>RuntimeComponent.yaml  Secret.yaml</code></pre></p>
 </li>
 <li>
 <p>Review Secret.yaml: 
-     <code>cat deploy-rco/Secret.yaml</code></p>
+     <pre class="highlight"><code>cat deploy-rco/Secret.yaml</code></pre></p>
 <ul>
 <li>Note that it is the same as the <code>Secret.yaml</code> in the <code>deploy</code> directory, except the name has been changed to <code>authdata-rco</code>.  </li>
 <li>
@@ -714,45 +723,45 @@ service &quot;cos-was&quot; deleted
 </li>
 <li>
 <p>Review RuntimeComponent.yaml:
-  <code>cat deploy-rco/RuntimeComponent.yaml</code></p>
+  <pre class="highlight"><code>cat deploy-rco/RuntimeComponent.yaml</code></pre></p>
 </li>
 </ul>
 <p>And the output:</p>
-<p><code>yaml
-  apiVersion: app.stacks/v1beta1
-  kind: RuntimeComponent
-  metadata:
-    name: cos-was-rco
-    namespace: apps-was
-  spec:
-    applicationImage: image-registry.openshift-image-registry.svc:5000/apps-was/cos-was
-    service:
+<pre class="highlight"><code class="language-yaml">apiVersion: app.stacks/v1beta1
+kind: RuntimeComponent
+metadata:
+  name: cos-was-rco
+  namespace: apps-was
+spec:
+  applicationImage: image-registry.openshift-image-registry.svc:5000/apps-was/cos-was
+  service:
+    port: 9080
+  readinessProbe:
+    httpGet:
+      path: /CustomerOrderServicesWeb/index.html
       port: 9080
-    readinessProbe:
-      httpGet:
-        path: /CustomerOrderServicesWeb/index.html
-        port: 9080
-      periodSeconds: 10
-      failureThreshold: 3
-    livenessProbe:
-      httpGet:
-        path: /CustomerOrderServicesWeb/index.html
-        port: 9080
-      periodSeconds: 30
-      failureThreshold: 6
-      initialDelaySeconds: 90
-    expose: true
-    route:
-      termination: edge
-      insecureEdgeTerminationPolicy: Redirect
-    volumeMounts:
-      - mountPath: /etc/websphere
-        name: authdata-rco
-        readOnly: true
-    volumes:
-      - name: authdata-rco
-        secret:
-            secretName: authdata-rco</code></p>
+    periodSeconds: 10
+    failureThreshold: 3
+  livenessProbe:
+    httpGet:
+      path: /CustomerOrderServicesWeb/index.html
+      port: 9080
+    periodSeconds: 30
+    failureThreshold: 6
+    initialDelaySeconds: 90
+  expose: true
+  route:
+    termination: edge
+    insecureEdgeTerminationPolicy: Redirect
+  volumeMounts:
+    - mountPath: /etc/websphere
+      name: authdata-rco
+      readOnly: true
+  volumes:
+    - name: authdata-rco
+      secret:
+          secretName: authdata-rco</code></pre>
+
 <p>Note that:
   - The kind is <code>RuntimeComponent</code>
   - The <code>expose</code> attribute is set to <code>true</code> to expose a route
@@ -769,23 +778,24 @@ service &quot;cos-was&quot; deleted
 <h2 id="access-the-application-via-runtime-component-operator-hands-on">Access the application (via Runtime Component Operator) (Hands-on)</h2>
 <ol>
 <li>Confirm you're at the current project <code>apps-was</code>:
-   <code>oc project</code></li>
+   <pre class="highlight"><code>oc project</code></pre></li>
 </ol>
 <p>Example output:
-   <code>Using project "apps-was" on server "https://c114-e.us-south.containers.cloud.ibm.com:30016".</code>
+   <pre class="highlight"><code>Using project "apps-was" on server "https://c114-e.us-south.containers.cloud.ibm.com:30016".</code></pre>
    - If it's not at the project <code>apps-was</code>, then switch:
-     <code>oc project apps-was</code>
+     <pre class="highlight"><code>oc project apps-was</code></pre>
 1. Run the following command to verify the pod is running:
-   <code>oc get pod</code></p>
+   <pre class="highlight"><code>oc get pod</code></pre></p>
 <p>If the status does not show <code>1/1</code> READY, wait a while, checking status periodically. Note the prefix name for the pod is <code>cos-was-rco</code>.
-   <code>NAME                           READY   STATUS    RESTARTS   AGE
-   cos-was-rco-6779784fc8-pz92m   1/1     Running   0          2m59s</code></p>
+   <pre class="highlight"><code>NAME                           READY   STATUS    RESTARTS   AGE
+cos-was-rco-6779784fc8-pz92m   1/1     Running   0          2m59s</code></pre></p>
 <ol>
 <li>Run the following command to get the URL of your application (the route URL plus the application contextroot): </li>
 </ol>
-<p><code>echo http://$(oc get route cos-was-rco  --template='{{ .spec.host }}')/CustomerOrderServicesWeb</code></p>
+<pre class="highlight"><code>echo http://$(oc get route cos-was-rco  --template='{{ .spec.host }}')/CustomerOrderServicesWeb</code></pre>
+
 <p>Example output:
-   <code>http://cos-was-rco-apps-was.apps.demo.ibmdte.net/CustomerOrderServicesWeb</code></p>
+   <pre class="highlight"><code>http://cos-was-rco-apps-was.apps.demo.ibmdte.net/CustomerOrderServicesWeb</code></pre></p>
 <ol>
 <li>
 <p>Return to your Firefox browser window and go to the URL outputted by the command run in the previous step. The steps to access the application are the same as those used when deploying without the operator.</p>
@@ -940,20 +950,22 @@ service &quot;cos-was&quot; deleted
 <li>Run the following command in a terminal window to remove the deployment from the above secenario with Runtime Component instance:</li>
 <li>
 <p>Note: The pre-installed resources such as Runtime Component Operator, DB2, are not removed.</p>
-<p><code>oc delete -f deploy-rco</code></p>
+<pre class="highlight"><code>oc delete -f deploy-rco</code></pre>
+
 <p>Output:
- <code>runtimecomponent.app.stacks "cos-was-rco" deleted
- secret "authdata-rco" deleted</code></p>
+ <pre class="highlight"><code>runtimecomponent.app.stacks "cos-was-rco" deleted
+secret "authdata-rco" deleted</code></pre></p>
 </li>
 <li>
 <p>Verify that the corresponding application <code>Service</code>, <code>Route</code>, and <code>Deployment</code> have also been deleted:</p>
 </li>
 </ol>
-<p><code>oc get Deployment 
-   oc get Service 
-   oc get Route</code></p>
+<pre class="highlight"><code>oc get Deployment 
+oc get Service 
+oc get Route </code></pre>
+
 <p>Output from each <code>get</code> command above should be:
-   <code>No resources found in apps-was namespace.</code></p>
+   <pre class="highlight"><code>No resources found in apps-was namespace.</code></pre></p>
 <p><a name="summary"></a></p>
 <h2 id="summary">Summary</h2>
 <p>Congratulations! You've completed the <strong>Operational Modernization</strong> lab. You containerized and deployed a monolith application to cloud!</p>
@@ -1000,5 +1012,5 @@ service &quot;cos-was&quot; deleted
 
 <!--
 MkDocs version : 1.0.4
-Build Date UTC : 2021-07-12 17:02:04
+Build Date UTC : 2021-07-13 21:25:10
 -->

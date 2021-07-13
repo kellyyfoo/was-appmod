@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="../css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
-  <link href="../extra.css" rel="stylesheet">
+  <link href="../stylesheets/klp.css" rel="stylesheet">
   
   <script>
     // Current page data
@@ -52,6 +52,11 @@
             <li class="toctree-l1">
 		
     <a class="" href="..">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../HCTEST/">TEST</a>
 	    </li>
           
             <li class="toctree-l1">
@@ -380,7 +385,7 @@ It is used to run one or more related containers.
 Normally you do not run define a <code>pod</code>. 
 Instead, you define a <code>deployment</code> that controls the number of instances in <code>pod</code>.</p>
 <p>Here is a sample redacted configuration for a <code>deployment</code> for 2 pods:</p>
-<pre><code>apiVersion: extensions/v1beta1
+<pre class="highlight"><code>apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   name: example
@@ -405,23 +410,22 @@ spec:
 status:
   availableReplicas: 2
   conditions:
-  - lastTransitionTime: &quot;2020-04-13T11:50:39Z&quot;
-    lastUpdateTime: &quot;2020-04-13T11:50:39Z&quot;
+  - lastTransitionTime: "2020-04-13T11:50:39Z"
+    lastUpdateTime: "2020-04-13T11:50:39Z"
     message: Deployment has minimum availability.
     reason: MinimumReplicasAvailable
-    status: &quot;True&quot;
+    status: "True"
     type: Available
-  - lastTransitionTime: &quot;2020-04-13T11:50:22Z&quot;
-    lastUpdateTime: &quot;2020-04-13T11:50:39Z&quot;
-    message: ReplicaSet &quot;example-75778c488&quot; has successfully progressed.
+  - lastTransitionTime: "2020-04-13T11:50:22Z"
+    lastUpdateTime: "2020-04-13T11:50:39Z"
+    message: ReplicaSet "example-75778c488" has successfully progressed.
     reason: NewReplicaSetAvailable
-    status: &quot;True&quot;
+    status: "True"
     type: Progressing
   observedGeneration: 1
   readyReplicas: 2
   replicas: 2
-  updatedReplicas: 2
-</code></pre>
+  updatedReplicas: 2</code></pre>
 
 <p>Note the following:</p>
 <ul>
@@ -432,7 +436,7 @@ status:
 </ul>
 <p>The controller for the above deployment follows the above specification, and creates two <code>pods</code>. 
 Here is a sample redacted configuration for one of the <code>pods</code>: </p>
-<pre><code>piVersion: v1
+<pre class="highlight"><code>piVersion: v1
 kind: Pod
 metadata:
   labels:
@@ -451,20 +455,20 @@ spec:
 status:
   conditions:
   - lastProbeTime: null
-    lastTransitionTime: &quot;2020-04-13T11:50:23Z&quot;
-    status: &quot;True&quot;
+    lastTransitionTime: "2020-04-13T11:50:23Z"
+    status: "True"
     type: Initialized
   - lastProbeTime: null
-    lastTransitionTime: &quot;2020-04-13T11:50:38Z&quot;
-    status: &quot;True&quot;
+    lastTransitionTime: "2020-04-13T11:50:38Z"
+    status: "True"
     type: Ready
   - lastProbeTime: null
-    lastTransitionTime: &quot;2020-04-13T11:50:38Z&quot;
-    status: &quot;True&quot;
+    lastTransitionTime: "2020-04-13T11:50:38Z"
+    status: "True"
     type: ContainersReady
   - lastProbeTime: null
-    lastTransitionTime: &quot;2020-04-13T11:50:23Z&quot;
-    status: &quot;True&quot;
+    lastTransitionTime: "2020-04-13T11:50:23Z"
+    status: "True"
     type: PodScheduled
   containerStatuses:
   - containerID: cri-o://fd909c5a3f6cbf8cd9b430b39b3173c830c668daff739f8b425d9803755f11b3
@@ -477,15 +481,14 @@ status:
     started: true
     state:
       running:
-        startedAt: &quot;2020-04-13T11:50:37Z&quot;
+        startedAt: "2020-04-13T11:50:37Z"
   hostIP: 10.16.20.129
   phase: Running
   podIP: 10.254.21.218
   podIPs:
   - ip: 10.254.21.218
   qosClass: BestEffort
-  startTime: &quot;2020-04-13T11:50:23Z&quot;
-</code></pre>
+  startTime: "2020-04-13T11:50:23Z"</code></pre>
 
 <p>Note that:</p>
 <ul>
@@ -710,7 +713,7 @@ Providing IDE environments remotely has several advantages:</p>
         <a href="../WebSphereCloud/" class="btn btn-neutral float-right" title="Moving WebSphere applications to Cloud">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href=".." class="btn btn-neutral" title="Home"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../HCTEST/" class="btn btn-neutral" title="TEST"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -736,7 +739,7 @@ Providing IDE environments remotely has several advantages:</p>
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
-        <span><a href=".." style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../HCTEST/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
         <span style="margin-left: 15px"><a href="../WebSphereCloud/" style="color: #fcfcfc">Next &raquo;</a></span>
