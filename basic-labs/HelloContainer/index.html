@@ -163,20 +163,23 @@ For example, docker hub, or registry.access.redhat.com, or your own internal reg
 <p><a name="Login_VM"> </a></p>
 <h2 id="login-to-the-vm">Login to the VM</h2>
 <ol>
-<li>If the VM is not already started, start it by clicking the Play button.</li>
-</ol>
-<p><img alt="start VM" src="images/loginvm1.png" /></p>
-<ol>
-<li>After the VM is started, click the <strong>desktop</strong> VM to access it.</li>
-</ol>
-<p><img alt="desktop VM" src="images/loginvm2.png" /></p>
-<ol>
-<li>Login with <strong>ibmuser</strong> ID.</li>
-<li>Click on the <strong>ibmuser</strong> icon on the Ubuntu screen.</li>
 <li>
-<p>When prompted for the password for <strong>ibmuser</strong>, enter "<strong>engageibm</strong>" as the password: \
-     Password: <strong>engageibm</strong></p>
+<p>If the VM is not already started, start it by clicking the Play button.</p>
+<p><img alt="start VM" src="images/loginvm1.png" /></p>
+</li>
+<li>
+<p>After the VM is started, click the <strong>desktop</strong> VM to access it.</p>
+<p><img alt="desktop VM" src="images/loginvm2.png" /></p>
+</li>
+<li>
+<p>Login with <strong>ibmuser</strong> ID.</p>
+<ul>
+<li>Click on the <strong>ibmuser</strong> icon on the Ubuntu screen.</li>
+<li>When prompted for the password for <strong>ibmuser</strong>, enter "<strong>engageibm</strong>" as the password.</li>
+</ul>
+<p><br></p>
 <p><img alt="login VM" src="images/loginvm3.png" /></p>
+<p><br></p>
 </li>
 <li>
 <p>Resize the Skytap environment window for a larger viewing area while doing the lab. From the Skytap menu bar, click on the "<strong>Fit to Size</strong>" icon. This will enlarge the viewing area to fit the size of your browser window. </p>
@@ -189,18 +192,20 @@ For example, docker hub, or registry.access.redhat.com, or your own internal reg
 <li>
 <p>Open a terminal window from within your VM.</p>
 <p><img alt="terminal" src="images/checkenv1.png" /></p>
+<p><br></p>
 </li>
-</ol>
-<p><br>
-2. List version of docker: </p>
+<li>
+<p>List version of docker: </p>
 <pre class="highlight"><code>docker --version</code></pre>
 
 <p>Example output:</p>
-<pre><code>    Docker version 20.10.7, build f0df350
+<pre><code>Docker version 20.10.7, build f0df350
 </code></pre>
-<ul>
-<li>For more background on docker command line: <a href="https://docs.docker.com/engine/reference/commandline/cli/">https://docs.docker.com/engine/reference/commandline/cli/</a></li>
-</ul>
+</li>
+<li>
+<p>For more background on docker command line: <a href="https://docs.docker.com/engine/reference/commandline/cli/">https://docs.docker.com/engine/reference/commandline/cli/</a></p>
+</li>
+</ol>
 <p><a name="Run_Prebuilt"> </a></p>
 <h2 id="run-a-pre-built-image">Run a pre-built image</h2>
 <ol>
@@ -289,24 +294,26 @@ openshift/hello-openshift   latest              7af3297a3fb4        2 years ago 
 <li>The output of the command is the container ID for the running container.</li>
 <li>If the container starts successfully, the executable specified by the <code>Entrypoint</code> in the metadata is run. For our sample, it is <code>/hello-openshift</code>.</li>
 </ul>
+<p><br> </p>
 </li>
 <li>
 <p>Access the application in the container.</p>
-<p>a. Open the Firefox Web Browser from inside of the VM. 
-    <img alt="firefox" src="images/runprebuilt3.png" />
-b. Go to the URL <code>http://localhost:8080</code></p>
-<p>c. Also try port 8888</p>
+<p>a. Open the Firefox Web Browser from inside of the VM. </p>
+<p><img alt="firefox" src="images/runprebuilt3.png" /></p>
+<p>b. Go to the URL <code>http://localhost:8080</code></p>
+<p>c. Also try port <strong>8888</strong></p>
 <p><img alt="hello openshift" src="images/runprebuilt1.png" /></p>
 </li>
 <li>
 <p>Run another instance of the same image. Note that this new instance is assigned new port numbers 8081 and 8889 on the host. This is so that they don't conflict with the ports 8080 and 8888 already allocated to the first instance.
    <pre class="highlight"><code>docker run --name hello2 -d -p 8081:8080 -p 8889:8888 openshift/hello-openshift</code></pre>
     <strong>Question:</strong> How does this compare to the time it takes to start a new virtual machine?</p>
+<p><br></p>
 </li>
 <li>
 <p>Access the application in the new container the same way. </p>
 <p>a. Return to the Firefox Web Browser but instead go to the URL <code>http://localhost:8081</code></p>
-<p>b. Also try port 8889</p>
+<p>b. Also try port <strong>8889</strong></p>
 <p><img alt="hello openshift" src="images/runprebuilt2.png" /></p>
 </li>
 <li>
@@ -478,6 +485,7 @@ RUN /liberty/wlp/bin/installUtility install --acceptLicense /config/server.xml <
 <p>The last line <code>RUN</code> runs the <code>installUtility</code> command within the image to install additional features required to run the server as specified in <code>server.xml</code>. You can use the <code>RUN</code> command to run any command that is available within the image to customize the image itself.</p>
 </li>
 </ul>
+<p><br></p>
 </li>
 <li>
 <p>Run the build.  Ensure you include <code>.</code> at the end of the command (the dot indicates using the file from the current directory):
@@ -487,7 +495,8 @@ RUN /liberty/wlp/bin/installUtility install --acceptLicense /config/server.xml <
 <li>The <code>-f</code> option specifies the name of the <code>Containerfile</code>. </li>
 <li>The build command runs the commands in <code>Containerfile</code> to build a new image called <code>app</code>.</li>
 </ul>
-<p>Example output:
+<p><br></p>
+<p>Example output:</p>
 <pre class="highlight"><code>Sending build context to Docker daemon   25.6kB
 Step 1/4 : FROM ibmcom/websphere-liberty:kernel-java8-ibmjava-ubi
 kernel-java8-ibmjava-ubi: Pulling from ibmcom/websphere-liberty
@@ -546,7 +555,8 @@ Product validation completed successfully.
 Removing intermediate container 5f5b05aec1ae
  ---&gt; e1c6bfabda76
 Successfully built e1c6bfabda76
-Successfully tagged app:latest</code></pre></p>
+Successfully tagged app:latest</code></pre>
+
 </li>
 <li>
 <p>List the images to see that the new image <code>app</code> is built: 
@@ -569,6 +579,7 @@ ibmcom/websphere-liberty              kernel-java8-ibmjava-ubi   7ea3d0a2b3fe   
 <p>b. Check that it renders a page showing <code>Simple Servlet ran successfully</code>.</p>
 <p>c. Also point your browser to 9443:  <code>https://localhost:9443/app</code></p>
 <p><img alt="hello openshift" src="images/buildyourown1.png" /></p>
+<p><br></p>
 </li>
 <li>
 <p>List the running containers: 
@@ -600,6 +611,7 @@ id
 <li><code>cd /opt/ibm/wlp/output/defaultServer</code> to find the workarea files required by the server runtime.</li>
 <li>Exit from the container: <code>exit</code></li>
 </ul>
+<p><br></p>
 </li>
 <li>
 <p>Cleanup:</p>
@@ -780,5 +792,5 @@ docker tag app app:1.4.0</code></pre>
 
 <!--
 MkDocs version : 1.0.4
-Build Date UTC : 2021-07-13 21:25:10
+Build Date UTC : 2021-07-13 21:43:32
 -->
