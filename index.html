@@ -8,7 +8,7 @@
   <meta name="description" content="None">
   
   <link rel="shortcut icon" href="img/favicon.ico">
-  <title>Home - Application Modernization</title>
+  <title>Home - WebSphere Application Modernization</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="css/theme.css" type="text/css" />
@@ -37,7 +37,7 @@
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
       <div class="wy-side-nav-search">
-        <a href="." class="icon icon-home"> Application Modernization</a>
+        <a href="." class="icon icon-home"> WebSphere Application Modernization</a>
         <div role="search">
   <form id ="rtd-search-form" class="wy-form" action="./search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
@@ -56,38 +56,28 @@
             
     <li class="toctree-l2"><a href="#websphere-application-modernization-workshop">WebSphere Application Modernization Workshop </a></li>
     
-        <ul>
-        
-            <li><a class="toctree-l3" href="#operational-modernization">Operational Modernization</a></li>
-        
-            <li><a class="toctree-l3" href="#runtime-modernization">Runtime Modernization</a></li>
-        
-            <li><a class="toctree-l3" href="#application-management">Application Management</a></li>
-        
-            <li><a class="toctree-l3" href="#devops-management">Devops Management</a></li>
-        
-        </ul>
-    
-
-    <li class="toctree-l2"><a href="#hands-on-workshop">Hands-on Workshop</a></li>
-    
-        <ul>
-        
-            <li><a class="toctree-l3" href="#reserve-lab-environments">Reserve lab environments</a></li>
-        
-            <li><a class="toctree-l3" href="#basic-labs">Basic Labs</a></li>
-        
-            <li><a class="toctree-l3" href="#appplication-modernization-labs">Appplication Modernization Labs</a></li>
-        
-        </ul>
-    
 
     </ul>
 	    </li>
           
             <li class="toctree-l1">
 		
-    <a class="" href="HCTEST/">TEST</a>
+    <a class="" href="basic-labs/">Basic Containerization & App Mod Tools Labs</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="appmod-labs/">App Modernization Labs</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="devops-labs/">DevOps Labs</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="liberty-labs/">Liberty Development Labs</a>
 	    </li>
           
             <li class="toctree-l1">
@@ -119,7 +109,7 @@
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
         <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href=".">Application Modernization</a>
+        <a href=".">WebSphere Application Modernization</a>
       </nav>
 
       
@@ -147,38 +137,51 @@
 <p><img alt="banner" src="images/demo-assets.png" /></p>
 <p>Application modernization is a journey of moving existing applications to a more modern cloud-native infrastructure.</p>
 <p>There are several approaches to application modernization and provided are key reference implementations to help you on your modernization journey.</p>
-<h3 id="operational-modernization"><h3 style="color:green">Operational Modernization</h3></h3>
+<h3 style="color:green">Operational Modernization</h3>
+
 <ul>
 <li><strong>Repackage</strong> the application to deploy within a container but maintaining a monolith application without changes to the application or runtime. This solution uses Appsody Operator, supported by IBM Cloud Pak for Applications, to deploy and manage the containerized application on Red Hat OpenShift.</li>
 </ul>
-<h3 id="runtime-modernization"><h3 style="color:green">Runtime Modernization</h3></h3>
+<h3 style="color:green">Runtime Modernization</h3>
+
 <ul>
 <li><strong>Update the application runtime to Open Liberty</strong>, a suitable cloud-native framework. Modernize some aspects of the application by taking advantage of MicroProfile specifications, such as Health, Metrics, JWT, Config and OpenAPI. This solution uses Open Liberty Operator, also supported by IBM Cloud Pak for Applications, to deploy and manage the modernized application on Red Hat OpenShift.</li>
 </ul>
-<h3 id="application-management"><h3 style="color:green">Application Management</h3></h3>
+<h3 style="color:green">Application Management</h3>
+
 <ul>
 <li><strong>Monitor the applications</strong> easily using various dashboards available as part of IBM Cloud Pak for Applications. Identify potential problems using logging dashboards. Get insights into the performance of your applications using metrics dashboards. Perform Day-2 operations, such as gathering traces and dumps, to debug potential issues easily using Open Liberty Operator. </li>
 </ul>
-<h3 id="devops-management"><h3 style="color:green">Devops Management</h3></h3>
+<h3 style="color:green">Devops Modernization</h3>
+
 <ul>
 <li><strong>Continuous Integration and Countinuous Deployment (CI/CD)</strong> of applications is critical for repeatable and reliable deployments. Modern devops technologies such as Tekton and Argo CD are designed for Kubernetes (OSCP) and provide the CI/CD capabilites, and fully integrated and supported in OSCP vis Kuberntes Operators.  </li>
 </ul>
-<h1 id="hands-on-workshop"><h1 style="color:green">Hands-on Workshop</h1></h1>
-<h4 id="reserve-lab-environments"><h4 style="color:green">Reserve lab environments</h4></h4>
+<h1 style="color:green">Hands-on Workshop</h1>
+
+<h4 style="color:green">Reserve lab environments</h4>
+
 <p>Please follow the <a href="common/setup.md">setup instructions</a> to reserver a lab environemnt, or schedule a workshop. The lab environemtn is configured with the tools you need to be able to complete the labs.</p>
-<h3 id="basic-labs"><h3 style="color:green">Basic Labs</h3></h3>
-<p>Basic knowledge about containers and Kubernetes is recommended. Completing the following hands-on labs will help you to easily navigate this workshop:</p>
+<h3 style="color:green">Containerization Labs</h3>
+
+<p>Basic knowledge about containers, OpenShift, and BM Transfromation Advisor is recommended. Completing the following hands-on labs will help you to easily navigate this workshop:</p>
 <ul>
 <li>Lab 1: <a href="basic-labs/HelloContainer/">Introduction to Containerization</a></li>
 <li>Lab 2: <a href="basic-labs/IntroOpenshift/">Introduction to Container Orchestration using OpenShift</a></li>
+<li>Lab 3: <a href="basic-labs/TA/">Introduction to IBM Transformation Advisor</a></li>
 </ul>
-<h3 id="appplication-modernization-labs"><h3 style="color:green">Appplication Modernization Labs</h3></h3>
-<p>The labs should be completed in the order they are listed below. A link is provided at the end of each lab to the next lab.</p>
+<h3 style="color:green">Appplication Modernization Labs</h3>
+
 <ul>
 <li>Lab 3: <a href="appmod-labs/OperationalModernization/">Operational Modernization</a></li>
 <li>Lab 4: <a href="appmod-labs/RuntimeModernization/">Runtime Modernization</a></li>
 <li>Lab 5: <a href="appmod-labs/ApplicationManagement/">Application Management</a></li>
-<li>Lab 6: <a href="appmod-labs/DevopsModernization/">Devops Modernization</a></li>
+</ul>
+<h3 style="color:green">DevOps Modernization Labs</h3>
+
+<ul>
+<li>Lab 6: <a href="devops-labs/pipelines/">Openshift Pipelines</a></li>
+<li>Lab 7: <a href="devops-labs/argocd/">GitOps with ArgoCD</a></li>
 </ul>
               
             </div>
@@ -187,7 +190,7 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="HCTEST/" class="btn btn-neutral float-right" title="TEST">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="basic-labs/" class="btn btn-neutral float-right" title="Basic Containerization & App Mod Tools Labs">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
     </div>
@@ -215,7 +218,7 @@
       
       
       
-        <span style="margin-left: 15px"><a href="HCTEST/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="basic-labs/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
@@ -228,5 +231,5 @@
 
 <!--
 MkDocs version : 1.0.4
-Build Date UTC : 2021-07-13 21:43:32
+Build Date UTC : 2021-07-22 21:38:48
 -->
