@@ -1,9 +1,17 @@
-site_name: Application Modernization  
+site_name: WebSphere Application Modernization  
 nav:
 - Home: index.md
+- Basic Containerization & App Mod Tools Labs: ./basic-labs/index.md
+- App Modernization Labs: ./appmod-labs/index.md
+- DevOps Labs: ./devops-labs/index.md
 - Resources:
   - Openshift Concepts: OpenshiftConcepts.md
   - Moving WebSphere applications to Cloud: WebSphereCloud.md
   - Additional Resources: resources.md
-theme: readthedocs
-extra_css: ["extra.css"]
+theme: 
+  name: readthedocs
+  highlightjs: true
+extra_css:
+  - stylesheets/klp.css
+markdown_extensions:
+  - pymdownx.superfences  

@@ -11,9 +11,6 @@ description: App Mod and DevOps Hands on Labs
 2. [Runtime Modernization Lab](./RuntimeModernization/README.md)
 
 
-3. [Devops Modernization Lab](./DevopsModernization/README.md)
-
-
-4. [Application Management Modernization Lab](./ApplicationManagement/README.md)
+3. [Application Management Lab](./ApplicationManagement/README.md)
 
 

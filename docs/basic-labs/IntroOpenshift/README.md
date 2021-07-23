@@ -13,45 +13,63 @@ In this lab, we will introduce you to the basics of container Orchestration usin
 - You have cloned the lab into your working directory through the web terminal session. 
 
 <a name="Login_VM"> </a>
+
 ## Login to the VM
+
 1. If the VM is not already started, start it by clicking the Play button.
  
-   ![start VM](images/loginvm1.png)
+     ![start VM](images/loginvm1.png)
    
-3. After the VM is started, click the **desktop** VM to access it.
+2. After the VM is started, click the **desktop** VM to access it.
    
-   ![desktop VM](images/loginvm2.png)
+     ![desktop VM](images/loginvm2.png)
+   
+     <br/>
    
 3. Login with **ibmuser** ID.
-   * Click on the **ibmuser** icon on the Ubuntu screen.
-   * When prompted for the password for **ibmuser**, enter "**engageibm**" as the password: \
-     Password: **engageibm**
-     
+   
+    * Click on the **ibmuser** icon on the Ubuntu screen.
+    * When prompted for the password for **ibmuser**, enter "**engageibm**" as the password:
+         
+	  <br/>
+		 
      ![login VM](images/loginvm3.png)
      
+	 <br/>
+	 
 4. Resize the Skytap environment window for a larger viewing area while doing the lab. From the Skytap menu bar, click on the "**Fit to Size**" icon. This will enlarge the viewing area to fit the size of your browser window. 
 
-   ![fit to size icon](images/loginvm4.png)
+    ![fit to size icon](images/loginvm4.png)
       
 
 ## Deploy the hello-openshift image through the web console
 
 ### Login to the web console
+
 1. Open the Firefox Web Browser from the VM. 
-   ![firefox](images/runprebuilt3.png)
+
+     ![firefox](images/runprebuilt3.png)
+ 
+     <br/>
+
 2. Select the **openshift console** bookmark at the top left of the browser window to access the OpenShift Container Platform web console.
 
-   ![console](images/loginconsole1.png)
-
+     ![console](images/loginconsole1.png)
+     
+	 <br/>
+	 
 3. This will take you to a login screen. Click on the **htpasswd** login option.
 
-   ![console](images/loginconsole2.png)
- 
+     ![console](images/loginconsole2.png)
+	 
+     <br/>
+	 
 4. Log in to the account using the following credentials:
-   * Username: **ibmadmin**
-   * Password: **engageibm**
+   
+     * Username: **ibmadmin**
+     * Password: **engageibm**
 
-    ![console](images/loginconsole3.png)
+     ![console](images/loginconsole3.png)
 
 
 ### Overview
@@ -60,22 +78,24 @@ In this lab, we will introduce you to the basics of container Orchestration usin
 
     ![Overview1](images/overview1.png)
 
+	 <br/>
 
-1. Scroll down to view the utilization of cluster resources:
+2. Scroll down to view the utilization of cluster resources:
 
     ![Overview2](images/overview2.png)
 
+     <br/>
 
-1. Scroll further down to view the cluster inventory. Click through each item in the inventory to find out more:
+3. Scroll further down to view the cluster inventory. Click through each item in the inventory to find out more:
 
     ![Overview3](images/overview3.png)
 
     Note that:
 
-    - Nodes represent physical or virtual hardware that your Openshift cluster is running.
-    - Pods are used to host and run one or more containers. Each node may run multiple pods. Containers in the same pod share the same network and storage.
-    - Storage classes represent the different types of storage configured and made available for your Openshift cluster. 
-    - Persistent Volume Claims (PVCs) represent the usage of storage by the pods. After a pod is removed, data not persistent to persistent storage are gone.
+    - **Nodes** represent physical or virtual hardware that your Openshift cluster is running.
+    - **Pods** are used to host and run one or more containers. Each node may run multiple pods. Containers in the same pod share the same network and storage.
+    - **Storage classes** represent the different types of storage configured and made available for your Openshift cluster. 
+    - **Persistent Volume Claims** (PVCs) represent the usage of storage by the pods. After a pod is removed, data not persistent to persistent storage are gone.
 
 ### Projects
 
@@ -86,14 +106,18 @@ It is common for artifacts related to different applications to be assigned to d
 
     ![projects1](images/projects1.png)
 
-1. In the dialog, enter `myproject` as project name, then click **Create**:
+	<br/>
+
+2. In the dialog, enter `myproject` as project name, then click **Create**:
 
     ![Myproject](images/Myproject.jpg)
 
-1. After creation, click on each of the tabs of myproject you just created. Note that:
+	 <br/>
+	 
+3. After creation, click on each of the tabs of myproject you just created. Note that:
 
-   - the `YAML` tab shows you the YAML representation of your project. Every resource in Openshift is represented as a REST data structure. We'll be working with YAML files a lot more when we interact with Openshift via the command line.
-   - The `Role Bindings` tab shows you the security configurations that apply to your project. For now, just take notice that there are many different roles already defined when a project is created. Each of these roles is used for a different purpose, and already mapped to different users and groups, or service accounts.
+    - The `YAML` tab shows you the YAML representation of your project. Every resource in Openshift is represented as a REST data structure. We'll be working with YAML files a lot more when we interact with Openshift via the command line.
+    - The `Role Bindings` tab shows you the security configurations that apply to your project. For now, just take notice that there are many different roles already defined when a project is created. Each of these **roles** is used for a different purpose, and already mapped to different **users** and **groups**, or **service accounts**.
 
    ![MyprojectAfterCreate](images/MyprojectAftercreate.jpg)
 
@@ -101,7 +125,7 @@ It is common for artifacts related to different applications to be assigned to d
 
 The typical artifacts you will need to run an application in Openshift are:
 
-- A container image containing your application, hosted in a container registry
+- A `container image` containing your application, hosted in a container registry
 - One or more `pods` that specifies where to fetch an image and how it should be hosted. 
 - A `deployment` to control the number of instances pods. You don't normally configure a `pod` directly. Instead, you configure a `deployment` to manage a set of `pods`.
 - A `service` that exposes the application within the internal network, and enables the application to be load balanced within the Openshift cluster.
@@ -111,11 +135,13 @@ The typical artifacts you will need to run an application in Openshift are:
 
 #### First deployment 
 
-1. Under the **Workloads** tab, click **Deployments**, followed by **Create Deployment**:
+1. Under the **Workloads** tab, click **Deployments**. Then click **Create Deployment**:
 
     ![Create Deployment](images/CreateDeployment.jpg)
 
-1. Note that the console shows you the YAML file for the deployment.  Change the number of replicas from default 3 to **2**, then click **Create**:
+	 <br/>
+
+2. Note that the console shows you the YAML file for the deployment.  Change the number of replicas from default 3 to **2**, then click **Create**:
 
     ![Deployment Replicas](images/DeploymentReplicas.jpg)
 
@@ -145,32 +171,38 @@ The typical artifacts you will need to run an application in Openshift are:
                 - containerPort: 8080
     ```
 
-1. Let's review this resource:
+3. Let's review this resource:
 
     - Every resource in Openshift has a group, version, and kind. For the `Deployment` resource:
-      - The group is `apps`
-      - The version is `v1`
-      - The kind is `Deployment`
-    - The metadata specifies data that is needed for the runtime:
-      - The name of this instance is `example`
-      - The namespace where the resource is running is `myproject`
-      - Though not shown here, any labels associated with the resource. We will see the use of labels later.
+        - The group is `apps`
+        - The version is `v1`
+        - The kind is `Deployment`
+    - The `metadata` specifies data that is needed for the runtime:
+        - The name of this instance is `example`
+        - The namespace where the resource is running is `myproject`
+        - Though not shown here, any labels associated with the resource. We will see the use of labels later.
     - The `spec` section defines the details specific to this kind of resource:
-      - The `selector` defines details of the `pods` that this `deployment` will manage. The `matchLabels` attribute with value `app: hello-openshift` means this `deployment` instance will search for and manage all pods whose labels contain `app: hello-openshift`.
+        - The `selector` defines details of the `pods` that this `deployment` will manage. The `matchLabels` attribute with value `app: hello-openshift` means this `deployment` instance will search for and manage all pods whose labels contain `app: hello-openshift`.
     - The `replicas: 2`  field specifies the number of instances to run.
     - The `template` section describes information about how to run the container image and create the `pods`:
-      - The `labels` section specifies what labels to add to the pods being to be created. Note that it matches the labels defined in the `selector`.
-      - The `containers` section specifies where to fetch the container image and which ports to expose. For our example, the image to run is `openshift/hello-openshift`.
-    
-1. Wait for both pods to be running:
+        - The `labels` section specifies what labels to add to the pods being to be created. Note that it matches the labels defined in the `selector`.
+        - The `containers` section specifies where to fetch the container image and which ports to expose. For our example, the image to run is `openshift/hello-openshift`.
+
+    <br/> 
+ 
+4. Wait for both pods to be running:
 
     ![Deployment After Create](images/DeploymentAfterCreate.jpg)
 
-1. Click on the YAML tab, and note the additions to the original input YAML file.
+    <br/> 
+
+5. Click on the **YAML** tab, and note the additions to the original input YAML file.
 
     ![Deployment After Create YAML](images/DeploymentAfterCreateYAML.jpg)
 
-1. Here is a sample YAML after the deployment is created :
+    <br/> 
+
+6. Here is a sample YAML after the deployment is created :
 
     ```
     kind: Deployment
@@ -239,61 +271,82 @@ The typical artifacts you will need to run an application in Openshift are:
           message: ReplicaSet "example-75778c488" has successfully progressed.
     ```
 
-1. Note that:
+    <br/> 
+
+7. In the YAML, note that:
 
     - There are quite a bit more `metadata`. Metadata may be added by any number of controllers as needed to help with their function.
     - The `spec` has more attributes filled in as well. These are default values that were not specified in our original YAML file. But sometimes it is also possible that some values are overridden by background admission controllers.
     - The `status` sub-resource is how Openshift communicates that status of the resource. The `status` is updated regularly as the underlying state of the resource changes.
 
-1. Click on `Pods`. 
+    <br/> 
+
+8. Click on `Pods`. 
 Note that the pods resources are managed by the controller for your `deployment`. 
 You do not create the pod resources yourself. 
 That is the reason that `Pods` tab is under the `deployment` resource you just created.
 
     ![Create Service](images/DeploymentToPods.jpg)
 
-1. Click on one of the pods:
+    <br/> 
+
+9. Click on one of the pods:
 
     ![Create Service](images/Pods.jpg)
 
-1. Explore the various tabs for your pod
+    <br/> 
+
+10. Explore the various **tabs** for your pod
 
     ![Create Service](images/ExplorePod.jpg)
 
-   - Overview: displays the overall resource usage for your pod. Note that for CPU usage, the unit is m, or milli-core, which is 1/1000th of one core.
-   - YAML: examine the YAML that describes your pod. This YAML is created by the deployment controller based on the specification you supplied in your deployment. Note that labels associated with your pod are what you had specified in the deployment.
-   - Environment: lists the environment variables defined for your pod. For our `hello-openshift` pod, there is none.
-   - Logs: shows the console log for your container. Note that it is the same log as the log from the Introduction to Docker lab, as the same image is being used.
-   - Terminal: Opens a remote shell into your container. As with the Introduction to Docker lab, no shell is available within the container for this image. This makes it more secure, but also more difficult to debug.
+    <br/> 
+
+     - **Overview:** displays the overall resource usage for your pod. Note that for CPU usage, the unit is m, or milli-core, which is 1/1000th of one core.
+     - **YAML:** examine the YAML that describes your pod. This YAML is created by the deployment controller based on the specification you supplied in your deployment. Note that labels associated with your pod are what you had specified in the deployment.
+     - **Environment:** lists the environment variables defined for your pod. For our `hello-openshift` pod, there is none.
+     - **Logs:** shows the console log for your container. Note that it is the same log as the log from the Introduction to Docker lab, as the same image is being used.
+     - **Terminal:** Opens a remote shell into your container. As with the Introduction to Docker lab, no shell is available within the container for this image. This makes it more secure, but also more difficult to debug.
+
 
 ### First Service
 
-A service enables the pods we just created to be load balanced within the Openshift cluster. 
+A **service** enables the pods we just created to be load balanced within the Openshift cluster. 
 
 1. Scroll down to the **Networking** tab on the left navigation, click **Services**, then click **Create Service**:
 
     ![Create Service](images/CreateService.jpg)
 
+    <br/>
 
-
-1. Update the YAML parameters as follows:
+2. Update the YAML parameters as follows:
     
-    (Before update)
+    **(Before update)**
     ![Create Service Params Before](images/CreateService_before.jpg)
     
-    - Under spec.selector, 
+    a. Under spec.selector: 
+	
       - change `MyApp` to `hello-openshift`. 
       - This is how the service will find the pods to load balance. Therefore, it matches the labels (`spec.selector.matchLabels`) that we used when creating the deployment for the hello-openshift application.
-    - Under spec.ports, 
+   
+    <br/>   
+   
+    b. Under spec.ports:
+	
       - change `80` to `8080` and 
       - change `9376` to `8080` (the same ports we used previously).
-    - Click `Create`
+    
+	<br/>
+	
+	c. Click `Create`
 
-    (After update)
+   
+    **(After update)**
     ![Create Service Params After](images/CreateService_after.jpg)
 
-
-1. After the service is created, click on the YAML tab:
+    <br/>
+	
+3. After the service is created, click on the **YAML** tab:
 
     ![Create Service After YAML ](images/CreateServiceAfterYAML.jpg)
 
@@ -322,7 +375,7 @@ A service enables the pods we just created to be load balanced within the Opensh
       loadBalancer: {}
     ```
 
-1. Note that for this service, there is a cluster wide IP address created, and that it is being load balanced. Also session affinity is not set for this service.
+4. Note that for this service, there is a cluster wide IP address created, and that it is being load balanced. Also session affinity is not set for this service.
 
 ### First Route
 
@@ -332,25 +385,34 @@ A route exposes your internal endpoints outside your cluster's built-in firewall
 
     ![Create Route](images/CreateRoute.jpg)
 
-1. Supply input to the following parameters:
+    <br/>
+
+2. Supply input to the following parameters:
 
     - Name: `example`
     - Service: `example`
     - Target Port: `8080 --> 8080 (TCP)`
     - Click `Create`
 
+    <br/>
+
     ![Create Route Parameters](images/CreateRouteParams.jpg)
 
     Note that we are ignoring TLS configuration just for the purpose of this lab.  Security will be addressed in a different lab.
 
-1. Access the route at the link provided under Location:
+    <br/>
+
+3. Access the route at the link provided under Location:
 
     ![Create Route](images/CreateRouteAccessRoute.jpg)
 
-1. If you have configured everything correctly, the browser will show `Hello Openshift!`. Congratulations, you just deployed your first application to Openshift.
+    <br/>
 
-    ![Create Route](images/CreateRouteAccessRouteResult.jpg)
+4. If you have configured everything correctly, the browser will show `Hello Openshift!`. 
 
+  ![Create Route](images/CreateRouteAccessRouteResult.jpg)
+
+**Congratulations**, you just deployed your first application to Openshift.
 
 
 ### Changing Replica Instances
@@ -359,33 +421,43 @@ A route exposes your internal endpoints outside your cluster's built-in firewall
 
     ![Locate Myproject](images/LocateMyproject.jpg)
 
-1. Scroll down to see the resources that were created. Recall that we have created one deployment with 2 pods in the specification. We also created one service, and one route.
+    <br/>
+
+2. Scroll down to see the resources that were created. Recall that we have created one deployment with 2 pods in the specification. We also created one service, and one route.
 
     ![Locate Myproject Resoruces](images/LocateMyprojectResources.jpg)
 
-1. Click on the 2 pods:
+    <br/>
 
-   ![Locate Myproject Resoruces](images/LocateMyprojectPods.jpg)
+3. Under the **Inventory** section, click on the **2 pods** link:
 
+    ![Locate Myproject Resoruces](images/LocateMyprojectPods.jpg)
 
-1. Delete one of the pods by clicking on the menu on the right, then selecting `Delete pod`. When prompted, click `Delete`.
+     <br/>
+
+4. Delete one of the pods by clicking on the menu on the right, then selecting `Delete pod`. When prompted, click `Delete`.
 
     ![Delete Pod](images/DeletePod.jpg)
 
-    This is not the right way to reduce number of instances. You will notice that as soon as one of the pods is being terminated, another one is being created. The reason is that the controller for the `deployment` resource knows that your specification is for 2 instances, and it honors that specification by creating another one. This also gives you automatic failure recovery should one of the pods crashes on its own.
+    This is not the right way to reduce number of instances. You will notice that as soon as one of the pods is being terminated, another one is being created. The reason is that the controller for the `deployment` resource knows that your specification is for **2 instances**, and it honors that specification by creating another one. This also gives you automatic failure recovery should one of the pods crashes on its own.
 
     ![Delete Pod](images/DeletePodRecreate.jpg)
 
-1. To change the number of instances, you will need to change the specification of your deployment. Click on the **Deployments** tab under **Workloads** in the left navigation, then click on `example` deployment:
+    <br/>
+
+5. To change the number of instances, you will need to change the specification of your deployment. Click on the **Deployments** tab under **Workloads** in the left navigation, then click on `example` deployment:
 
     ![Locate Deloyment](images/LocateDeployment.jpg)
 
+    <br/>
 
-1. Click on the down arrow to reduce the replica size down to 1:
+6. Click on the **down arrow** to reduce the replica size down to 1:
 
     ![Reduce Deployment](images/DeploymentReducePod.jpg)
 
-1. After the operation is completed, click on the YAML tab:
+    <br/>
+
+7. After the operation is completed, click on the **YAML** tab:
 
     ![Reduce Deployment](images/DeploymentReducePod1.jpg)
 
@@ -433,11 +505,15 @@ cd openshift-workshop-was/labs/Openshift/IntroOpenshift
 
     ![Login1](images/login1.png)
 
-1. In the new window that pops up, click on `Display Token`:
+    <br/>
+
+2. In the new window that pops up, click on `Display Token`:
 
     ![Display Token](images/DisplayToken.jpg)
 
-1. Copy the `oc login` command and paste it into your web terminal.
+    <br/>
+
+3. Copy the `oc login` command and paste it into your web terminal.
 
     ```
     oc login --token=<TOKEN> --server=<SERVER Address>
@@ -446,7 +522,7 @@ cd openshift-workshop-was/labs/Openshift/IntroOpenshift
     ![Login2](images/login2.png)
     
 
-1. After login, the project last accessed is displayed, and it may or may not be the `default` project shown below:
+4. After login, the project last accessed is displayed, and it may or may not be the `default` project shown below:
 
     ```
     Logged into "<SERVER address" as "<USER>" using the token provided.
@@ -459,11 +535,15 @@ cd openshift-workshop-was/labs/Openshift/IntroOpenshift
 ### Listing resources
 
 Use `oc api-resources` to list all available resource kinds. 
-Note that resources in Openshift have a group, version, and kind. 
-Some resources are global (not in a namespace), while others are scoped to a namespace.
-Many resources also have short names to save typing when using the command line tool. 
+<br/>
+Note that resources in Openshift have a `group`, `version`, and `kind`. 
+Some resources are global (not in a namespace), while others are scoped to a `namespace`.
+<br/>
+Many resources also have short names to save typing when using the command line tool.
+<br/>
 For example, you may use `cm` instead of ConfigMap as a command line parameter when the parameter is for a `KIND`.
-Example output:
+<br/><br/>
+**Example output:**
 
 ```
 NAME                                  SHORTNAMES       APIGROUP                              NAMESPACED   KIND
@@ -477,6 +557,7 @@ limitranges                           limits                                    
 namespaces                            ns                                                     false        Namespace
 nodes                                 no                                                     false        Node
 ```
+
 
 ### Listing instances of a resource kind
 
@@ -495,7 +576,7 @@ nodes                                 no                                        
     ```
 
 
-1. List all pods in all namespaces: `oc get pods --all-namespaces`
+2. List all pods in all namespaces: `oc get pods --all-namespaces`
 
     ```
     NAMESPACE                                               NAME
@@ -510,7 +591,7 @@ nodes                                 no                                        
     ```
 
 
-1.  List all pods within a namespace: `oc get pods -n kube-system`
+3.  List all pods within a namespace: `oc get pods -n kube-system`
 
     ```
     NAME                                             READY   STATUS    RESTARTS   AGE
@@ -533,24 +614,40 @@ nodes                                 no                                        
     kube-node-lease                                                        Active
     ```
 
-1. Get current project: `oc project` (Note: current project may not be `myproject` shown below):
+2. Get current project: `oc project` (Note: current project may not be `myproject` shown below):
 
     ```
     Using project "myproject" on server "https://c100-e.us-south.containers.cloud.ibm.com:32541".
     ```
 
-1. Create a new project and make it the current project: `oc new-project  project1`   
+3. Create a new project and make it the current project: 
+```
+oc new-project  project1
+```   
+
+    The output from creating a new project:
 
     ```
     Now using project "project1" on server "https://c100-e.us-south.containers.cloud.ibm.com:32541".
     ```
 
-1. Switch to the `default` project: `oc project default`
+4. Switch to the `default` project: 
+```
+oc project default
+```
 
 
-1. Switch back to `project1`: `oc project project1`
+5. Switch back to `project1`: 
+```
+oc project project1
+```
 
-1. View the REST specification of the project: `oc get project project1 -o yaml`:
+6. View the REST specification of the project: 
+```
+oc get project project1 -o yaml
+```
+
+    The output of the resource specification in **yaml**
 
     ```
     apiVersion: project.openshift.io/v1
@@ -579,52 +676,70 @@ nodes                                 no                                        
 
 #### First Deployment
 
-1. In your web terminal session, under the directory where you clone the labs repository (.../openshift-workshop-was/labs/Openshift/IntroOpenshift), you will find **Deployment.yaml**, for example, 
-   ```
-   root@lab-tools-6d4cbb56b6-cn2k5:/openshift-workshop-was/labs/Openshift/IntroOpenshift# ls -lt
-   drwxr-xr-x. 2 root root  4096 Apr  9 01:13 images
-   -rw-r--r--. 1 root root 32461 Apr  9 01:13 README.md
-   -rw-r--r--. 1 root root   171 Apr  9 01:13 Route.yaml
-   -rw-r--r--. 1 root root   207 Apr  9 01:13 Service.yaml
-   -rw-r--r--. 1 root root   384 Apr  9 01:13 Deployment.yaml
-   ```
-2. Review the contents of `Deployment.yaml` and note that it is identical to the to the deployment from the last section except for the namespace. This allows us to deploy the same image in a different project. Using the same image customized for different environments is an important concept that will be covered further in future labs.
+1. In your web terminal session, under the directory where you clone the labs repository `(.../openshift-workshop-was/labs/Openshift/IntroOpenshift)`, you will find **Deployment.yaml**;  
 
-   ```
-   cat Deployment.yaml
-   ```
+     For example:
+     ```
+     root@lab-tools-6d4cbb56b6-cn2k5:/openshift-workshop-was/labs/Openshift/IntroOpenshift# ls -lt
+     drwxr-xr-x. 2 root root  4096 Apr  9 01:13 images
+     -rw-r--r--. 1 root root 32461 Apr  9 01:13 README.md
+     -rw-r--r--. 1 root root   171 Apr  9 01:13 Route.yaml
+     -rw-r--r--. 1 root root   207 Apr  9 01:13 Service.yaml
+     -rw-r--r--. 1 root root   384 Apr  9 01:13 Deployment.yaml
+     ```
+	 
+2. Review the contents of `Deployment.yaml` and note that it is identical to the to the deployment from the last section except for the namespace. 
 
-   ```
-    apiVersion: apps/v1
-    kind: Deployment
-    metadata:
-      name: example
-      namespace: project1
-    spec:
-      selector:
-        matchLabels:
-          app: hello-openshift
-      replicas: 2
-      template:
-        metadata:
-          labels:
+     ```
+     cat Deployment.yaml
+     ```
+
+     This allows us to deploy the same image in a different project. Using the same image customized for different environments is an important concept that will be covered further in future labs.
+
+
+     ```
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: example
+        namespace: project1
+      spec:
+        selector:
+          matchLabels:
             app: hello-openshift
-        spec:
-          containers:
-            - name: hello-openshift
-              image: openshift/hello-openshift
-              ports:
-                - containerPort: 8080
-   ```
+        replicas: 2
+        template:
+          metadata:
+            labels:
+              app: hello-openshift
+          spec:
+            containers:
+              - name: hello-openshift
+                image: openshift/hello-openshift
+                ports:
+                  - containerPort: 8080
+     ```
 
 
-3. Apply the deployment via the command line: `oc apply -f Deployment.yaml`
+3. Apply the deployment via the command line: 
+
+    ```
+    oc apply -f Deployment.yaml
+    ```
+
+    After applying the yaml, you will see a message that the deployment resource  was created
 
     ```
     deployment.apps/example created
     ```
     
-4. Check the status of deployment: `oc get deployment example -o yaml`. If the status does not show available replica count of 2, wait a few seconds before retrying.
+4. Check the status of deployment: 
+
+    ```
+    oc get deployment example -o yaml
+    ```
+
+    If the status does not show available **replica count of 2**, wait a few seconds, then rerun the command.
 
     ```
     apiVersion: extensions/v1beta1
@@ -698,7 +813,12 @@ nodes                                 no                                        
       updatedReplicas: 2
     ```
 
-1. List the running pods created by the controller for the deployment: `oc get pods`
+5. List the running pods created by the controller for the deployment: 
+```
+oc get pods
+```
+
+    The pods should be in the **Running** state
 
     ```
     NAME                      READY   STATUS    RESTARTS   AGE
@@ -706,8 +826,13 @@ nodes                                 no                                        
     example-75778c488-c9jhd   1/1     Running   0          3m37s
     ```
 
-1. List the details for one of the pods: `oc get pods <pod name> -o yaml`
-    > Note: `<pod name>` is listed under `NAME` in the previous command's output.
+6. List the details for one of the pods: 
+```
+oc get pods <pod name> -o yaml
+```
+
+    **Note:** `<pod name>` is listed under `NAME` in the previous command's output.
+	
     ```
     apiVersion: v1
     kind: Pod
@@ -823,19 +948,19 @@ nodes                                 no                                        
       startTime: "2020-01-30T20:37:28Z"
     ```
 
-1. Show the logs of one of the pods: `oc logs <pod name>`
+7. Show the logs of one of the pods: `oc logs <pod name>`
 
     ```
     serving on 8888
     serving on 8080
     ```
 
-1. Take a look at `Service.yaml` and note that it's for the `project1` namespace:
+8. Take a look at `Service.yaml` and note that it's for the `project1` namespace:
 
-   ```
-   cat Service.yaml
-   ```
-   Example output:
+    ```
+    cat Service.yaml
+    ```
+    Example output:
     ```
     apiVersion: v1
     kind: Service
@@ -852,13 +977,18 @@ nodes                                 no                                        
       type: ClusterIP
     ```
 
-1. Create the service so that it's accessible and load balanced for pods with label `app: hello-openshift` within the `project1` namespace: `oc apply -f Service.yaml`
+9. Create the service so that it's accessible and load balanced for pods with label `app: hello-openshift` within the `project1` namespace: 
+```
+oc apply -f Service.yaml
+```
+ 
+    The service is created
 
     ```
     service/example created
     ```
 
-1. Examine Route.yaml:
+10. Examine Route.yaml:
     ```
     cat Route.yaml
     ```
@@ -877,13 +1007,18 @@ nodes                                 no                                        
         name: example
     ```
 
-1. Apply the route to make the service reachable from outside the cluster: `oc apply -f Route.yaml`
+11. Apply the route to make the service reachable from outside the cluster: 
+```
+oc apply -f Route.yaml
+```
+    
+    The route is created
 
     ```
     route.route.openshift.io/example created
     ```
 
-1. Generate the URL for the route, and point your browser to it: 
+12. Generate the URL for the route, and point your browser to it: 
    ```
    echo http://$(oc get route example --template='{{ .spec.host }}')
    ```
@@ -891,9 +1026,10 @@ nodes                                 no                                        
    ```
    http://example-project1.apps.demo.ibmdte.net
    ```
-2. Open your Firefox browser again and visit the URL outputted by the previous command. You should see a web page displaying the following message:
+13. Open your Firefox browser again and visit the URL outputted by the previous command. You should see a web page displaying the following message:
 
-   ![firstapplication1](images/firstapplication1.png)
+    ![firstapplication1](images/firstapplication1.png)
+
 
 ### Changing Replica Instance
 
@@ -905,13 +1041,13 @@ nodes                                 no                                        
     example-75778c488-c9jhd   1/1     Running   0          60m
     ```
 
-1. Delete one of the pods: `oc delete pod <pod name>`
+2. Delete one of the pods: `oc delete pod <pod name>`
 
     ```
     pod "example-75778c488-7k7q2" deleted
     ```
 
-1. List pods again and note that a new instance has been created as expected. The deployment specified 2 instances, so the controller tries to maintain 2 instances: `oc get pods`
+3. List pods again and note that a new instance has been created as expected. The deployment specified 2 instances, so the controller tries to maintain 2 instances: `oc get pods`
 
     ```
     NAME                      READY   STATUS    RESTARTS   AGE
@@ -919,25 +1055,32 @@ nodes                                 no                                        
     example-75778c488-rhjrx   1/1     Running   0          28s
     ```
 
-1. To reduce the number of pods, we can patch the resource in one of two ways:
-   - Scripted patch using the `patch` option of the command line:
-      ```
-      oc patch deployment example -p '{ "spec": { "replicas": 1 } }'
-      ```
-   - Interactive patch using the `edit` option of the command line through `vi` editor:
-      ```
-      oc edit deployment example
-      ```
-      Under the `spec` section (not under the `status` section), change `replicas: 2` to `replicas: 1`, and save the change (by `:wq`).
+4. To reduce the number of pods, we can patch the resource in one of two ways:
+   
+     - Scripted patch using the `patch` option of the command line:
+      
+	     ```
+         oc patch deployment example -p '{ "spec": { "replicas": 1 } }'
+         ```
+   
+     - Interactive patch using the `edit` option of the command line through `vi` editor:
+     
+	     ```
+         oc edit deployment example
+         ```
+      
+	  Under the `spec` section (not under the `status` section), change `replicas: 2` to `replicas: 1`, and **save** the change in the vi editor (by `:wq`).
 
       The output:
       ```
       deployment.extensions/example edited
       ```
 
-      Note: The above edits the copy that is stored in Openshift. You may also edit your local copy of `Deployment.yaml` and re-apply it.
+      **Note:** The above edits the copy that is stored in Openshift. You may also edit your local copy of `Deployment.yaml` and re-apply it.
 
-1. List the pods to show only 1 pod is running: `oc get pods`
+      <br/>
+
+5. List the pods to show only 1 pod is running: `oc get pods`
 
     ```
     NAME                      READY   STATUS    RESTARTS   AGE
@@ -945,11 +1088,11 @@ nodes                                 no                                        
     ```
 
 
-1. Cleanup:
+6. Cleanup:
     - `oc delete route example`
     - `oc delete service example`
     - `oc delete deployment example`
-    - `oc get pods`.  You may have to do this a few times, to wait for the pods to be deleted.
+    - `oc get pods`  **Note:** You may have to do this a few times, to wait for the pods to be deleted.
 
 Congratulations, you have deployed your first application to Openshift via the command line.
 
