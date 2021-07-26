@@ -503,7 +503,9 @@ In this section, you will view the application resources that were deployed to O
 # 1.5 Conclusion
 
 
-### Congratulations\! You have completed the lab and are on your way to developing robust pipelines for CI/CD of your application deployments using containers and RedHat OpenShift Container Platform.
+**Congratulations!** 
+
+You have completed the lab and are on your way to developing robust pipelines for CI/CD of your application deployments using containers and RedHat OpenShift Container Platform.
 
 In this lab, you learned how to create the Tekton resources to automate CI/CD for microservices deployed to OpenShift.
 
