@@ -1,7 +1,8 @@
 README.md
 
-Githib page URL: 
- https://kpostreich.github.io/WAS-Automation/
+PUBLISHED Githib page URL: https://ibmtechsales.github.io/was-appmod/
  
  
- Public git repo: https://github.com/kpostreich/WAS-Automation 
+ Public git repo: https://github.com/IBMTechSales/was-appmod
+ 
+ Code repo: TBD
