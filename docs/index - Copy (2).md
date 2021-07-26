@@ -1,17 +1,8 @@
-# <h1 style="color:green">Teaching Your Monolith to Dance </h1>
+# <h1 style="color:green">WebSphere Application Modernization Workshop </h1>
 
-<h3 style="color:green"> Hands on WebSphere Application Moderinization Journey from VMs to containers on OpenShift</h3>
+This material is designed to be a single point of access for the Demo/Lab assets for WebSphere Application Modernization. 
 
 **Last updated:** July 2021
-
-This material is designed as a Demo/Lab/Workshop asset that includes the following WebSphere Application Modernization use cases: 
-
-  - Containerization Basics
-  - Operational Modernization
-  - Runtime Modernization
-  - Devops Modernization 
-  - Application Management Modernization 
-
 
 ![banner](./images/demo-assets.png)
 
