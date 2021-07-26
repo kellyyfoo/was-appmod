@@ -90,7 +90,7 @@ First, launch the lab environment and login to the VM.
     
     b.  From the terminal window, run the following commands to clone the repo:
         
-        **git clone** https://github.com/kellyyfoo/devops-management
+        git clone https://github.com/kellyyfoo/devops-management
         
       ![](./images/image9.png)
         
