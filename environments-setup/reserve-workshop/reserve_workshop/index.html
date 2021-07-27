@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../../../img/favicon.ico">
+  <title>Create a Workshop - WebSphere Application Modernization</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  <link href="../../../stylesheets/klp.css" rel="stylesheet">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Create a Workshop";
+    var mkdocs_page_input_path = "environments-setup\\reserve-workshop\\reserve_workshop.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../../.." class="icon icon-home"> WebSphere Application Modernization</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../..">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../">Reserve lab environment or workshop</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../../basic-labs/">Basic Containerization & App Mod Tools Labs</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../../appmod-labs/">App Modernization Labs</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../../devops-labs/">DevOps Labs</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Resources</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../../OpenshiftConcepts/">Openshift Concepts</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../../WebSphereCloud/">Moving WebSphere applications to Cloud</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../../resources/">Additional Resources</a>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../..">WebSphere Application Modernization</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Create a Workshop</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="create-a-workshop">Create a Workshop</h1>
+<p><strong>Reserves multiple environments for customer facing workshops</strong></p>
+<p><img alt="banner" src="../images/workshop.png" /></p>
+<p>Need support? Contact <strong>Kevin Postreich</strong></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th align="left"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img alt="" src="../images/image31.png?cropResize=50,50" /></td>
+<td align="left"><strong>IMPORTANT:</strong> <br><br> A Skytap lab environment is provided for this workshop. <br><br>Workshop reservations must be made at least <code>72 hours</code> in advance of the scheduled workshop. <br><br>Once the workshop is <strong>requested</strong> it is created in a <code>pending</code> state, awaiting approval by the infrastructure team. <br><br> When the workshop is approved, its state is moved to <code>approved</code>.<br><br>Use the instructions below to create your workshop request. <br><br>DTE Workshop infrastructure and environment support can be obtained via <code>slack</code> <a href="https://ibm-cloud.slack.com/archives/CTA2MV9AM">#dte_workshop_support</a> or email <strong>dte@us.ibm.com</strong></td>
+</tr>
+</tbody>
+</table>
+<ol>
+<li>
+<p>Use the link below to access the <strong>Teach Your Monolith to Dance</strong> workshop environment reservations page.  </p>
+<p><a href="https://techzone.ibm.com/my/reservations/create/60ff1bdb3e00b8001fdf3b2f">https://techzone.ibm.com/my/reservations/create/60ff1bdb3e00b8001fdf3b2f</a></p>
+<p>a.  Use your <strong>IBM ID</strong> to login to the IBM Technology Zone</p>
+<p>b.  The <strong>Create a reservation</strong> page is displayed</p>
+<p><img alt="" src="../images/image52.png" /></p>
+<p><br></p>
+</li>
+<li>
+<p>Select “<strong>Schedule a workshop</strong>” Radio button, and then follow the
+    on-screen dialog to schedule a workshop in a Skytap data center
+    in the closest Geography (US-Central, EMEA, Asia Pacific)</p>
+<p>The <strong>Workshop Manager request form</strong> is displayed. Requesting a workshop is a multi-page request form. </p>
+<p>The form is divided into sections, which are reflected by the <strong>Tabs</strong> across the top. You must fill in ALL required fields on each page before you can go to the next page. </p>
+<p><img alt="" src="../images/workshop-tabs.png" /></p>
+<p><br/></p>
+</li>
+</ol>
+<h4 id="complete-the-info-page-of-the-workshop-request-form">Complete the Info page of the workshop request form</h4>
+<ol>
+<li>
+<p>Read the important details of workshop scheduling on the <strong>Info</strong> page. Click the <code>next</code> button to continue to the next page.    </p>
+<p><br/>   </p>
+</li>
+</ol>
+<h4 id="complete-the-environment-information-page-of-the-workshop-request-form">Complete the Environment Information page of the workshop request form</h4>
+<ol>
+<li>
+<p>Complete the <code>Step 1</code> <strong>Environment Information</strong> page of the form</p>
+<p>a.  The environment <strong>name</strong> should be pre-filled with “<strong>Environment:  Teaching Your Monolith to Dance</strong>”</p>
+<p>b.  <strong>Environment Template Region Selection</strong>: Select the Geography closest to your workshop location</p>
+<p><img alt="" src="../images/env-geo.png" /></p>
+<p>c. Click the <code>Next</code> button</p>
+<p><br/></p>
+</li>
+</ol>
+<h4 id="complete-the-workshop-justification-page-of-the-workshop-request-form">Complete the Workshop Justification page of the workshop request form</h4>
+<ol>
+<li>
+<p>Complete the <code>Step 2</code> <strong>Workshop Justification</strong> page</p>
+<p>a.  <strong>IBM Product</strong>: Type <code>liberty</code> in the field. Type SLOWLY. There is a performance BUG related to how the list is automatically displayed based on the content you type. </p>
+<p>b. Select any product from the list: </p>
+<p>Example: <strong>IBM WebSphere Application Server Liberty Core</strong></p>
+<p><strong>Note:</strong> Unfortunately, the product list is very out dated and WebSphere Hybrid Edition is not in the list. This information is irrelevant to the workshop reservation but is a required field. </p>
+<p>c.  <strong>Workshop Phase</strong>: Select the Phase of the customer engagement that most closely aligns to your situation. This field is required. </p>
+<p><img alt="" src="../images/workshop-phase.png" /></p>
+<p><br/></p>
+<p>d. <strong>Sales Opportunity Number:</strong> If you have an opportunity number, you may provide that in this field. The field is optional. </p>
+<p>e. <strong>Customer Company Name(s):</strong> Yu may enter customer company names to be included in the workshop request. The field is optional. </p>
+<p>f. Click the <code>Next</code> button</p>
+<p><br/></p>
+</li>
+</ol>
+<h4 id="complete-the-scheduling-information-page-of-the-workshop-request-form">Complete the Scheduling Information page of the workshop request form</h4>
+<ol>
+<li>
+<p>Complete the <code>Step 3</code> <strong>Scheduling Information</strong> page</p>
+<p>This page includes important scheduling details and affects when and how your workshop is scheduled. Please take care to provide accurate details. </p>
+<p><strong>Note:</strong> The workshop request can be updated after submission, up until it is approved. </p>
+<p>a. <strong> Instructors:</strong> Provide a <em>comma delimited</em> list of email addresses of all of the workshop instructors. </p>
+<p><strong>Note:</strong> Instructors will be authorized access to the Workshop <strong>Instructor Portal</strong> where attendee environments can be observed. </p>
+<p>b.  <strong>Workshop Delivery Audience:</strong> Select <code>Internal</code> or <code>External</code> from the drop-down list. The field is required. </p>
+<p><img alt="" src="../images/workshop-audience.png" /></p>
+<p><br/> </p>
+<p>c. <strong>Number of Environments:</strong> Enter the numeric value of the number of environments you want to have provisioned for the workshop. </p>
+<p>This value can be LESS than the number of actual attendees that join. An <strong>Auto-grow</strong> feature selection under the <strong>advanced settings</strong> can be used to automatically add environments as needed for the workshop in case you reach maximum environment limit.   </p>
+<p>d. <strong>Number of Attendees:</strong> Enter the numeric value of the number of attendees you expect to have at the workshop. </p>
+<p>Workshops should have some specified limit of attendees, as not to overwhelm the instructors and result in less than favorable delivery and customer satisfaction of the workshop. </p>
+<p>e. <strong>Start Date  / Time:</strong> Using the date and time widgets, enter the date, time, and Time zone that the workshop should be scheduled to start. </p>
+<p>This is the date and time that the automated scheduling system should have your environments available and ready. Personally, I specify 30 minutes to 60 minutes earlier than the actual start time of the workshop just in case there are technical difficulties. </p>
+<p><img alt="" src="../images/workshop-start.png" /></p>
+<p><br/> </p>
+<p>f. <strong>End Date  / Time:</strong> Using the date and time widgets, enter the date, time, and Time zone that the workshop should be scheduled to end. </p>
+<p>This is the date and time that the automated scheduling system should shutdown your environments. Personally, I specify 60 minutes to 120 minutes later that the actual workshop end time just in case the workshop runs longer than expected. </p>
+<p><img alt="" src="../images/workshop-end.png" /></p>
+<p><br/> </p>
+</li>
+</ol>
+<h4 id="advanced-settings-on-the-scheduling-information-page">ADVANCED SETTINGS on the Scheduling information page.</h4>
+<p>Under the <strong>Scheduling Information</strong> page, there are advanced settings that further shape when the environments should be deployed, removed, and grow. </p>
+<p>These advanced settings are optional. The workshop scheduler has default values for deploying and removing environments based on the workshop start / end times that you setup. </p>
+<ol>
+<li>
+<p><strong>Auto Stop Limit:</strong> This field specifies how long an environment must be idle before it either shuts down or suspends the environment. The default time is 180 minutes. </p>
+<p><br/></p>
+</li>
+<li>
+<p><strong>Auto Stop Behavior:</strong> This field determines the action to take when an environment is idle for the duration specified in the <strong>Auto Stop Limit</strong> field. </p>
+<p><strong>TIP:</strong> When the environment includes Redhat OpenShift, ALWAYS specify SHUTDOWN. OpenShift cannot routinely be resumed from a suspended state. </p>
+<p><br></p>
+</li>
+<li>
+<p><strong>Deploy On:</strong> This field can be used to specify the date and time for the scheduler to start deploying the environments. </p>
+<p><strong>TIP:</strong> Specify approximately 2 hours prior to your workshop to provide sufficient time for the environments to start.  </p>
+<p><br></p>
+</li>
+<li>
+<p><strong>Remove On:</strong> This field can be used to specify the date and time for the scheduler to remove the environments. </p>
+<p><strong>TIP:</strong> Specify approximately 1 hour after your workshop is scheduled to end.  </p>
+<p><br></p>
+</li>
+<li>
+<p><strong>Enable Auto Grow:</strong> Use this field to specify that you want the number of environments to increase if you reach the maximum number of environments that were deployed. The default value is <strong>NO</strong></p>
+<p><br></p>
+</li>
+<li>
+<p><strong>Auto grow step size:</strong>  When auto grow is triggered this filed determines how many environment should be added at a time. The default value is <strong>1</strong>. </p>
+<p><br></p>
+</li>
+<li>
+<p><strong>Auto grow max:</strong>  Specify the maximum number of environments allowed. </p>
+<p>Example: If you specified 20 environments, and you want to be able to add 5 additional environments, then this value should be set to 25.  </p>
+<p><br></p>
+</li>
+<li>
+<p>Click <code>Next</code> when ready to go to the next page of the workshop scheduler form. </p>
+</li>
+</ol>
+<h4 id="complete-the-workshop-information-page-of-the-workshop-request-form">Complete the Workshop Information page of the workshop request form</h4>
+<ol>
+<li>
+<p>Complete the <code>Step 4</code> <strong>Workshop Information</strong> page</p>
+<p>a.  <strong>Workshop Title</strong>: Enter a title for your workshop. This title is searchable in your list of scheduled workshops. Attendees will see this this title.</p>
+<p>b.  <strong>Workshop Description</strong>: Enter a short description of the workshop. Attendees will see this description </p>
+<p>c. <strong>Physical Location - Region:</strong> From the drop-down list, select the Region of the workshop. </p>
+<p>c. <strong>Physical Location - Physical Location:</strong> For virtual workshops, enter the WEBEX or Meeting URL of the workshop. </p>
+<p>e. <strong>Workshop Password:</strong> Enter a password for the workshop. This is a password that all attendees must enter in order to access the Workshop. As the instructor, you will need to share tis password with the workshop attendees. </p>
+<p>f. <strong>Guide URL:</strong> If you have a URL to the Workshop or Lab guides, you can enter it here. This URL is displayed on the workshop page for attendees to see. </p>
+<p>g. <strong>Survey URL:</strong> If you have a URL to a workshop survey, you can enter it here. This URL is displayed on the workshop page for attendees to see. </p>
+<p>h. Click the <code>Submit</code> button to reserve the workshop</p>
+<p><br/></p>
+</li>
+</ol>
+<h3 id="how-do-i-find-my-workshop-in-ibm-technology-zone"><strong>How do I find my workshop in IBM Technology Zone</strong></h3>
+<p>After you submit the workshop request, the workshop details are available in the IBM Technology Zone.</p>
+<p>This section describes how to find your workshops in the IBM Technology Zone. </p>
+<ol>
+<li>Go to the IBM technology Zone URL: https://techzone.ibm.com/</li>
+<li>Login using your IBM ID, if requested. </li>
+<li>
+<p>From the main menu in Tech Zone, navigate to <strong>My Library &gt; My Workshops</strong></p>
+<p><img alt="" src="../images/my-workshops.png" /></p>
+<p><br/></p>
+</li>
+<li>
+<p>You will see your workshops listed. The one you just submitted will be in <strong>Pending Approval</strong> state. </p>
+<p><img alt="" src="../images/workshop-list.png" /></p>
+</li>
+</ol>
+<p><br/> <br/></p>
+<h3 id="the-workshop-instructor-and-attendee-urls-for-the-workshop"><strong>The workshop Instructor and Attendee URLS for the workshop</strong></h3>
+<p>Once the workshop is deployed as scheduled, the <strong>Instructor URL</strong> and <strong>Attendee URL</strong> for the workshop can be obtained from the workshop details. </p>
+<p><strong>TBD: Details need to be added here. </strong> </p>
+<p><br/><br/></p>
+<h3 id="the-workshop-environment">The workshop environment</h3>
+<p>Each workshop attendee has access to their own lab environment. </p>
+<p>The lab environment contains Six Linux VMs. When the workshop scheduler completes the environment deployments, the environment should start automatically and will take several minutes to be <strong>ready</strong>. </p>
+<p><img alt="" src="../images/image59.png" /></p>
+<p><strong>Note:</strong> The <code>desktop</code> VM is the VM you will login to and use in the lab.</p>
+<p><img alt="" src="../images/image60.png" /></p>
+<p>The login credentials for the <strong>desktop</strong> image is:</p>
+<ul>
+<li>
+<p>User ID: <strong>ibmuser</strong></p>
+</li>
+<li>
+<p>Password: <strong>engageibm!</strong></p>
+</li>
+</ul>
+<p>Now you are ready to use the specific lab guides to setup for demos or self-enablement. </p>
+<p>The labs are available from the <strong>Navigation</strong> pane on the left side of the page.</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+      
+    </span>
+</div>
+    <script>var base_url = '../../..';</script>
+    <script src="../../../js/theme.js" defer></script>
+      <script src="../../../search/main.js" defer></script>
+
+</body>
+</html>
