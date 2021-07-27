@@ -45,8 +45,7 @@ There are several approaches to application modernization and provided are key r
 <h4 style="color:green">Reserve lab environments</h4>
 
 
-Please follow the [setup instructions](common/setup.md) to reserver a lab environemnt, or schedule a workshop. The lab environemtn is configured with the tools you need to be able to complete the labs.
-
+Please follow the [reserve environment instructions](./environments-setup/index.md) to reserve a lab environment, or schedule a workshop. The lab environment is configured with the tools you need to be able to complete the labs.
 
 <h3 style="color:green">Containerization Labs</h3>
 
