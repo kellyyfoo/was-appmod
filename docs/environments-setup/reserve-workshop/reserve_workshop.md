@@ -198,7 +198,10 @@ These advanced settings are optional. The workshop scheduler has default values 
     <br/>
 
 
-### **How do I find my workshop in IBM Technology Zone**
+### **How do I find my workshop and Environment URLs in IBM Technology Zone**
+
+#### **Access the workshop in IBM Technology Zone**
+
 
 After you submit the workshop request, the workshop details are available in the IBM Technology Zone.
 
@@ -216,17 +219,51 @@ This section describes how to find your workshops in the IBM Technology Zone.
 
     ![](./images/workshop-list.png)
 
+5. When the workshop is approved, the state changes to `Approved`, and you have the ability to view the details of the workshop, view the list of environments, and obtain the `Instructor URL` and `Attendee URL` for the Workshop. 
+
+   ![](./images/view-workshop.png)
+
 
 <br/> <br/>
 
-### **The workshop Instructor and Attendee URLS for the workshop**
+
+#### **Obtain the Instructor and Attendee environment URLs for the workshop**
 
 Once the workshop is deployed as scheduled, the **Instructor URL** and **Attendee URL** for the workshop can be obtained from the workshop details. 
 
 
-**TBD: Details need to be added here. ** 
+ When the workshop is approved, the state changes to `Approved`, and you have the ability to obtain the `Instructor URL` and `Attendee URL` for the Workshop. 
 
-<br/><br/>
+1. Click the **View** icon next to your workshop
+
+    ![](./images/view-icon.png)
+
+    ![](./images/view-workshop.png)
+	
+	<br/>
+   
+2. Click the **3 vertical dots** next to any of the environments listed. Then Select the **URLS** item from the action menu. 
+
+    ![](./images/workshop-urls.png)
+	
+	<br/>
+   
+3. The **Instructor URL** and **Attendee URL** are shown. 
+
+   
+     Share the **Instructor URL** with the additional instructors of the workshop. The instructor page contains information about the workshop summary, environments, and attendee details.
+   
+     Use the instructor page to manage the workshop 
+   
+     Share the **Attendee URL** with the attendees of your workshop so they can claim one of the environments. 
+   
+     Once an attendee claims an environment, the instructor page shows the email address of the attendees using the environment. 
+   
+      ![](./images/environment-urls.png)
+	
+	  <br/>
+
+      <br/>
 
 ### The workshop environment
 
