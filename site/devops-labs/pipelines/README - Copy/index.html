@@ -5,26 +5,26 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="None">
   
-  <link rel="shortcut icon" href="../../img/favicon.ico">
+  
+  <link rel="shortcut icon" href="../../../img/favicon.ico">
   <title>Devops Management - Using OpenShift pipelines (Tekton) for CI/CD of microservices to RedHat OpenShift Container Platform - WebSphere Application Modernization</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
-  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../css/theme_extra.css" type="text/css" />
   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
-  <link href="../../stylesheets/klp.css" rel="stylesheet">
+  <link href="../../../stylesheets/klp.css" rel="stylesheet">
   
   <script>
     // Current page data
     var mkdocs_page_name = "Devops Management - Using OpenShift pipelines (Tekton) for CI/CD of microservices to RedHat OpenShift Container Platform";
-    var mkdocs_page_input_path = "devops-labs\\pipelines\\README.md";
+    var mkdocs_page_input_path = "devops-labs\\pipelines\\README - Copy.md";
     var mkdocs_page_url = null;
   </script>
   
-  <script src="../../js/jquery-2.1.1.min.js" defer></script>
-  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="../../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../../js/modernizr-2.8.3.min.js" defer></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
   <script>hljs.initHighlightingOnLoad();</script> 
   
@@ -37,9 +37,9 @@
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
       <div class="wy-side-nav-search">
-        <a href="../.." class="icon icon-home"> WebSphere Application Modernization</a>
+        <a href="../../.." class="icon icon-home"> WebSphere Application Modernization</a>
         <div role="search">
-  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+  <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
   </form>
 </div>
@@ -51,27 +51,27 @@
           
             <li class="toctree-l1">
 		
-    <a class="" href="../..">Home</a>
+    <a class="" href="../../..">Home</a>
 	    </li>
           
             <li class="toctree-l1">
 		
-    <a class="" href="../../environments-setup/">Reserve lab environment or workshop</a>
+    <a class="" href="../../../environments-setup/">Reserve lab environment or workshop</a>
 	    </li>
           
             <li class="toctree-l1">
 		
-    <a class="" href="../../basic-labs/">Basic Containerization & App Mod Tools Labs</a>
+    <a class="" href="../../../basic-labs/">Basic Containerization & App Mod Tools Labs</a>
 	    </li>
           
             <li class="toctree-l1">
 		
-    <a class="" href="../../appmod-labs/">App Modernization Labs</a>
+    <a class="" href="../../../appmod-labs/">App Modernization Labs</a>
 	    </li>
           
             <li class="toctree-l1">
 		
-    <a class="" href="../">DevOps Labs</a>
+    <a class="" href="../../">DevOps Labs</a>
 	    </li>
           
             <li class="toctree-l1">
@@ -80,15 +80,15 @@
     <ul class="subnav">
                 <li class="">
                     
-    <a class="" href="../../OpenshiftConcepts/">Openshift Concepts</a>
+    <a class="" href="../../../OpenshiftConcepts/">Openshift Concepts</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../../WebSphereCloud/">Moving WebSphere applications to Cloud</a>
+    <a class="" href="../../../WebSphereCloud/">Moving WebSphere applications to Cloud</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../../resources/">Additional Resources</a>
+    <a class="" href="../../../resources/">Additional Resources</a>
                 </li>
     </ul>
 	    </li>
@@ -103,7 +103,7 @@
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
         <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../..">WebSphere Application Modernization</a>
+        <a href="../../..">WebSphere Application Modernization</a>
       </nav>
 
       
@@ -111,7 +111,7 @@
         <div class="rst-content">
           <div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href="../..">Docs</a> &raquo;</li>
+    <li><a href="../../..">Docs</a> &raquo;</li>
     
       
     
@@ -130,7 +130,7 @@
 <p>In this lab exercise, we will deploy a cloud native application to an OpenShift cluster using OpenShift Pipelines (Tekton).</p>
 <p>This is a step-by-step guide to walk you through an example of how to create a Tekton pipeline to automate the build, push, and deploy a Java application based on OpenLiberty containers on OpenShift.</p>
 <p>This example uses <strong>Buildah</strong> as the docker build engine. There are other options for the docker build engine, so it should be noted that this is not the only way to accomplish this task.</p>
-<p><img alt="" src="images/image1.png" /></p>
+<p><img alt="" src="../images/image1.png" /></p>
 <h2 id="12-what-is-all-this-tekton-stuff">1.2 What is all this Tekton stuff?</h2>
 <p>Tekton defines a set of Kubernetes custom resource definitions (CRD) as standard constructs for creating Continuous Integration and Continuous Delivery (CI/CD) pipelines.</p>
 <p>The following is a brief introduction to the Tekton CRDs.</p>
@@ -148,7 +148,7 @@
 <p><strong>PipelineRun:</strong> Runtime representation of an execution of a pipeline</p>
 </li>
 </ul>
-<p><img alt="" src="images/image2.png" /></p>
+<p><img alt="" src="../images/image2.png" /></p>
 <p>Let’s investigate a bit more detail what makes up a Tekton Pipeline. As explained above, all objects within a Tekton pipeline are Kubernetes objects.</p>
 <p><strong>Pipelines</strong> have <strong>tasks</strong>, which are a CRD that runs a container.</p>
 <p>Within the <strong>task</strong> you define <strong>steps</strong>, which are commands that you will run inside the container.</p>
@@ -168,7 +168,7 @@
 </li>
 </ol>
 <p>Here is a diagram of what you are going to build in this lab.</p>
-<p><img alt="" src="images/image3.png" /></p>
+<p><img alt="" src="../images/image3.png" /></p>
 <h1 id="14-lab-tasks">1.4 Lab Tasks</h1>
 <h2 id="_1"></h2>
 <h2 id="141-lets-get-started"><strong>1.4.1 Let’s get started</strong></h2>
@@ -176,39 +176,39 @@
 <ol>
 <li>
 <p>If the VM is not already started, start it by clicking the Play button.</p>
-<p><img alt="Graphical user interface, application Description automatically generated" src="images/image4.png" /></p>
+<p><img alt="Graphical user interface, application Description automatically generated" src="../images/image4.png" /></p>
 </li>
 <li>
 <p>After the VM is running (this may take several minutes), click the <strong>desktop</strong> VM to access it.</p>
-<p><img alt="Graphical user interface, application Description automatically generated" src="images/image5.png" /></p>
+<p><img alt="Graphical user interface, application Description automatically generated" src="../images/image5.png" /></p>
 </li>
 <li>
 <p>Login with the ibmuser user using the password engageibm.</p>
-<p><img alt="Graphical user interface, application Description automatically generated" src="images/image6.png" /></p>
+<p><img alt="Graphical user interface, application Description automatically generated" src="../images/image6.png" /></p>
 </li>
 <li>
 <p>Resize the Skytap environment window for a larger viewing area while doing the lab. From the Skytap menu bar, click on the <strong>Fit to Size</strong> icon. This will enlarge the viewing area to fit the size of your browser window.</p>
-<p><img alt="A screenshot of a computer Description automatically generated with medium confidence" src="images/image7.png" /></p>
+<p><img alt="A screenshot of a computer Description automatically generated with medium confidence" src="../images/image7.png" /></p>
 </li>
 <li>
 <p>Open a new terminal window from the VM desktop.</p>
-<p><img alt="A picture containing text Description automatically generated" src="images/image8.png" /></p>
+<p><img alt="A picture containing text Description automatically generated" src="../images/image8.png" /></p>
 </li>
 </ol>
 <h2 id="142-clone-the-git-repository-used-for-this-lab-and-explore-the-contents"><strong>1.4.2 Clone the Git repository used for this lab and explore the contents</strong></h2>
 <ol>
 <li>
-<p>Clone the <strong>openshift-workshop-was</strong> GitHub repository to the local VM.</p>
+<p>Clone the <strong>devops-management</strong> GitHub repository to the local VM.</p>
 <p>a.  Open a Terminal window on the VM, and ensure you are in the home directory of the user “ibmuser”</p>
 <pre><code>cd /home/ibmuser
 </code></pre>
 <p>b.  From the terminal window, run the following commands to clone the repo:</p>
-<pre><code>git clone https://github.com/IBMTechSales/openshift-workshop-was
+<pre><code>git clone https://github.com/kellyyfoo/devops-management
 </code></pre>
-<p><img alt="" src="images/image9a.png" /></p>
-<p>These commands above clone the public repo named <strong>openshift-workshop-was</strong> to the local directory under <strong>/home/ibmuser/openshift-workshop-was</strong> directory.  </p>
-<p>c.  Change to the cloned directory in which the lab files are located</p>
-<pre><code>cd /home/ibmuser/openshift-workshop-was/labs/Openshift/DevopsManagement
+<p><img alt="" src="../images/image9.png" /></p>
+<p>These commands above clone the public repo named <strong>devops-management</strong> to the local directory under <strong>/home/ibmuser/devops-management</strong> directory.</p>
+<p>c.  Change to the cloned directory</p>
+<pre><code>cd /home/ibmuser/Devops-management
 </code></pre>
 <p>d.  List the directory contents using the <code>ls</code> command</p>
 <p>You will find the following key resources:</p>
@@ -226,14 +226,14 @@
 <p><strong>tekton-pipeline</strong> (folder) – YAML files to create the Pipeline resources for this lab</p>
 </li>
 </ul>
-<p><img alt="" src="images/image10a.png" /></p>
+<p><img alt="" src="../images/image10.png" /></p>
 <p>In the GitHub repo, you will find all the YAML files in the <strong>tekton-pipeline</strong> sub folder.</p>
 <p><br/></p>
 </li>
 <li>
 <p>Enter <code>cd tekton-pipeline</code> then type <code>ls</code> to go to the lab directory and list the contents.</p>
 <p>In the <strong>devops-management/tekton-pipeline</strong> directory, you will find all the YAML files needed to create the Tekton pipeline resources to build and deploy the application to OpenShift.</p>
-<p><img alt="" src="images/image11.png" /></p>
+<p><img alt="" src="../images/image11.png" /></p>
 <p>You will find the following key resources:</p>
 <ul>
 <li>
@@ -258,7 +258,7 @@
 <ol>
 <li>
 <p>Type <code>oc login</code> to login to OpenShift. Use ibmadmin for the username and engageibm for the password.</p>
-<p><img alt="" src="images/image12.png" /></p>
+<p><img alt="" src="../images/image12.png" /></p>
 <p><br/></p>
 </li>
 <li>
@@ -277,7 +277,7 @@
 </table>
 
 <blockquote>
-<p><img alt="" src="images/image14.png" /></p>
+<p><img alt="" src="../images/image14.png" /></p>
 </blockquote>
 <h2 id="144-openshift-service-account-and-secret-with-login-token"><strong>1.4.4 OpenShift Service Account and Secret with Login Token</strong></h2>
 <p>It is good OpenShift practice to create a <a href="https://docs.openshift.com/container-platform/3.11/dev_guide/service_accounts.html">service account</a> for your applications. A <strong>service account</strong> provides an identity for processes that run in a Pod.</p>
@@ -291,8 +291,8 @@
 <p>For this lab, we will simply use the master branch of the repo, but we can also checkout different repo branches, tags, etc. with the Task's revision parameter.</p>
 <ol>
 <li>
-<p>Ensure the <strong>Terminal</strong> window is in the <strong>/home/ibmuser/openshift-workshop-was/labs/Openshift/DevopsManagement/tekton-pipeline</strong> directory, where the Pipeline YAML files are located.</p>
-<pre><code>cd /home/ibmuser/openshift-workshop-was/labs/Openshift/DevopsManagement/tekton-pipeline
+<p>Ensure the <strong>Terminal</strong> window is in the <strong>/home/ibmuser/devops-management/tekton-pipeline</strong> directory, where the Pipeline YAML files are located.</p>
+<pre><code>cd /home/ibmuser/devops-management/tekton-pipeline
 </code></pre>
 </li>
 <li>
@@ -315,7 +315,7 @@
 </ul>
 <p><br/></p>
 <p><strong>Note: Do NOT MODIFY the YAML for this lab!</strong></p>
-<p><img alt="Graphical user interface, text, application Description automatically generated" src="images/image15.png" /></p>
+<p><img alt="Graphical user interface, text, application Description automatically generated" src="../images/image15.png" /></p>
 <p>a.   <strong>Close the Gedit editor</strong> when you have finished reviewing the contents<strong>.</strong></p>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;<strong>DO NOT SAVE ANY CHANGES!</strong></p>
 <p><br/></p>
@@ -326,7 +326,7 @@
 
 oc get tasks
 </code></pre>
-<p><img alt="" src="images/image16.png" /></p>
+<p><img alt="" src="../images/image16.png" /></p>
 </li>
 </ol>
 <h2 id="146-create-a-tekton-task-to-build-the-docker-image-and-push-the-image-to-the-openshift-image-registry"><strong>1.4.6 Create a Tekton Task to build the Docker image, and push the image to the OpenShift Image Registry</strong></h2>
@@ -368,7 +368,7 @@ oc get tasks
 </li>
 </ul>
 <p>In general, steps are used to isolate individual commands, and illustrated below.</p>
-<p><img alt="Graphical user interface, text, application, email Description automatically generated" src="images/image17.png" /></p>
+<p><img alt="Graphical user interface, text, application, email Description automatically generated" src="../images/image17.png" /></p>
 <p><br/></p>
 </li>
 <li>
@@ -382,7 +382,7 @@ oc get tasks
 
 oc get tasks
 </code></pre>
-<p><img alt="" src="images/image18.png" /></p>
+<p><img alt="" src="../images/image18.png" /></p>
 </li>
 </ol>
 <h2 id="147-create-the-deployment-task"><strong>1.4.7 Create the Deployment Task</strong></h2>
@@ -394,7 +394,7 @@ oc get tasks
 <p>Review the <strong>oc-deploy.yaml</strong> file using cat command. <strong>DO NOT MODIFY THE FILE</strong></p>
 <pre><code>cat oc-deploy.yaml
 </code></pre>
-<p><img alt="Graphical user interface, text, application Description automatically generated" src="images/image19.png" /></p>
+<p><img alt="Graphical user interface, text, application Description automatically generated" src="../images/image19.png" /></p>
 <p><br/></p>
 </li>
 <li>
@@ -408,7 +408,7 @@ oc get tasks
 
 oc get tasks
 </code></pre>
-<p><img alt="" src="images/image20.png" /></p>
+<p><img alt="" src="../images/image20.png" /></p>
 </li>
 </ol>
 <h2 id="1471-brief-introduction-to-kustomize"><strong>1.4.7.1 Brief Introduction to Kustomize</strong></h2>
@@ -417,7 +417,7 @@ oc get tasks
 <p>Kustomize is very useful in the common use case where you’ll need multiple variants of a common set of resources across multiple environments: , e.g., a <em>development</em>, <em>staging</em> and <em>production</em> variant.</p>
 <p>For this purpose, <strong>kustomize</strong> supports the idea of an <em>overlay</em> and a <em>base</em>. Both are represented by a kustomization file. The <strong>base</strong> declares things that the variants share in common (both resources and a common customization of those resources), and the <strong>overlays</strong> declare the differences.</p>
 <p>Here’s a file system layout to manage a <em>staging</em> and <em>production</em> variant of a given cluster app:</p>
-<p><img alt="" src="images/image21.png" /></p>
+<p><img alt="" src="../images/image21.png" /></p>
 <p>In this lab, the base directory includes the <strong>kustomize.yaml</strong> and the OpenLiberty application yaml. We have an overlay folder named “<strong>dev</strong>” that includes the overrides for deploying the application to the “dev” namespace.</p>
 <p>The overlays include two customizations over the base configuration:</p>
 <ul>
@@ -455,7 +455,7 @@ oc get tasks
 <pre><code>cat pipeline-deploy.yaml
 </code></pre>
 <p>Snippet showing the tasks in the pipeline-deploy.yml file</p>
-<p><img alt="Graphical user interface, text, application, email Description automatically generated" src="images/image22.png" /></p>
+<p><img alt="Graphical user interface, text, application, email Description automatically generated" src="../images/image22.png" /></p>
 <p><br/></p>
 </li>
 <li>
@@ -464,7 +464,7 @@ oc get tasks
 
 oc get pipelines
 </code></pre>
-<p><img alt="" src="images/image23.png" /></p>
+<p><img alt="" src="../images/image23.png" /></p>
 </li>
 </ol>
 <h2 id="149-run-the-pipeline"><strong>1.4.9 Run the Pipeline</strong></h2>
@@ -476,14 +476,14 @@ oc get pipelines
 <pre><code>cat pipeline-deploy-run.yaml
 </code></pre>
 <p>The <strong>PipelineRun</strong> identifies the pipeline to run, and provides the workspace and parameters used during its execution. It also defines the <strong>Service Account</strong> that runs the pipeline.</p>
-<p><img alt="Graphical user interface, text, application Description automatically generated" src="images/image24.png" /></p>
+<p><img alt="Graphical user interface, text, application Description automatically generated" src="../images/image24.png" /></p>
 <p><br/></p>
 </li>
 <li>
 <p>Execute the PipelineRun using the YAML file</p>
 <pre><code>oc create -f pipeline-deploy-run.yaml
 </code></pre>
-<p><img alt="" src="images/image25.png" /></p>
+<p><img alt="" src="../images/image25.png" /></p>
 <p>Next, let’s do some basic queries to ensure the pipeline is executing. Then, you will launch the OpenShift console to view the PipelineRun.</p>
 <p>A fully completed and successful <strong>pipelineRun</strong> will result in the pod states below.</p>
 <p><strong>Note:</strong> It may take 10 minutes to run the pipeline, as it builds the docker image for the app, pushes the image to the OpenShift image registry, and deploys the application.</p>
@@ -501,7 +501,7 @@ oc get pipelines
 <p>The <strong>tutorial-pipeline-run-1-git-clone</strong> pod is the pod that ran the clone Git repo task</p>
 </li>
 </ul>
-<p><img alt="" src="images/image26.png" /></p>
+<p><img alt="" src="../images/image26.png" /></p>
 </li>
 </ol>
 <h2 id="1410-access-the-openshift-console-to-view-the-pipelinerun-status-and-logs"><strong>1.4.10 Access the OpenShift console to view the PipelineRun status and logs</strong></h2>
@@ -509,31 +509,31 @@ oc get pipelines
 <li>
 <p>Access the OpenShift console.</p>
 <p>a.  Click the Firefox browser icon located on the VM desktop.</p>
-<p><img alt="Graphical user interface Description automatically generated with medium confidence" src="images/image27.png" /></p>
+<p><img alt="Graphical user interface Description automatically generated with medium confidence" src="../images/image27.png" /></p>
 <p>b.  From the browser, click the <strong>openshift console</strong> bookmark located on the bookmark toolbar and login with the <strong>htpasswd</strong> option.</p>
-<p><img alt="Graphical user interface, application, website Description automatically generated" src="images/image28.png" /></p>
+<p><img alt="Graphical user interface, application, website Description automatically generated" src="../images/image28.png" /></p>
 <p>c. Login to the OpenShift account with username <strong>ibmadmin</strong> and password <strong>engageibm.</strong></p>
-<p><img alt="Graphical user interface, application Description automatically generated" src="images/image29.png" /></p>
+<p><img alt="Graphical user interface, application Description automatically generated" src="../images/image29.png" /></p>
 <p><br/></p>
 </li>
 <li>
 <p>From the OpenShift console, go the <strong>Pipelines</strong> tab and click on <strong>Pipelines</strong>. Use the <strong>Project</strong> drop down menu and select the <strong>dev</strong> project.</p>
-<p><img alt="Graphical user interface Description automatically generated" src="images/image30.png" /></p>
+<p><img alt="Graphical user interface Description automatically generated" src="../images/image30.png" /></p>
 <p><br/></p>
 </li>
 <li>
 <p>Find the pipeline with name <strong>tutorial-pipeline,</strong> and click on its last run named <strong>tutorial-pipeline-run-1</strong> to view its details.</p>
-<p><img alt="Graphical user interface, application Description automatically generated" src="images/image31.png" /></p>
+<p><img alt="Graphical user interface, application Description automatically generated" src="../images/image31.png" /></p>
 <p><br/></p>
 </li>
 <li>
-<p>The pipeline run's details should be displayed on the resulting page. Its <strong>git-clone</strong>, <strong>build-push</strong>, and <strong>deploy</strong> steps are shown.</p>
-<p><img alt="Graphical user interface, text, application, chat or text message Description automatically generated" src="images/image32.png" /></p>
+<p>The pipeline run's details should be displayed on the resulting page. Its <strong>git-clone</strong>, <strong>build-push</strong>, and <strong>deploy</strong> steps are show.</p>
+<p><img alt="Graphical user interface, text, application, chat or text message Description automatically generated" src="../images/image32.png" /></p>
 <p><br/></p>
 </li>
 <li>
 <p>Click on the <strong>Logs</strong> tab to see the logs outputted by each of the steps.</p>
-<p><img alt="Graphical user interface, text, application Description automatically generated" src="images/image33.png" /></p>
+<p><img alt="Graphical user interface, text, application Description automatically generated" src="../images/image33.png" /></p>
 </li>
 </ol>
 <h2 id="1411-validate-the-application-is-deployed-and-runs-as-expected"><strong>1.4.11 Validate the application is deployed and runs as expected</strong></h2>
@@ -546,36 +546,36 @@ oc get pipelines
 
 oc get pods | grep cos
 </code></pre>
-<p><img alt="" src="images/image34.png" /></p>
+<p><img alt="" src="../images/image34.png" /></p>
 <p><br/></p>
 </li>
 <li>
 <p>Use the following commands to verify the service was created</p>
 <pre><code>oc get services
 </code></pre>
-<p><img alt="" src="images/image35.png" /></p>
+<p><img alt="" src="../images/image35.png" /></p>
 <p><br/></p>
 </li>
 <li>
 <p>Test the application from the web browser. Return to the OpenShift console and scroll to the end of the logs of the <strong>deploy-to-cluster</strong> step. Copy the URL that is displayed on the last line:</p>
 <pre><code>http://cos-dev.apps.demo.ibmdte.net/CustomerOrderServicesWeb
 </code></pre>
-<p><img alt="Graphical user interface, text, application Description automatically generated" src="images/image36.png" /></p>
+<p><img alt="Graphical user interface, text, application Description automatically generated" src="../images/image36.png" /></p>
 <p><br/></p>
 </li>
 <li>
 <p>Open this URL in a new tab. You will be prompted to login in order to access the application. Enter username <strong>skywalker</strong> and password <strong>force</strong></p>
-<p><img alt="Graphical user interface, application Description automatically generated" src="images/image37.png" /></p>
+<p><img alt="Graphical user interface, application Description automatically generated" src="../images/image37.png" /></p>
 <p><br/></p>
 </li>
 <li>
 <p>The application page titled <strong>Electronic and Movie Depot</strong> will be displayed. From the <strong>Shop</strong> tab, click on a movie and on the next pop-up panel, drag and drop the item into the shopping cart.</p>
-<p><img alt="Graphical user interface, application, Teams Description automatically generated" src="images/image38.png" /></p>
+<p><img alt="Graphical user interface, application, Teams Description automatically generated" src="../images/image38.png" /></p>
 <p><br/></p>
 </li>
 <li>
 <p>Add a few items to the cart. As the items are added, they'll be shown under <strong>Current Shopping Cart</strong> and <strong>Order Total will be updated.</strong></p>
-<p><img alt="Graphical user interface, application, Teams Description automatically generated" src="images/image39.png" /></p>
+<p><img alt="Graphical user interface, application, Teams Description automatically generated" src="../images/image39.png" /></p>
 <p><br/></p>
 </li>
 </ol>
@@ -605,15 +605,15 @@ oc get pods | grep cos
 <p>In SkyTap, you will find that any text copied to the clipboard on your local workstation is not available to be pasted into the VM on SkyTap. So how can you easily accomplish this?</p>
 <p>a.  First copy the text you intend to paste, from the lab document, to the clipboard on your local workstation, as you always have (CTRL-C)</p>
 <p>b.  Return to the SkyTap environment and click on the Clipboard at the top of the SkyTap session window.</p>
-<p><img alt="" src="images/image40.png" /></p>
+<p><img alt="" src="../images/image40.png" /></p>
 <p><br/></p>
 <p>c.  Use <strong>CTRL-V</strong> to paste the content into the Copy/paste VM clipboard. Or use the <strong>paste</strong> menu item that is available in the dialog, when you right mouse click in the clipboard text area.</p>
-<p><img alt="" src="images/image41.png" /></p>
+<p><img alt="" src="../images/image41.png" /></p>
 <p><br/></p>
 <p>d.  Once the text is pasted, just navigate away to the VM window where you want to paste the content. Then, use <strong>CTRL-C</strong>, or right mouse click &amp; us the <strong>paste menu item</strong> to paste the content.</p>
-<p><img alt="" src="images/image42.png" /></p>
+<p><img alt="" src="../images/image42.png" /></p>
 <p>e.  The text is pasted into the VM</p>
-<p><img alt="" src="images/image43.png" /></p>
+<p><img alt="" src="../images/image43.png" /></p>
 </li>
 </ol>
 <p><strong>Note:</strong> The very first time you do this, if the text does not paste, you may have to paste the contents into the Skytap clipboard twice. This is a known Skytap issue. It only happens on the 1<sup>st</sup> attempt to copy / paste into Skytap.</p>
@@ -647,14 +647,9 @@ oc get pods | grep cos
       
     </span>
 </div>
-    <script>var base_url = '../..';</script>
-    <script src="../../js/theme.js" defer></script>
-      <script src="../../search/main.js" defer></script>
+    <script>var base_url = '../../..';</script>
+    <script src="../../../js/theme.js" defer></script>
+      <script src="../../../search/main.js" defer></script>
 
 </body>
 </html>
-
-<!--
-MkDocs version : 1.0.4
-Build Date UTC : 2021-08-06 17:08:10
--->

@@ -82,7 +82,7 @@ First, launch the lab environment and login to the VM.
 ## **1.4.2 Clone the Git repository used for this lab and explore the contents**
 
 
-1.  Clone the **openshift-workshop-was** GitHub repository to the local VM.
+1.  Clone the **devops-management** GitHub repository to the local VM.
     
     a.  Open a Terminal window on the VM, and ensure you are in the home directory of the user “ibmuser”
         
@@ -90,15 +90,15 @@ First, launch the lab environment and login to the VM.
     
     b.  From the terminal window, run the following commands to clone the repo:
         
-        git clone https://github.com/IBMTechSales/openshift-workshop-was
+        git clone https://github.com/kellyyfoo/devops-management
         
-      ![](./images/image9a.png)
+      ![](./images/image9.png)
         
-	  These commands above clone the public repo named **openshift-workshop-was** to the local directory under **/home/ibmuser/openshift-workshop-was** directory. 	
-     
-    c.  Change to the cloned directory in which the lab files are located
+      These commands above clone the public repo named **devops-management** to the local directory under **/home/ibmuser/devops-management** directory.
+    
+    c.  Change to the cloned directory
         
-        cd /home/ibmuser/openshift-workshop-was/labs/Openshift/DevopsManagement
+        cd /home/ibmuser/Devops-management
     
     d.  List the directory contents using the `ls` command
         
@@ -112,7 +112,7 @@ First, launch the lab environment and login to the VM.
 
        - **tekton-pipeline** (folder) – YAML files to create the Pipeline resources for this lab
     
-    ![](./images/image10a.png)
+    ![](./images/image10.png)
     
     In the GitHub repo, you will find all the YAML files in the **tekton-pipeline** sub folder.
 
@@ -181,9 +181,9 @@ By default, the repo is cloned into the Workspace's root directory but can be cl
 
 For this lab, we will simply use the master branch of the repo, but we can also checkout different repo branches, tags, etc. with the Task's revision parameter.
 
-1.  Ensure the **Terminal** window is in the **/home/ibmuser/openshift-workshop-was/labs/Openshift/DevopsManagement/tekton-pipeline** directory, where the Pipeline YAML files are located.
+1.  Ensure the **Terminal** window is in the **/home/ibmuser/devops-management/tekton-pipeline** directory, where the Pipeline YAML files are located.
     
-        cd /home/ibmuser/openshift-workshop-was/labs/Openshift/DevopsManagement/tekton-pipeline
+        cd /home/ibmuser/devops-management/tekton-pipeline
 
 2.  Review the contents of **git-clone.yaml**
     
@@ -437,7 +437,7 @@ A **PipelineRun** starts a **Pipeline** and ties it to the Workspace containing 
 
     <br/>
 
-4.  The pipeline run's details should be displayed on the resulting page. Its **git-clone**, **build-push**, and **deploy** steps are shown.
+4.  The pipeline run's details should be displayed on the resulting page. Its **git-clone**, **build-push**, and **deploy** steps are show.
     
     ![Graphical user interface, text, application, chat or text message Description automatically generated](./images/image32.png)
 
