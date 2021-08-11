@@ -253,24 +253,24 @@ If you need more background on containers: https://www.docker.com/resources/what
    docker logs hello1
    ```
 
-     And the output:
+   And the output:
 
-    ```
-    serving on 8888
-    serving on 8080
-    ```
+```
+serving on 8888
+serving on 8080
+```
 
 11. View the logs on the second container: 
    ```
    docker logs hello2
    ```
 
-     And the output:
+   And the output:
 
-     ```
-     serving on 8888
-     serving on 8080
-     ```
+```
+serving on 8888
+serving on 8080
+ ```
 
      **Note:** within the container, each instance behaves as if it's running in its own virtual environment, and has opened the same ports. Outside of the container, different ports are opened.
 
@@ -397,31 +397,38 @@ If you need more background on containers: https://www.docker.com/resources/what
         ```
         docker images
         ```
-        Example output:
-        ```
-        REPOSITORY                  TAG                 IMAGE ID            CREATED             SIZE
-        openshift/hello-openshift   latest              7af3297a3fb4        2 years ago         6.09MB
-        ```
+        
+    Example output:
+    ```
+    REPOSITORY                  TAG                 IMAGE ID            CREATED             SIZE
+    openshift/hello-openshift   latest              7af3297a3fb4        2 years ago         6.09MB
+    ```
     b. Remove the image:
-        ```
-        docker rmi openshift/hello-openshift
-        ```
-        Example output:
-        ```
-        Untagged: openshift/hello-openshift:latest
-        Untagged: openshift/hello-openshift@sha256:aaea76ff622d2f8bcb32e538e7b3cd0ef6d291953f3e7c9f556c1ba5baf47e2e
-        Deleted: sha256:7af3297a3fb4487b740ed6798163f618e6eddea1ee5fa0ba340329fcae31c8f6
-        Deleted: sha256:8fd6a1ece3ceceae6d714004614bae5b581c83ab962d838ef88ce760583dcb80
-        Deleted: sha256:5f70bf18a086007016e948b04aed3b82103a36bea41755b6cddfaf10ace3c6ef
-        ```
+
+    ```
+     docker rmi openshift/hello-openshift
+    ```
+
+    Example output:
+
+    ```
+    Untagged: openshift/hello-openshift:latest
+    Untagged: openshift/hello-openshift@sha256:aaea76ff622d2f8bcb32e538e7b3cd0ef6d291953f3e7c9f556c1ba5baf47e2e
+    Deleted: sha256:7af3297a3fb4487b740ed6798163f618e6eddea1ee5fa0ba340329fcae31c8f6
+    Deleted: sha256:8fd6a1ece3ceceae6d714004614bae5b581c83ab962d838ef88ce760583dcb80
+    Deleted: sha256:5f70bf18a086007016e948b04aed3b82103a36bea41755b6cddfaf10ace3c6ef
+    ```
+
     c. Check that the image has been removed:
-        ```
-        docker images
-        ```
-        Example output:
-        ```
-        REPOSITORY                  TAG                 IMAGE ID            CREATED             SIZE
-        ```
+
+     ```
+    docker images
+     ```
+
+    Example output:
+    ```
+    REPOSITORY                  TAG                 IMAGE ID            CREATED             SIZE
+    ```
  
 
 <a name="Build_Your_Own"> </a>
@@ -601,16 +608,15 @@ The configuration file for the server is in the **server.xml**.
 	
     b. Note that this is a stripped down environment where many commands are not available. 
 	
-	   For example, try the following: 
+	For example, try the following: 
 
-  	   - `which ps` to see running processes.
-	   - `cd /logs` to find the log files.
-       - `cd /liberty/wlp` to find the location of the liberty install
-       - `cd /liberty/wlp/usr/servers/defaultServer` to find the server configuration. 
-       - `cd /opt/ibm/wlp/output/defaultServer` to find the workarea files required by the server runtime.
-       - Exit from the container: `exit`
+  	- `which ps` to see running processes.
+	- `cd /logs` to find the log files.
+    - `cd /liberty/wlp` to find the location of the liberty install
+    - `cd /liberty/wlp/usr/servers/defaultServer` to find the server configuration. 
+    - `cd /opt/ibm/wlp/output/defaultServer` to find the workarea files required by the server runtime.
+    - Exit from the container: `exit`
 	  
-    <br>
  	  
 10. Cleanup:
     

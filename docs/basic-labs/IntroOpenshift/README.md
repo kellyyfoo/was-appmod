@@ -621,9 +621,9 @@ nodes                                 no                                        
     ```
 
 3. Create a new project and make it the current project: 
-```
-oc new-project  project1
-```   
+    ```
+    oc new-project  project1
+    ```   
 
     The output from creating a new project:
 
@@ -632,20 +632,20 @@ oc new-project  project1
     ```
 
 4. Switch to the `default` project: 
-```
-oc project default
-```
+    ```
+    oc project default
+    ```
 
 
 5. Switch back to `project1`: 
-```
-oc project project1
-```
+    ```
+    oc project project1
+    ```
 
 6. View the REST specification of the project: 
-```
-oc get project project1 -o yaml
-```
+    ```
+    oc get project project1 -o yaml
+    ```
 
     The output of the resource specification in **yaml**
 
@@ -814,9 +814,9 @@ oc get project project1 -o yaml
     ```
 
 5. List the running pods created by the controller for the deployment: 
-```
-oc get pods
-```
+    ```
+    oc get pods
+    ```
 
     The pods should be in the **Running** state
 
@@ -827,9 +827,9 @@ oc get pods
     ```
 
 6. List the details for one of the pods: 
-```
-oc get pods <pod name> -o yaml
-```
+    ```
+    oc get pods <pod name> -o yaml
+    ```
 
     **Note:** `<pod name>` is listed under `NAME` in the previous command's output.
 	
@@ -978,9 +978,9 @@ oc get pods <pod name> -o yaml
     ```
 
 9. Create the service so that it's accessible and load balanced for pods with label `app: hello-openshift` within the `project1` namespace: 
-```
-oc apply -f Service.yaml
-```
+    ```
+    oc apply -f Service.yaml
+    ```
  
     The service is created
 
@@ -1008,9 +1008,9 @@ oc apply -f Service.yaml
     ```
 
 11. Apply the route to make the service reachable from outside the cluster: 
-```
-oc apply -f Route.yaml
-```
+    ```
+    oc apply -f Route.yaml
+    ```
     
     The route is created
 
@@ -1019,13 +1019,13 @@ oc apply -f Route.yaml
     ```
 
 12. Generate the URL for the route, and point your browser to it: 
-   ```
-   echo http://$(oc get route example --template='{{ .spec.host }}')
-   ```
-   Output:
-   ```
-   http://example-project1.apps.demo.ibmdte.net
-   ```
+      ```
+      echo http://$(oc get route example --template='{{ .spec.host }}')
+      ```
+      Output:
+      ```
+      http://example-project1.apps.demo.ibmdte.net
+      ```
 13. Open your Firefox browser again and visit the URL outputted by the previous command. You should see a web page displaying the following message:
 
     ![firstapplication1](images/firstapplication1.png)
