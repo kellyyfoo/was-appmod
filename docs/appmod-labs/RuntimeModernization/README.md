@@ -594,11 +594,11 @@ Customer Order Services application uses DB2 as its database. To deploy it to Li
         ```
   
       - **TROUBESHOOTING:** If the pod doesn't display the expected `Running` status (for example, after 5 minutes), then delete the pod to restart it.
-      ```
-	  oc delete pod <pod name>  
-		
-      Note: pod name is the string under NAME column from the output of `oc get pod`
-      ```
+        ```
+	      oc delete pod <pod name>  
+        ```
+        Note: pod name is the string under NAME column from the output of `oc get pod`
+    
 
 
 ## Access the application (Hands-on)
@@ -680,11 +680,11 @@ Customer Order Services application uses DB2 as its database. To deploy it to Li
          
 		 <br/>
 		 
-       - Navigate to the `Terminal` tab to view the files in the container
+      - Navigate to the `Terminal` tab to view the files in the container
        
          ![olo pod3](extras/images/olo_pod3.jpg)   
      
-         <br/> 	 
+   
 	 
 3. View the resources in the project `apps`:
     
@@ -764,7 +764,7 @@ Customer Order Services application uses DB2 as its database. To deploy it to Li
 		 
       - Navigate to the `YAML` tab to view the content of yaml.  
             
-			**Note** the service is created through the controller of OpenLibertyApplication custom resource.
+		**Note** the service is created through the controller of OpenLibertyApplication custom resource.
          
            ![ola network service2](extras/images/ola-net-service2.jpg)   
          
@@ -826,14 +826,14 @@ Customer Order Services application uses DB2 as its database. To deploy it to Li
 		
      c. View db `pod` details:
         
-	   - Click on the **Pods** tab under **Workloads** from the left menu and select the pod starting with `cos-db-liberty`
+	  - Click on the **Pods** tab under **Workloads** from the left menu and select the pod starting with `cos-db-liberty`
        
           ![ol-db pod1](extras/images/oldb_pod_1.jpg)
       
           <br/>  	  
 	   
-       - Navigate to the `Logs` tab to view the database logs
-       - Navigate to the `Terminal` tab to view the files in the database container
+      - Navigate to the `Logs` tab to view the database logs
+      - Navigate to the `Terminal` tab to view the files in the database container
        
           ![ol-db pod2](extras/images/oldb_pod_2.jpg)
         
@@ -841,7 +841,7 @@ Customer Order Services application uses DB2 as its database. To deploy it to Li
 		
      d. View db `service` details:
         
-	   - Click on the **Services** tab under **Networking** from the left menu and select  `cos-db-liberty`
+	  - Click on the **Services** tab under **Networking** from the left menu and select  `cos-db-liberty`
        
           ![ol-db service1](extras/images/oldb_service_1.jpg)
 
@@ -885,13 +885,13 @@ Customer Order Services application uses DB2 as its database. To deploy it to Li
      kustomization.yaml  olapp-cos.yaml
      ```
 
-       - Each directory used for kustomization contains one `kustomization.yaml`
+      - Each directory used for kustomization contains one `kustomization.yaml`
 
          ```
          cat deploy/base/kustomization.yaml
          ```
 
-       - Content of kustomization.yaml:
+      - Content of kustomization.yaml:
 	 
          This is a simple kustomization directory that just lists the resources (yaml files) to be deployed.
          ```
@@ -899,9 +899,9 @@ Customer Order Services application uses DB2 as its database. To deploy it to Li
          - olapp-cos.yaml
          ```
 
-       - The `olapp-cos.yaml` file contains the **Open Liberty custom resource definition** to deploy the application and will be covered in detail later.
+      - The `olapp-cos.yaml` file contains the **Open Liberty custom resource definition** to deploy the application and will be covered in detail later.
 
-       <br/>
+
 
 5. Take a look at the files in the `overlay-apps` directory. 
    ```
@@ -914,10 +914,10 @@ Customer Order Services application uses DB2 as its database. To deploy it to Li
      configmap.yaml  kustomization.yaml  secret-db-creds.yaml  secret-liberty-creds.yaml
      ```
    
-       - Take a look at the `kustomization.yaml` in the **overlay-apps** directory:
-       ```
-       cat deploy/overlay-apps/kustomization.yaml
-       ```
+      - Take a look at the `kustomization.yaml` in the **overlay-apps** directory:
+        ```
+        cat deploy/overlay-apps/kustomization.yaml
+        ```
 
          And the output:
 
@@ -1152,12 +1152,13 @@ spec:
 2. To remove these resources, run the commands
 
      a. Ensure you are in directory `openshift-workshop-was/labs/Openshift/RuntimeModernization`
-       
-	   ```
-        cd openshift-workshop-was/labs/Openshift/RuntimeModernization
-       ```    
+
+      ```
+      cd openshift-workshop-was/labs/Openshift/RuntimeModernization
+      ```
+      
    
-       **Note:** The pre-installed resources such as Open Liberty Operator and DB2, are not removed.
+      **Note:** The pre-installed resources such as Open Liberty Operator and DB2, are not removed.
    
    
      b. delete the resouces 
