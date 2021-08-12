@@ -472,7 +472,7 @@ When the Customer Order Services application was modernized, we used MicroProfil
 
      a. Change directory to `/openshift-workshop-was/labs/Openshift/ApplicationManagement` if not done so already.
 	 ```
-	 cd /openshift-workshop-was/labs/Openshift/ApplicationManagement
+	 cd openshift-workshop-was/labs/Openshift/ApplicationManagement
 	 ```
 	 
 	 
@@ -579,9 +579,9 @@ The volume can be shared by all Liberty applications that are in the same namesp
      oc patch olapp cos -n apps --patch '{"spec":{"serviceability":{"volumeClaimName":"liberty"}}}' --type=merge
      ```
     
- 	   - This patches the definition of `olapp` (shortname for `OpenLibertyApplication`) instance `cos` in namespace `apps` (indicated by `-n` option). 
-       - The `--patch` option specifies the content to patch with. In this case, we set the value of `spec.serviceability.volumeClaimName` field to `liberty`, which is the name of the Persistent Volume Claim you created earlier. 
-       - The `--type=merge` option specifies to merge the previous content with the newly specified field and its value.
+ 	- This patches the definition of `olapp` (shortname for `OpenLibertyApplication`) instance `cos` in namespace `apps` (indicated by `-n` option). 
+    - The `--patch` option specifies the content to patch with. In this case, we set the value of `spec.serviceability.volumeClaimName` field to `liberty`, which is the name of the Persistent Volume Claim you created earlier. 
+    - The `--type=merge` option specifies to merge the previous content with the newly specified field and its value.
 
          <br/>
 
@@ -598,9 +598,8 @@ The volume can be shared by all Liberty applications that are in the same namesp
     ```
     The value under `RECONCILED` should be `True`. 
     
-	|         |  
-| ------------- |
-|<strong>NOTE: </strong> <br> If the `REONCILED` value is `False`, then an error occurred. <br> <br>The `REASON` and `MESSAGE` columns will display the cause of the failure. <br> <br>A common mistake is creating the Persistent Volume Claim in another namespace. Ensure that it is created in the `apps` namespace.|
+
+    <strong>NOTE: </strong> <br> If the `REONCILED` value is `False`, then an error occurred. <br> <br>The `REASON` and `MESSAGE` columns will display the cause of the failure. <br> <br>A common mistake is creating the Persistent Volume Claim in another namespace. Ensure that it is created in the `apps` namespace.
 
 	
 3. In the OpenShift console, from the left-panel, click on **Workloads** > **Pods**. Wait until there is only 1 pod on the list and its **Ready** column says 1/1.
@@ -675,9 +674,9 @@ The following steps to request a server trace are illustrated in the screen reco
    - Changing the `podName` will first stop the tracing on the old Pod before enabling traces on the new Pod. 
    - Maximum trace file size (in MB) and the maximum number of files before rolling over can be specified using `maxFileSize` and `maxFiles` parameters.
 
-    ![requesting server trace](extras/images/day2-trace-operation.gif)
+![requesting server trace](extras/images/day2-trace-operation.gif)
 
-    <br/> 
+
 
 ### Accessing the generated files (Hands-on)
 
